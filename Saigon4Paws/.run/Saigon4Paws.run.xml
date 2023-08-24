@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Saigon4Paws" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="Saigon4Paws" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="org.saigon4paws.Saigon4PawsApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
