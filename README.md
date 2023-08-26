@@ -2,10 +2,10 @@
 Backend for Saigon4Paws web application
 
 Follow these steps to install development environment: \
-Tutorial video: https://youtu.be/jcdWByQye0o \
+Tutorial video: https://youtu.be/jcdWByQye0o 
 
 1. Install Java JDK 17, recommend to use Adoptium JDK 17 \
-https://adoptium.net/temurin/releases/ \
+https://adoptium.net/temurin/releases/ 
 
 2. Install MariaDB 10.11.5
 https://mariadb.org/download/?t=mariadb&p=mariadb&r=10.11.5&os=windows&cpu=x86_64&pkg=msi&m=bkns
