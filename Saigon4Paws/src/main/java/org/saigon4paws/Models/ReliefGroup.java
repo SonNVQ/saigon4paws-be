@@ -1,9 +1,6 @@
 package org.saigon4paws.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
@@ -17,7 +14,7 @@ import lombok.*;
 @Table(name = "relief_groups")
 public class ReliefGroup {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "Relief group name must not be empty!")

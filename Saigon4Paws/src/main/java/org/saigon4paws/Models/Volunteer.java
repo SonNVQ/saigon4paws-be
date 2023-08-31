@@ -1,9 +1,6 @@
 package org.saigon4paws.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
@@ -18,7 +15,7 @@ import java.util.Date;
 @Table(name = "volunteers")
 public class Volunteer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotEmpty(message = "Name must not be empty!")
@@ -31,4 +28,8 @@ public class Volunteer {
     private String gender;
 
     private String phoneNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "relief_group_id", referencedColumnName = "id")
+    private ReliefGroup reliefGroup;
 }
