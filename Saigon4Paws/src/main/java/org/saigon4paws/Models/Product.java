@@ -22,7 +22,7 @@ public class Product {
     private Integer price;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinColumn(name = "product_type_id", referencedColumnName = "id")
     private ProductType productType;
 
     @ManyToOne
