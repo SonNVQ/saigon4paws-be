@@ -36,4 +36,8 @@ public class Pet {
     @ManyToOne
     @JoinColumn(name = "adopter_id", referencedColumnName = "id")
     private Adopter adopter;
+
+    @ManyToOne
+    @JoinColumn(name = "relief_group_id", referencedColumnName = "id")
+    private ReliefGroup reliefGroup;
 }
