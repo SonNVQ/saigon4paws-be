@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{manager/layout.html}">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/styles.css}">
+    <title>Content page</title>
+</head>
+<body>
+<div class="table" layout:fragment="content">
+    <div class="table_header">
+        <div>
+            <button class="add_new">+Thêm mới</button>
+        </div>
+    </div>
+    <div class="table_content">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Mô tả</th>
+                <th>Tác vụ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="color: #FF6701; font-size: xx-large;">
+                <td colspan="4">XIN HÃY CHỌN MỘT CHỨC NĂNG QUẢN LÝ</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

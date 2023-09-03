@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{manager/layout.html}">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/pet/form.css}">
+    <title>Pet</title>
+</head>
+<body>
+<!-- FORM -->
+<div class="form" layout:fragment="content">
+
+    <ul class="breadcrumb">
+        <li><a th:href="@{/manager/}">Quản lý thông tin</a></li>
+        <li><a th:href="@{/manager/pet/}">Vật nuôi</a></li>
+        <li>Thêm thông tin</li>
+    </ul>
+
+
+    <div class="box">
+
+        <div class="container">
+            <div class="title">THÊM VẬT NUÔI</div>
+            <div class="content">
+                <!-- Begin: Form điền thông tin cơ bản -->
+                <form action="#">
+                    <div class="pets-basic-info">
+                        <div class="first-line">
+                            <div class="box-1">
+                                <div class="sub-title-1">THÔNG TIN CƠ BẢN</div>
+                                <div class="select">
+                                    <select>
+                                        <option selected disabled>Loại vật nuôi</option>
+                                        <option value="">Mèo</option>
+                                        <option value="">Chó</option>
+                                        <option value="">Khác</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="upload">
+                                <img src="/frontend/admin_form/assets/img/dog-placeholder-images-5.png" width=100
+                                     height=100 alt="">
+                                <div class="round">
+                                    <input type="file">
+                                    <i class="ti-upload" style="color: #fff;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rows">
+                        <input type="text" placeholder="Tên vật nuôi" required>
+                        <div class="select">
+                            <select>
+                                <option selected disabled>Giới tính</option>
+                                <option value="">Đực</option>
+                                <option value="">Cái</option>
+                            </select>
+                        </div>
+                        <div class="select">
+                            <select>
+                                <option selected disabled>Giống</option>
+                                <option value="">Chihuahua</option>
+                                <option value="">Phốc Sóc</option>
+                                <option value="">Chó cỏ</option>
+                            </select>
+                        </div>
+                        <input type="text" placeholder="Tuổi" required>
+                    </div>
+                </form>
+                <!-- Begin: Form điền thông tin cụ thể-->
+                <div class="sub-title-2">THÔNG TIN CỤ THỂ</div>
+                <form action="#">
+                    <div class="pets-details-info">
+                        <div class="input-box">
+                            <div class="details">Nhóm cứu trợ:</div>
+                            <div class="select">
+                                <select>
+                                    <option selected disabled>Nhóm cứu trợ</option>
+                                    <option value="">SGT</option>
+                                    <option value="">SAR</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Tình trạng nhận nuôi:</div>
+                            <input type="text" placeholder="Tình trạng nhận nuôi" required>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Tình trạng tiêm phòng:</div>
+                            <input type="text" placeholder="Tình trạng tiêm phòng" required>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Tình trạng sức khỏe:</div>
+                            <input type="text" placeholder="Tình trạng sức khỏe" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="edit-btn">
+                <input type="submit" value="Hủy" onclick="location.href='/manager/pet'" class="cancel-btn">
+                <input type="submit" value="Lưu" class="save-btn">
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

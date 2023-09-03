@@ -1,0 +1,183 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    background-color: darkgray;
+}
+
+/* BEGIN: HEADER */
+
+#header {
+    --heightUp: 3vh; /* Biến độ dài Menu trên */
+    height: var(--heightUp);
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+#upper-nav, #down-nav, #fowr {
+    display: block;
+    margin: 0px 100px;
+}
+
+#nav-contact {
+    float: right;
+    display: flex;
+}
+
+#nav-contact > li, #nav-location {
+    display: inline-block;
+}
+
+#nav-location, #nav-contact > li > a {
+    color: #687581;
+    line-height: var(--heightUp);
+    padding: 0px 24px;
+    text-decoration: none;
+}
+
+.location, .nav-comment, #nav-location:hover, #nav-contact > li > a:hover  {
+    color: #FF6701;
+}
+
+#nav {
+    --heightDown: 7vh; /*Biến độ dài Menu dưới */
+    height: var(--heightDown);
+    background-color: #FEA82F;
+}
+
+#down-nav {
+    height: var(--heightDown);
+    display: flex;
+    align-items: center;
+}
+
+img.logo-main {
+    width: 270px;
+    line-height: var(--heightDown);
+}
+
+/* END: HEADER */
+
+/* RESPONSIVE */
+@media (max-width: 740px) {
+    #upper-nav, #down-nav, #fowr {
+        margin: 0;
+    }
+}
+
+.menu {
+    background-color: white;
+    left: 0;
+    bottom: 0;
+    width: 37vh;
+}
+
+.management {
+    margin-left: 4vh;
+    display: flex;
+    margin-bottom: 1vh;
+}
+
+.management img {
+    height: 3vh;
+}
+
+.info-management {
+    margin-left: 1.5vh;
+    font-weight: bold;
+    color: rgb(127, 187, 243);
+    font-size: 2.4vh;
+}
+
+.main-menu {
+    margin-left: 1vh;
+}
+.main-menu img {
+    height: 0.9vh;
+    margin-right: 1vh;
+    margin-top: 0.75vh;
+}
+
+.elements {
+    margin-left: 8vh;
+    display: flex;
+    margin-top: 1vh;
+    color: rgb(125, 123, 123);
+    font-size: 2vh;
+    transition: color 0.3s;
+}
+
+.elements:hover {
+    color: orange;
+    cursor: pointer;
+}
+
+.menu-profile {
+    display: grid;
+    grid-template-columns: 8vh 1fr;
+    margin-top: 4vh;
+    margin-left: 3vh;
+    margin-bottom: 3vh;
+}
+
+.profile-photo {
+    cursor: pointer;
+    width: 100%;
+    border-radius: 3.75vh;
+}
+
+.photo {
+    width: 7.5vh;
+}
+
+.profile-overview {
+    width: 20vh;
+    margin-left: 2.5vh;
+    margin-top: 0.65vh;
+    cursor: pointer;
+}
+
+.admin {
+    font-size: 3.3vh;
+    font-weight: bold;
+}
+
+.admin-email {
+    font-size: 2vh;
+    color: rgb(125, 123, 123);
+}
+
+.copyright {
+    margin-top: 50vh;
+    display: flex;
+    justify-content: center;
+    color: rgb(125, 123, 123);
+    font-size: 14px;
+}
+
+.main-content {
+    display: flex;
+}
+
+.message-error {
+    color: red;
+    font-size: 14px;
+    margin-left: 1vh;
+}
+
+.message-success {
+    color: green;
+    font-size: 14px;
+    margin-left: 1vh;
+}

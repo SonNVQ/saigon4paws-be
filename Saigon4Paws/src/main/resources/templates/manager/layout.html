@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/manager/layout.css}">
+    <link rel="stylesheet" th:href="@{/fonts/themify-icons/themify-icons.css}">
+    <title>Title</title>
+</head>
+<body>
+<div id="wrapper">
+
+    <!-- MENU TOP -->
+    <div id="header">
+        <div id="upper-nav">
+            <!-- Begin: Location -->
+            <a href="#" id="nav-location">
+                <i class="location ti-location-pin"></i>
+                Hồ Chí Minh
+            </a>
+            <!-- End: Location -->
+
+            <!-- Begin: Menu contact -->
+            <ul id="nav-contact">
+                <li>
+                    <a href="#">
+                        <i class="nav-comment ti-comment"></i>
+                        Liên hệ
+                    </a>
+                </li>
+                <li><a href="#">English</a></li>
+            </ul>
+            <!-- End: Menu contact -->
+        </div>
+    </div>
+
+    <!-- MENU DOWN -->
+    <div id="nav">
+        <a href="#" id="down-nav">
+            <img th:src="@{/images/general/logo-brand.png}" alt="LOGO" class="logo-main">
+        </a>
+    </div>
+
+    <!-- MAIN-MENU&TABLE -->
+    <div class="main-content">
+        <!-- MENU LEFT -->
+        <div class="menu">
+            <div class="menu-profile">
+                <div class="profile-photo">
+                    <img
+                            class="photo"
+                            th:src="@{/images/general/menu-pic/profile_photo.png}">
+                </div>
+
+                <div class="profile-overview">
+                    <div class="admin">Admin</div>
+                    <div class="admin-email">Admin@email.com</div>
+                </div>
+            </div>
+
+            <div class="management">
+                <img th:src="@{/images/general/menu-pic/icon 2.png}">
+                <div class="info-management">Quản lý thông tin</div>
+            </div>
+
+            <div class="main-menu">
+                <div class="elements">
+                    <img th:src="@{/images/general/menu-pic/light-orange.png}">
+                    <div>
+                        <a href="/manager/pet-type">Loại vật nuôi</a>
+                    </div>
+                </div>
+
+                <div class="elements">
+                    <img th:src="@{/images/general/menu-pic/light-orange.png}">
+                    <div>
+                        <a href="/manager/pet">Vật nuôi</a>
+                    </div>
+                </div>
+
+                <div class="elements">
+                    <img th:src="@{/images/general/menu-pic/dark orange.png}">
+                    <div>Bài viết</div>
+                </div>
+
+                <div class="elements">
+                    <img th:src="@{/images/general/menu-pic/light-orange.png}">
+                    <div>Nhóm cứu trợ</div>
+                </div>
+
+                <div class="elements">
+                    <img th:src="@{/images/general/menu-pic/dark orange.png}">
+                    <div>Nhà tài trợ</div>
+                </div>
+
+                <div class="elements">
+                    <img th:src="@{/images/general/menu-pic/light-orange.png}">
+                    <div>Sản phẩm</div>
+                </div>
+
+            </div>
+            <div class="copyright">@2023 saigon4paws</div>
+        </div>
+
+        <!-- CONTENT -->
+        <div layout:fragment="content">
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

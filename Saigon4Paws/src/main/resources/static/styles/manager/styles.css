@@ -1,0 +1,47 @@
+.table {
+    width: 85%;
+    padding: 55px;
+}
+
+.table_header {
+    color: #FF6701;
+    padding-top: 15px;
+    padding-bottom: 30px;
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add_new {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #FF6701;
+    box-shadow: 1px 2px #687581;
+}
+
+.table_content {
+    height: 500px;
+    overflow: auto;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+th {
+    height: 40px;
+    width: 600px;
+}
+
+td {
+    height: 250px;
+    width: 600px;
+    text-align: center;
+    font-weight: bold;
+}

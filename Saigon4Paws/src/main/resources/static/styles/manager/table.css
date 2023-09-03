@@ -1,0 +1,80 @@
+.table {
+    padding: 45px;
+    flex: 1 0 85%;
+}
+
+.table_header {
+    color: #FF6701;
+    padding-bottom: 30px;
+    padding-left: 12px;
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add_new {
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #FF6701;
+    box-shadow: 1px 2px #687581;
+}
+
+.ti-pencil-alt, .ti-trash {
+    color: #FF6701;
+}
+
+.fix, .delete {
+    text-decoration: none;
+    color: black;
+}
+
+.fix:hover, .delete:hover {
+    color: #FEA82F;
+}
+
+.table_content {
+    height: 500px;
+    overflow: auto;
+    padding-left: 12px;
+}
+
+.table_content::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.table_content::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #687581;
+    visibility: hidden;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 10px;
+    width: 100%;
+}
+
+th, td {
+    border-bottom: 1px solid #687581;
+    height: 70px;
+    width: 700px;
+}
+
+.table.table-background {
+    background: #fff;
+}
+
+.table.table-hover tbody tr:hover {
+    background: #f6f9fc;
+    color: #FEA82F;
+}
+
+table tbody {
+    text-align: center;
+    font-weight: bold;
+}

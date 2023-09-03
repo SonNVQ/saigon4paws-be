@@ -1,0 +1,87 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: none;
+}
+
+/*.delete {*/
+/*    color: orange;*/
+/*    cursor: pointer;*/
+/*    font-size: 22px;*/
+/*    font-weight: 500;*/
+/*    text-align: center;*/
+/*}*/
+
+.delete-form {
+    display: inline;
+}
+
+.content {
+    font-family: Arial;
+    background-color: white;
+    border: 0.5px solid orangered;
+    width: 400px;
+    height: 150px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 2;
+    text-align: center;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+}
+
+.confirm {
+    background-color: orangered;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    font-size: 24px;
+    padding: 4px 0 4px 0px;
+}
+
+.note {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.cancel {
+    background-color: lightgray;
+    color: white;
+    border-radius: 3px;
+    padding: 10px 30px 10px 30px;
+    border: none;
+    font-size: 14px;
+    margin-right: 12px;
+    box-shadow: 0px 5px 10px rgba(128, 128, 128, 10);
+    cursor: pointer;
+}
+
+.agree {
+    background-color: orangered;
+    color: white;
+    border-radius: 3px;
+    padding: 10px 21px 10px 21px;
+    border: none;
+    font-size: 14px;
+    margin-left: 12px;
+    box-shadow: 0px 5px 10px rgba(128, 128, 128, 10);
+    cursor: pointer;
+}
+
+.pop-up.active .overlay {
+    display: block;
+}
+
+.pop-up.active .content {
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
