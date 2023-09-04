@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{manager/layout.html}">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/relief-group/form.css}">
+    <title>Pet type</title>
+</head>
+<body>
+<!-- FORM -->
+<div class="form" layout:fragment="content">
+
+    <ul class="breadcrumb">
+        <li><a th:href="@{/manager}">Quản lý thông tin</a></li>
+        <li><a th:href="@{/manager/relief-group}">Nhóm cứu trợ</a></li>
+        <li>Thêm thông tin</li>
+    </ul>
+
+
+    <div class="box">
+
+        <div class="container">
+            <div class="title">THÊM NHÓM CỨU TRỢ</div>
+            <div class="content">
+                <!-- Begin: Form điền thông tin cơ bản -->
+                <form th:action="@{#}" th:if="${reliefGroupDTO}" th:object="${reliefGroupDTO}" method="post">
+                    <div class="pets-basic-info">
+                        <div class="first-line">
+                            <div class="box-1">
+                                <div class="sub-title-1">THÔNG TIN CƠ BẢN</div>
+                                <div class="select">
+                                    <select th:field="*{workingArea}">
+                                        <option value="" selected disabled>Khu vực hoạt động</option>
+                                        <option value="Q1">Q1</option>
+                                        <option value="Q2">Q2</option>
+                                        <option value="Q3">Q3</option>
+                                        <option value="Q4">Q4</option>
+                                        <option value="Q5">Q5</option>
+                                        <option value="Q6">Q6</option>
+                                        <option value="Q7">Q7</option>
+                                        <option value="Q8">Q8</option>
+                                        <option value="Q9">Q9</option>
+                                        <option value="Q10">Q10</option>
+                                        <option value="Q11">Q11</option>
+                                        <option value="Q12">Q12</option>
+                                        <option value="Hóc Môn">Hóc Môn</option>
+                                        <option value="Nhà Bè">Nhà Bè</option>
+                                        <option value="Cần Giờ">Cần Giờ</option>
+                                        <option value="Thủ Đức">Thủ Đức</option>
+                                    </select>
+                                    <p th:if="${#fields.hasErrors('workingArea')}" th:error="*{workingArea}"></p>
+                                </div>
+                            </div>
+
+                            <div class="upload">
+                                <img th:src="@{/images/general/noprofil.jpg}" width=100 height=100 alt="">
+                                <div class="round">
+                                    <input type="file" name="avatar" accept="image/*">
+                                    <i class="ti-upload" style="color: #fff;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rows">
+                        <input type="text" th:field="*{name}" placeholder="Tên nhóm" required>
+                        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                        <input type="text" th:field="*{phoneNumber}" placeholder="SĐT" required>
+                        <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+                    </div>
+                    <!-- Begin: Form điền thông tin cụ thể-->
+                    <div class="sub-title-2">THÔNG TIN CỤ THỂ</div>
+                    <div class="pets-details-info">
+                        <!-- <div class="input-box">
+                            <div class="details">Nhóm cứu trợ:</div>
+                            <div class="select">
+                                <select>
+                                    <option selected disabled>Nhóm cứu trợ</option>
+                                    <option value="">SGT</option>
+                                    <option value="">SAR</option>
+                                </select>
+                            </div>
+                        </div>                 -->
+                        <div class="input-box">
+                            <div class="details">Fanpage:</div>
+                            <input type="text" th:field="*{fanpageLink}" placeholder="Fanpage" required>
+                            <p th:if="${#fields.hasErrors('fanpageLink')}" th:errors="*{fanpageLink}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Số tài khoản:</div>
+                            <input type="text" th:field="*{bankAccountNumber}" placeholder="Số tài khoản" required>
+                            <p th:if="${#fields.hasErrors('bankAccountNumber')}" th:errors="*{bankAccountNumber}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Email:</div>
+                            <input type="text" th:field="*{email}" placeholder="Email" required>
+                            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Giới thiệu:</div>
+                            <input type="text" th:field="*{description}" placeholder="Giới thiệu" required>
+                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                        </div>
+                    </div>
+                    <div class="edit-btn">
+                        <input type="button" value="Hủy" onclick="location.href='/manager/relief-group'"
+                               class="cancel-btn">
+                        <input type="submit" value="Lưu" class="save-btn">
+                    </div>
+                </form>
+                <p class="message-error" th:if="${error}" th:text="${error}"></p>
+                <p class="message-success" th:if="${success}" th:text="${success}"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const image = document.querySelector(".upload img"),
+            input = document.querySelector(".upload input");
+        input.addEventListener("change", () => {
+            image.src = URL.createObjectURL(input.files[0]);
+        });
+    </script>
+
+</div>
+</body>
+</html>
