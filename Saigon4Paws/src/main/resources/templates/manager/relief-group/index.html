@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{manager/layout.html}">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/table.css}">
+    <link rel="stylesheet" th:href="@{/styles/manager/popup.css}">
+    <title>Pet</title>
+</head>
+<body>
+<div class="table" layout:fragment="content">
+    <div class="table_header">
+        <div class="line">
+            <p>
+                <i class=" ti-angle-right"></i>
+                <a style="text-decoration: none; color: #FF6701;" th:href="@{/manager}">Quản lý</a>
+                <i class=" ti-angle-right"></i>
+                <a style="text-decoration: none; color: #FF6701;" th:href="@{/manager/relief-group}">Nhóm cứu trợ</a>
+            </p>
+        </div>
+        <div>
+            <button class="add_new" onclick="document.location.href='/manager/relief-group/add'">+Thêm mới</button>
+        </div>
+    </div>
+
+    <div class="table_content">
+        <table class="table table-background table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Nhóm cứu trợ</th>
+                <th>Khu vực</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>STK</th>
+                <th>Mô tả</th>
+                <th colspan="2">Tác vụ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reliefGroup, iteratorStat : ${reliefGroups}">
+                <td th:text="${iteratorStat.index + 1}"></td>
+                <td th:text="${reliefGroup.name}"></td>
+                <td th:text="${reliefGroup.workingArea}"></td>
+                <td th:text="${reliefGroup.phoneNumber}"></td>
+                <td th:text="${reliefGroup.email}"></td>
+                <td th:text="${reliefGroup.bankAccountNumber}"></td>
+                <td th:text="${reliefGroup.description}"></td>
+                <td>
+                    <button><i class="ti-pencil-alt"></i></button>
+                    <a class="fix" th:href="@{'/manager/relief-group/edit?id=' + ${reliefGroup.id}}">Sửa</a>
+                </td>
+                <td>
+                    <button><i class="ti-trash"></i></button>
+                    <a class="delete" href="#"
+                       th:onclick="'togglePopup(); document.querySelector(\'#agree\').value = \'' + ${reliefGroup.id} + '\'; return false;'"
+                    >Xoá</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="pop-up" id="popup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="confirm"><strong>Xác nhận xóa?</strong></div>
+            <div class="note"><strong>Lưu ý:</strong> Bạn sẽ không thể hoàn tác thao tác này.</div>
+            <div>
+                <button type="button" class="cancel" onclick="togglePopup()"><strong>Hủy</strong></button>
+                <form th:action="@{/manager/relief-group/delete}" method="post" class="delete-form">
+                    <input type="hidden" id="agree" name="id" value="">
+                    <input type="submit" class="agree" onclick="togglePopup()" value="Đồng ý">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function togglePopup() {
+            document.getElementById("popup").classList.toggle("active");
+        }
+    </script>
+</div>
+</body>
+</html>
