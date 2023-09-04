@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{manager/layout.html}">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/table.css}">
+    <title>Pet</title>
+</head>
+<body>
+<div class="table" layout:fragment="content">
+    <div class="table_header">
+        <div class="line">
+            <p>
+            <i class=" ti-angle-right"></i>
+            <a style="text-decoration: none; color: #FF6701;" href="#">Quản lý vật nuôi</a>
+            <i class=" ti-angle-right"></i>
+            <a style="text-decoration: none; color: #FF6701;" href="/manager/pet/">Vật nuôi</a>
+            </p>
+        </div>
+        <div>
+            <button class="add_new" onclick="window.location.href='/manager/pet/add'">+Thêm mới</button>
+        </div>
+    </div>
+
+    <div class="table_content">
+        <table class="table table-background table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tên vật nuôi</th>
+                <th>Nhóm cứu trợ</th>
+                <th>Tình trạng nhận nuôi</th>
+                <th colspan="2">Tác vụ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>SP001</td>
+                <td>Minino Plus</td>
+                <td>Thức ăn hạt cho mèo trưởng thành</td>
+                <td>STG</td>
+                <td>
+                    <button><i class="ti-pencil-alt"></i></button>
+                    <a class="fix" href="">Sửa</a>
+                </td>
+                <td>
+                    <button><i class="ti-trash"></i></button>
+                    <a class="delete" href="">Xoá</a>
+                </td>
+            </tr>
+            <tr>
+                <td>SP002</td>
+                <td>Đồ chơi nhai gặm</td>
+                <td>Đồ chơi cho chó mèo</td>
+                <td>STG</td>
+                <td>
+                    <button><i class="ti-pencil-alt"></i></button>
+                    <a class="fix" href="">Sửa</a>
+                </td>
+                <td>
+                    <button><i class="ti-trash"></i></button>
+                    <a class="delete" href="">Xoá</a>
+                </td>
+            </tr>
+            <tr>
+                <td>SP003</td>
+                <td>Thức hạt Fibis</td>
+                <td>Thức ăn hạt dành cho chó trưởng thành</td>
+                <td>SAR</td>
+                <td>
+                    <button><i class="ti-pencil-alt"></i></button>
+                    <a class="fix" href="">Sửa</a>
+                </td>
+                <td>
+                    <button><i class="ti-trash"></i></button>
+                    <a class="delete" href="">Xoá</a>
+                </td>
+            </tr>
+            <tr>
+                <td>SP004</td>
+                <td>Cần câu mèo</td>
+                <td>Đồ chơi cho mèo: Cần câu</td>
+                <td>SAR</td>
+                <td>
+                    <button><i class="ti-pencil-alt"></i></button>
+                    <a class="fix" href="">Sửa</a>
+                </td>
+                <td>
+                    <button><i class="ti-trash"></i></button>
+                    <a class="delete" href="">Xoá</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
