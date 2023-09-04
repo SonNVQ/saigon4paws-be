@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -28,6 +30,10 @@ public class Pet {
     private String healthStatus;
 
     private String vaccinationStatus;
+
+    private Date addedDate;
+
+    private Date adoptedDate;
 
     @ManyToOne
     @JoinColumn(name = "type", referencedColumnName = "id")

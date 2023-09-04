@@ -30,9 +30,9 @@
                                 <div class="select">
                                     <select>
                                         <option selected disabled>Loại vật nuôi</option>
-                                        <option value="">Mèo</option>
-                                        <option value="">Chó</option>
-                                        <option value="">Khác</option>
+                                        <option th:each="petType: ${petTypes}">
+                                            <span th:text="${petType.name} + ' - ' + ${petType.species}"></span>
+                                        </option>
                                     </select>
                                 </div>
                             </div>

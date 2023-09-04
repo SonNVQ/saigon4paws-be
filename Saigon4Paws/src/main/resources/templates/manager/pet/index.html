@@ -10,10 +10,10 @@
     <div class="table_header">
         <div class="line">
             <p>
-            <i class=" ti-angle-right"></i>
-            <a style="text-decoration: none; color: #FF6701;" href="#">Quản lý vật nuôi</a>
-            <i class=" ti-angle-right"></i>
-            <a style="text-decoration: none; color: #FF6701;" href="/manager/pet/">Vật nuôi</a>
+                <i class=" ti-angle-right"></i>
+                <a style="text-decoration: none; color: #FF6701;" href="#">Quản lý vật nuôi</a>
+                <i class=" ti-angle-right"></i>
+                <a style="text-decoration: none; color: #FF6701;" href="/manager/pet/">Vật nuôi</a>
             </p>
         </div>
         <div>
@@ -33,53 +33,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>SP001</td>
-                <td>Minino Plus</td>
-                <td>Thức ăn hạt cho mèo trưởng thành</td>
-                <td>STG</td>
-                <td>
-                    <button><i class="ti-pencil-alt"></i></button>
-                    <a class="fix" href="">Sửa</a>
-                </td>
-                <td>
-                    <button><i class="ti-trash"></i></button>
-                    <a class="delete" href="">Xoá</a>
-                </td>
-            </tr>
-            <tr>
-                <td>SP002</td>
-                <td>Đồ chơi nhai gặm</td>
-                <td>Đồ chơi cho chó mèo</td>
-                <td>STG</td>
-                <td>
-                    <button><i class="ti-pencil-alt"></i></button>
-                    <a class="fix" href="">Sửa</a>
-                </td>
-                <td>
-                    <button><i class="ti-trash"></i></button>
-                    <a class="delete" href="">Xoá</a>
-                </td>
-            </tr>
-            <tr>
-                <td>SP003</td>
-                <td>Thức hạt Fibis</td>
-                <td>Thức ăn hạt dành cho chó trưởng thành</td>
-                <td>SAR</td>
-                <td>
-                    <button><i class="ti-pencil-alt"></i></button>
-                    <a class="fix" href="">Sửa</a>
-                </td>
-                <td>
-                    <button><i class="ti-trash"></i></button>
-                    <a class="delete" href="">Xoá</a>
-                </td>
-            </tr>
-            <tr>
-                <td>SP004</td>
-                <td>Cần câu mèo</td>
-                <td>Đồ chơi cho mèo: Cần câu</td>
-                <td>SAR</td>
+            <tr th:each="pet, iteratorStat: ${pets}">
+                <td th:text="${iteratorStat.index + 1}"></td>
+                <td th:text="${pet.name}"></td>
+                <td th:text="${pet.reliefGroup.name}"></td>
+                <td th:text="${pet.adoptionStatus}"></td>
                 <td>
                     <button><i class="ti-pencil-alt"></i></button>
                     <a class="fix" href="">Sửa</a>
@@ -91,6 +49,27 @@
             </tr>
             </tbody>
         </table>
+        <div th:if="${totalPages > 1}">
+            <div>
+                <div>
+                    Total Rows: [[${totalItems}]]
+                </div>
+                <div>
+            <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}}">[[${i}]]</a>
+                <span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp; &nbsp;
+            </span>
+                </div>
+                <div>
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}}">Next</a>
+                    <span th:unless="${currentPage < totalPages}">Next</span>
+                </div>
+                <div>
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}}">Last</a>
+                    <span th:unless="${currentPage < totalPages}">Last</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
