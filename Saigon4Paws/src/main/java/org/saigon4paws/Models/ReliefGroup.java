@@ -15,9 +15,10 @@ import lombok.*;
 public class ReliefGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @NotEmpty(message = "Relief group name must not be empty!")
+    @Column(unique = true)
     private String name;
 
     private String workingArea;
@@ -25,11 +26,17 @@ public class ReliefGroup {
     private String description;
 
     @Email(message = "Email format is invalid!")
+    @Column(unique = true)
     private String email;
 
+    @Column(unique = true)
     private String phoneNumber;
 
+    @Column(unique = true)
     private String fanpageLink;
 
+    @Column(unique = true)
     private String bankAccountNumber;
+
+    private String avatarUrl;
 }
