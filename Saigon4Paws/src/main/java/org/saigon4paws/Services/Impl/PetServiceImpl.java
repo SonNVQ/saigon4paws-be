@@ -94,7 +94,8 @@ public class PetServiceImpl implements PetService {
         pet.setName(petDTO.getName());
         pet.setGender(petDTO.getGender());
         pet.setAge(petDTO.getAge());
-        pet.setPhotoUrl(petDTO.getPhotoUrl());
+        if (petDTO.getPhotoUrl() != null)
+            pet.setPhotoUrl(petDTO.getPhotoUrl());
         pet.setAdoptionStatus(petDTO.getAdoptionStatus());
         pet.setHealthStatus(petDTO.getHealthStatus());
         pet.setVaccinationStatus(petDTO.getVaccinationStatus());

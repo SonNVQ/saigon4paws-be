@@ -37,12 +37,12 @@ public class PetController {
     @Value("${upload.pet-photo.dir}")
     private String petPhotoDir;
 
-    @RequestMapping(value={"/"}, method={RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = {"/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String petIndex() {
         return "redirect:/manager/pet";
     }
 
-    @RequestMapping(value={""}, method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = {""}, method = {RequestMethod.GET, RequestMethod.POST})
     public String petIndex(@RequestParam(value = "page", required = false) Integer pageNo,
                            @RequestParam(value = "size", required = false) Integer pageSize,
                            Model model) {
@@ -120,7 +120,7 @@ public class PetController {
 
     @PostMapping("/edit")
     public String petEditSubmit(@ModelAttribute("petDTO") @Valid PetDTO petDTO,
-                                @RequestParam("avatar") MultipartFile avatar,
+                                @RequestParam(value = "avatar", required = false) MultipartFile avatar,
                                 BindingResult result,
                                 Model model) {
         model.addAttribute("isEditPage", true);
@@ -132,28 +132,31 @@ public class PetController {
             model.addAttribute("error", "Pet not found!");
             return "manager/pet/form";
         }
-        String originalAvatarFilename = avatar.getOriginalFilename();
-        if (result.hasErrors()) {
-            return "manager/pet/form";
-        }
-        if (originalAvatarFilename != null && !originalAvatarFilename.isEmpty()) {
-            try {
-                String savingFolder = System.getProperty("user.dir") + "/files";
-                File petPhotoDirFile = new File(savingFolder + File.separator + petPhotoDir);
-                if (!petPhotoDirFile.exists())
-                    petPhotoDirFile.mkdirs();
-                String originalAvatarExtension = originalAvatarFilename.substring(originalAvatarFilename.lastIndexOf(".") + 1);
-                String avatarUrl = petPhotoDir + "/" + UUID.randomUUID() + "." + originalAvatarExtension;
-                String avatarPath = savingFolder + avatarUrl;
-                Files.write(Path.of(avatarPath), avatar.getBytes());
-                petDTO.setPhotoUrl(avatarUrl);
-            } catch (Exception e) {
-                model.addAttribute("error", e.getMessage());
+        if (avatar != null && avatar.getSize() > 0) {
+            String originalAvatarFilename = avatar.getOriginalFilename();
+            if (result.hasErrors()) {
                 return "manager/pet/form";
+            }
+            if (originalAvatarFilename != null && !originalAvatarFilename.isEmpty()) {
+                try {
+                    String savingFolder = System.getProperty("user.dir") + "/files";
+                    File petPhotoDirFile = new File(savingFolder + File.separator + petPhotoDir);
+                    if (!petPhotoDirFile.exists())
+                        petPhotoDirFile.mkdirs();
+                    String originalAvatarExtension = originalAvatarFilename.substring(originalAvatarFilename.lastIndexOf(".") + 1);
+                    String avatarUrl = petPhotoDir + "/" + UUID.randomUUID() + "." + originalAvatarExtension;
+                    String avatarPath = savingFolder + avatarUrl;
+                    Files.write(Path.of(avatarPath), avatar.getBytes());
+                    petDTO.setPhotoUrl(avatarUrl);
+                } catch (Exception e) {
+                    model.addAttribute("error", e.getMessage());
+                    return "manager/pet/form";
+                }
             }
         }
         try {
-            petService.updatePet(petDTO.getId(), petDTO);
+            PetDTO updatedPetDTO = petService.updatePet(petDTO.getId(), petDTO);
+            model.addAttribute("petDTO", updatedPetDTO);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "manager/pet/form";
