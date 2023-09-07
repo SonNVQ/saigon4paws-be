@@ -12,7 +12,7 @@
     <ul class="breadcrumb">
         <li><a th:href="@{/manager/}">Quản lý thông tin</a></li>
         <li><a th:href="@{/manager/pet/}">Vật nuôi</a></li>
-        <li>Thêm thông tin</li>
+        <li th:text="${isEditPage} ? 'Sửa thông tin': 'Thêm thông tin'"></li>
     </ul>
 
 
@@ -22,88 +22,89 @@
             <div class="title">THÊM VẬT NUÔI</div>
             <div class="content">
                 <!-- Begin: Form điền thông tin cơ bản -->
-                <form action="#">
+                <form action="" th:object="${petDTO}" method="post" enctype="multipart/form-data">
                     <div class="pets-basic-info">
                         <div class="first-line">
                             <div class="box-1">
                                 <div class="sub-title-1">THÔNG TIN CƠ BẢN</div>
                                 <div class="select">
-                                    <select>
-                                        <option selected disabled>Loại vật nuôi</option>
-                                        <option th:each="petType: ${petTypes}">
-                                            <span th:text="${petType.name} + ' - ' + ${petType.species}"></span>
+                                    <select th:field="*{petTypeId}">
+                                        <option value="" selected disabled>Loại vật nuôi</option>
+                                        <option th:each="petType: ${petTypes}" th:value="${petType.id}"
+                                                th:text="${petType.name} + ' - ' + ${petType.species}">
                                         </option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="upload">
-                                <img src="/frontend/admin_form/assets/img/dog-placeholder-images-5.png" width=100
+                                <img th:src="${petDTO.photoUrl}" width=100
                                      height=100 alt="">
                                 <div class="round">
-                                    <input type="file">
+                                    <input type="file" name="avatar" accept="image/jpeg,image/jpg,image/png">
                                     <i class="ti-upload" style="color: #fff;"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="rows">
-                        <input type="text" placeholder="Tên vật nuôi" required>
+                        <input type="text" th:field="*{name}" placeholder="Tên vật nuôi" required>
+                        <p th:if="${#fields.hasErrors('name')}" th:text="*{name}"></p>
                         <div class="select">
-                            <select>
-                                <option selected disabled>Giới tính</option>
+                            <select th:field="*{gender}">
+                                <option value="" selected disabled>Giới tính</option>
                                 <option value="">Đực</option>
                                 <option value="">Cái</option>
                             </select>
                         </div>
-                        <div class="select">
-                            <select>
-                                <option selected disabled>Giống</option>
-                                <option value="">Chihuahua</option>
-                                <option value="">Phốc Sóc</option>
-                                <option value="">Chó cỏ</option>
-                            </select>
-                        </div>
-                        <input type="text" placeholder="Tuổi" required>
+                        <input type="text" th:field="*{age}" placeholder="Tuổi" required>
+                        <p th:if="${#fields.hasErrors('age')}" th:text="*{age}"></p>
                     </div>
-                </form>
-                <!-- Begin: Form điền thông tin cụ thể-->
-                <div class="sub-title-2">THÔNG TIN CỤ THỂ</div>
-                <form action="#">
+                    <!-- Begin: Form điền thông tin cụ thể-->
+                    <div class="sub-title-2">THÔNG TIN CỤ THỂ</div>
                     <div class="pets-details-info">
                         <div class="input-box">
                             <div class="details">Nhóm cứu trợ:</div>
                             <div class="select">
-                                <select>
-                                    <option selected disabled>Nhóm cứu trợ</option>
-                                    <option value="">SGT</option>
-                                    <option value="">SAR</option>
+                                <select th:field="*{reliefGroupId}">
+                                    <option value="" disabled selected>Nhóm cứu trợ</option>
+                                    <option th:each="reliefGroup: ${reliefGroups}" th:value="${reliefGroup.id}"
+                                            th:text="${reliefGroup.name}"></option>
                                 </select>
                             </div>
                         </div>
                         <div class="input-box">
                             <div class="details">Tình trạng nhận nuôi:</div>
-                            <input type="text" placeholder="Tình trạng nhận nuôi" required>
+                            <input type="text" th:field="*{adoptionStatus}" placeholder="Tình trạng nhận nuôi" required>
                         </div>
                         <div class="input-box">
                             <div class="details">Tình trạng tiêm phòng:</div>
-                            <input type="text" placeholder="Tình trạng tiêm phòng" required>
+                            <input type="text" th:field="*{vaccinationStatus}" placeholder="Tình trạng tiêm phòng" required>
                         </div>
                         <div class="input-box">
                             <div class="details">Tình trạng sức khỏe:</div>
-                            <input type="text" placeholder="Tình trạng sức khỏe" required>
+                            <input type="text" th:field="*{healthStatus}" placeholder="Tình trạng sức khỏe" required>
                         </div>
                     </div>
+                    <div class="edit-btn">
+                        <input type="button" value="Hủy" onclick="location.href='/manager/pet'" class="cancel-btn">
+                        <input type="submit" value="Lưu" class="save-btn">
+                    </div>
                 </form>
+                <p class="message-error" th:if="${error}" th:text="${error}"></p>
+                <p class="message-success" th:if="${success}" th:text="${success}"></p>
             </div>
-            <div class="edit-btn">
-                <input type="submit" value="Hủy" onclick="location.href='/manager/pet'" class="cancel-btn">
-                <input type="submit" value="Lưu" class="save-btn">
-            </div>
-
         </div>
     </div>
 
+    <script>
+        const image = document.querySelector(".upload img"),
+            input = document.querySelector(".upload input");
+
+        input.addEventListener("change", () => {
+            image.src = URL.createObjectURL(input.files[0]);
+        });
+    </script>
 </div>
 </body>
 </html>

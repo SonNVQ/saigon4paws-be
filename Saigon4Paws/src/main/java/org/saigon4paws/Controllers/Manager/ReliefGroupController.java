@@ -52,7 +52,7 @@ public class ReliefGroupController {
 
     @GetMapping("/edit")
     public String reliefGroupEdit(@RequestParam("id") Integer id, Model model) {
-        ReliefGroupDTO reliefGroupDTO = reliefGroupService.getReliefGroupById(id);
+        ReliefGroupDTO reliefGroupDTO = reliefGroupService.getReliefGroupDTOById(id);
         if (reliefGroupDTO == null) {
             model.addAttribute("error", "Relief group not found!");
             return "manager/relief-group/form";
@@ -72,7 +72,7 @@ public class ReliefGroupController {
         }
         ReliefGroupDTO updatedReliefGroupDTO;
         try {
-            updatedReliefGroupDTO = reliefGroupService.updateReliefGroupById(reliefGroupDTO.getId(), reliefGroupDTO);
+            updatedReliefGroupDTO = reliefGroupService.updateReliefGroupDTOById(reliefGroupDTO.getId(), reliefGroupDTO);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "manager/relief-group/form";

@@ -10,9 +10,11 @@ public interface PetTypeService {
 
     List<PetType> getAllPetTypes();
 
-    PetTypeDTO getPetTypeById(Integer id);
+    PetType getPetTypeById(Integer id);
 
-    PetTypeDTO updatePetTypeById(Integer id, PetTypeDTO petTypeDTO) throws Exception;
+    PetTypeDTO getPetTypeDTOById(Integer id);
+
+    PetTypeDTO updatePetTypeDTOById(Integer id, PetTypeDTO petTypeDTO) throws Exception;
 
     void deletePetTypeById(Integer id) throws Exception;
 }

@@ -45,7 +45,7 @@ public class PetTypeController {
 
     @GetMapping("/edit")
     public String petTypeEdit(@RequestParam("id") Integer id, Model model) {
-        PetTypeDTO petTypeDTO = petTypeService.getPetTypeById(id);
+        PetTypeDTO petTypeDTO = petTypeService.getPetTypeDTOById(id);
         if (petTypeDTO == null) {
             model.addAttribute("error", "Pet type not found!");
             return "manager/pet-type/form";
@@ -61,7 +61,7 @@ public class PetTypeController {
         model.addAttribute("petTypeDTO", petTypeDTO);
         PetTypeDTO updatedPetTypeDTO;
         try {
-            updatedPetTypeDTO = petTypeService.updatePetTypeById(petTypeDTO.getId(), petTypeDTO);
+            updatedPetTypeDTO = petTypeService.updatePetTypeDTOById(petTypeDTO.getId(), petTypeDTO);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "manager/pet-type/form";

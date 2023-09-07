@@ -33,8 +33,15 @@ public class PetTypeServiceImpl implements PetTypeService {
     }
 
     @Override
-    public PetTypeDTO getPetTypeById(Integer id) {
-        PetType petType = petTypeRepository.findById(id).orElse(null);
+    public PetType getPetTypeById(Integer id) {
+        if (id == null)
+            return null;
+        return petTypeRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public PetTypeDTO getPetTypeDTOById(Integer id) {
+        PetType petType = getPetTypeById(id);
         if (petType == null)
             return null;
         return PetTypeDTO.builder()
@@ -45,8 +52,8 @@ public class PetTypeServiceImpl implements PetTypeService {
     }
 
     @Override
-    public PetTypeDTO updatePetTypeById(Integer id, PetTypeDTO petTypeDTO) throws Exception {
-        PetType petType = petTypeRepository.findById(id).orElse(null);
+    public PetTypeDTO updatePetTypeDTOById(Integer id, PetTypeDTO petTypeDTO) throws Exception {
+        PetType petType = getPetTypeById(id);
         if (petType == null)
             throw new Exception("Pet type not found!");
         petType.setName(petTypeDTO.getName());
@@ -61,7 +68,7 @@ public class PetTypeServiceImpl implements PetTypeService {
 
     @Override
     public void deletePetTypeById(Integer id) throws Exception {
-        PetType petType = petTypeRepository.findById(id).orElse(null);
+        PetType petType = getPetTypeById(id);
         if (petType == null)
             throw new Exception("Pet type not found!");
         petTypeRepository.delete(petType);
