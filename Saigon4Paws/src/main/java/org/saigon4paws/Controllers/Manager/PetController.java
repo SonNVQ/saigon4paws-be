@@ -80,12 +80,13 @@ public class PetController {
         }
         if (originalAvatarFilename != null && !originalAvatarFilename.isEmpty()) {
             try {
-                File petPhotoDirFile = new File(petPhotoDir);
+                String savingFolder = System.getProperty("user.dir") + "/files";
+                File petPhotoDirFile = new File(savingFolder + File.separator + petPhotoDir);
                 if (!petPhotoDirFile.exists())
                     petPhotoDirFile.mkdirs();
                 String originalAvatarExtension = originalAvatarFilename.substring(originalAvatarFilename.lastIndexOf(".") + 1);
                 String avatarUrl = petPhotoDir + "/" + UUID.randomUUID() + "." + originalAvatarExtension;
-                String avatarPath = System.getProperty("user.dir") + "/files" + avatarUrl;
+                String avatarPath = savingFolder + avatarUrl;
                 Files.write(Path.of(avatarPath), avatar.getBytes());
                 petDTO.setPhotoUrl(avatarUrl);
             } catch (Exception e) {
@@ -137,12 +138,13 @@ public class PetController {
         }
         if (originalAvatarFilename != null && !originalAvatarFilename.isEmpty()) {
             try {
-                File petPhotoDirFile = new File(petPhotoDir);
+                String savingFolder = System.getProperty("user.dir") + "/files";
+                File petPhotoDirFile = new File(savingFolder + File.separator + petPhotoDir);
                 if (!petPhotoDirFile.exists())
                     petPhotoDirFile.mkdirs();
                 String originalAvatarExtension = originalAvatarFilename.substring(originalAvatarFilename.lastIndexOf(".") + 1);
                 String avatarUrl = petPhotoDir + "/" + UUID.randomUUID() + "." + originalAvatarExtension;
-                String avatarPath = System.getProperty("user.dir") + "/files" + avatarUrl;
+                String avatarPath = savingFolder + avatarUrl;
                 Files.write(Path.of(avatarPath), avatar.getBytes());
                 petDTO.setPhotoUrl(avatarUrl);
             } catch (Exception e) {
