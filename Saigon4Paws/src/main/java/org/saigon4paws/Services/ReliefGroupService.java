@@ -10,9 +10,11 @@ public interface ReliefGroupService {
 
     ReliefGroup createReliefGroup(ReliefGroupDTO reliefGroupDTO) throws Exception;
 
-    ReliefGroupDTO getReliefGroupById(Integer id);
+    ReliefGroup getReliefGroupById(Integer id);
 
-    ReliefGroupDTO updateReliefGroupById(Integer id, ReliefGroupDTO reliefGroupDTO) throws Exception;
+    ReliefGroupDTO getReliefGroupDTOById(Integer id);
+
+    ReliefGroupDTO updateReliefGroupDTOById(Integer id, ReliefGroupDTO reliefGroupDTO) throws Exception;
 
     void deleteReliefGroupById(Integer id) throws Exception;
 

@@ -39,10 +39,15 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
     }
 
     @Override
-    public ReliefGroupDTO getReliefGroupById(Integer id) {
+    public ReliefGroup getReliefGroupById(Integer id) {
         if (id == null)
             return null;
-        ReliefGroup reliefGroup = reliefGroupRepository.findById(id).orElse(null);
+        return reliefGroupRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public ReliefGroupDTO getReliefGroupDTOById(Integer id) {
+        ReliefGroup reliefGroup = getReliefGroupById(id);
         if (reliefGroup == null)
             return null;
         return ReliefGroupDTO.builder()
@@ -58,11 +63,11 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
     }
 
     @Override
-    public ReliefGroupDTO updateReliefGroupById(Integer id, ReliefGroupDTO reliefGroupDTO) throws Exception {
-        ReliefGroup reliefGroup = reliefGroupRepository.findById(id).orElse(null);
+    public ReliefGroupDTO updateReliefGroupDTOById(Integer id, ReliefGroupDTO reliefGroupDTO) throws Exception {
+        ReliefGroup reliefGroup = getReliefGroupById(id);
         if (reliefGroup == null)
             throw new Exception("Relief group not found!");
-        validateUpdatingReliefGroup(getReliefGroupById(id), reliefGroupDTO);
+        validateUpdatingReliefGroup(getReliefGroupDTOById(id), reliefGroupDTO);
         reliefGroup.setName(reliefGroupDTO.getName());
         reliefGroup.setWorkingArea(reliefGroupDTO.getWorkingArea());
         reliefGroup.setDescription(reliefGroupDTO.getDescription());
@@ -85,7 +90,7 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
 
     @Override
     public void deleteReliefGroupById(Integer id) throws Exception {
-        ReliefGroup existingReliefGroup = reliefGroupRepository.findById(id).orElse(null);
+        ReliefGroup existingReliefGroup = getReliefGroupById(id);
         if (existingReliefGroup == null) {
             throw new Exception("Relief group not found!");
         }
