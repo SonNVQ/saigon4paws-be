@@ -8,19 +8,12 @@ import org.saigon4paws.Services.PetTypeService;
 import org.saigon4paws.Services.ReliefGroupService;
 import org.saigon4paws.Utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/manager/pet")
@@ -33,9 +26,6 @@ public class PetController {
 
     @Autowired
     private ReliefGroupService reliefGroupService;
-
-    @Value("${upload.pet-photo.dir}")
-    private String petPhotoDir;
 
     @RequestMapping(value = {"/"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String petIndex() {
@@ -74,27 +64,12 @@ public class PetController {
         model.addAttribute("petDTO", petDTO);
         model.addAttribute("petTypes", petTypeService.getAllPetTypes());
         model.addAttribute("reliefGroups", reliefGroupService.getAllReliefGroups());
-        String originalAvatarFilename = avatar.getOriginalFilename();
         if (result.hasErrors()) {
             return "manager/pet/form";
         }
-        if (originalAvatarFilename != null && !originalAvatarFilename.isEmpty()) {
-            try {
-                String savingFolder = System.getProperty("user.dir") + "/files";
-                File petPhotoDirFile = new File(savingFolder + File.separator + petPhotoDir);
-                if (!petPhotoDirFile.exists())
-                    petPhotoDirFile.mkdirs();
-                String originalAvatarExtension = originalAvatarFilename.substring(originalAvatarFilename.lastIndexOf(".") + 1);
-                String avatarUrl = petPhotoDir + "/" + UUID.randomUUID() + "." + originalAvatarExtension;
-                String avatarPath = savingFolder + avatarUrl;
-                Files.write(Path.of(avatarPath), avatar.getBytes());
-                petDTO.setPhotoUrl(avatarUrl);
-            } catch (Exception e) {
-                model.addAttribute("error", e.getMessage());
-                return "manager/pet/form";
-            }
-        }
         try {
+            String savedPhotoUrl = petService.uploadPetPhoto(avatar);
+            petDTO.setPhotoUrl(savedPhotoUrl);
             petService.createPet(petDTO);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
@@ -132,29 +107,12 @@ public class PetController {
             model.addAttribute("error", "Pet not found!");
             return "manager/pet/form";
         }
-        if (avatar != null && avatar.getSize() > 0) {
-            String originalAvatarFilename = avatar.getOriginalFilename();
-            if (result.hasErrors()) {
-                return "manager/pet/form";
-            }
-            if (originalAvatarFilename != null && !originalAvatarFilename.isEmpty()) {
-                try {
-                    String savingFolder = System.getProperty("user.dir") + "/files";
-                    File petPhotoDirFile = new File(savingFolder + File.separator + petPhotoDir);
-                    if (!petPhotoDirFile.exists())
-                        petPhotoDirFile.mkdirs();
-                    String originalAvatarExtension = originalAvatarFilename.substring(originalAvatarFilename.lastIndexOf(".") + 1);
-                    String avatarUrl = petPhotoDir + "/" + UUID.randomUUID() + "." + originalAvatarExtension;
-                    String avatarPath = savingFolder + avatarUrl;
-                    Files.write(Path.of(avatarPath), avatar.getBytes());
-                    petDTO.setPhotoUrl(avatarUrl);
-                } catch (Exception e) {
-                    model.addAttribute("error", e.getMessage());
-                    return "manager/pet/form";
-                }
-            }
+        if (result.hasErrors()) {
+            return "manager/pet/form";
         }
         try {
+            String savedPhotoUrl = petService.uploadPetPhoto(avatar);
+            petDTO.setPhotoUrl(savedPhotoUrl);
             PetDTO updatedPetDTO = petService.updatePet(petDTO.getId(), petDTO);
             model.addAttribute("petDTO", updatedPetDTO);
         } catch (Exception e) {

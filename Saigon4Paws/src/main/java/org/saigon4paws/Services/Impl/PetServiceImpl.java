@@ -5,15 +5,18 @@ import org.saigon4paws.Models.Pet;
 import org.saigon4paws.Models.PetType;
 import org.saigon4paws.Models.ReliefGroup;
 import org.saigon4paws.Repositories.PetRepository;
+import org.saigon4paws.Services.FileService;
 import org.saigon4paws.Services.PetService;
 import org.saigon4paws.Services.PetTypeService;
 import org.saigon4paws.Services.ReliefGroupService;
 import org.saigon4paws.Utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PetServiceImpl implements PetService {
@@ -25,6 +28,12 @@ public class PetServiceImpl implements PetService {
 
     @Autowired
     private ReliefGroupService reliefGroupService;
+
+    @Autowired
+    private FileService fileService;
+
+    @Value("${upload.pet-photo.dir}")
+    private String petPhotoDir;
 
     @Override
     public Page<Pet> findAll(int page, int size) {
@@ -112,5 +121,10 @@ public class PetServiceImpl implements PetService {
         if (pet == null)
             throw new Exception("Pet not found!");
         petRepository.delete(pet);
+    }
+
+    @Override
+    public String uploadPetPhoto(MultipartFile avatar) throws Exception {
+        return fileService.saveImageFromMultipartFile(petPhotoDir, avatar);
     }
 }
