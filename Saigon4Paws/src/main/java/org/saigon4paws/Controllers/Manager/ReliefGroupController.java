@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -34,6 +35,7 @@ public class ReliefGroupController {
 
     @PostMapping("/add")
     public String reliefGroupAddSubmit(@ModelAttribute("reliefGroupDTO") @Valid ReliefGroupDTO reliefGroupDTO,
+                                       @RequestParam(value = "avatar", required = false) MultipartFile avatar,
                                        BindingResult result,
                                        Model model) {
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
@@ -41,6 +43,8 @@ public class ReliefGroupController {
             return "manager/relief-group/form";
         }
         try {
+            String savedAvatarUrl = reliefGroupService.uploadReliefGroupPhoto(avatar);
+            reliefGroupDTO.setAvatarUrl(savedAvatarUrl);
             reliefGroupService.createReliefGroup(reliefGroupDTO);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
@@ -64,6 +68,7 @@ public class ReliefGroupController {
     @PostMapping("/edit")
     public String reliefGroupEditSubmit(
             @ModelAttribute("reliefGroupDTO") @Valid ReliefGroupDTO reliefGroupDTO,
+            @RequestParam(value = "avatar", required = false) MultipartFile avatar,
             BindingResult result,
             Model model) {
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
@@ -72,6 +77,8 @@ public class ReliefGroupController {
         }
         ReliefGroupDTO updatedReliefGroupDTO;
         try {
+            String savedAvatarUrl = reliefGroupService.uploadReliefGroupPhoto(avatar);
+            reliefGroupDTO.setAvatarUrl(savedAvatarUrl);
             updatedReliefGroupDTO = reliefGroupService.updateReliefGroupDTOById(reliefGroupDTO.getId(), reliefGroupDTO);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());

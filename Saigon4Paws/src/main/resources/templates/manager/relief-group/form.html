@@ -22,7 +22,7 @@
             <div class="title">THÊM NHÓM CỨU TRỢ</div>
             <div class="content">
                 <!-- Begin: Form điền thông tin cơ bản -->
-                <form th:action="@{#}" th:if="${reliefGroupDTO}" th:object="${reliefGroupDTO}" method="post">
+                <form th:action="@{#}" th:if="${reliefGroupDTO}" th:object="${reliefGroupDTO}" method="post" enctype="multipart/form-data">
                     <div class="pets-basic-info">
                         <div class="first-line">
                             <div class="box-1">
@@ -52,7 +52,7 @@
                             </div>
 
                             <div class="upload">
-                                <img th:src="@{/images/general/noprofil.jpg}" width=100 height=100 alt="">
+                                <img th:src="${reliefGroupDTO.avatarUrl != null ? reliefGroupDTO.avatarUrl : '/images/general/noprofil.jpg'}" width=100 height=100 alt="">
                                 <div class="round">
                                     <input type="file" name="avatar" accept="image/*">
                                     <i class="ti-upload" style="color: #fff;"></i>
