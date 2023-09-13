@@ -41,7 +41,8 @@ public class PetController {
         if (pageSize == null || pageSize < 1)
             pageSize = Constants.DEFAULT_PAGE_SIZE;
         Page<Pet> petPage = petService.findAll(pageNo - 1, pageSize);
-        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("page", petPage);
+        model.addAttribute("currentPage", petPage.getNumber());
         model.addAttribute("totalPages", petPage.getTotalPages());
         model.addAttribute("totalItems", petPage.getTotalElements());
         model.addAttribute("pets", petPage.getContent());
