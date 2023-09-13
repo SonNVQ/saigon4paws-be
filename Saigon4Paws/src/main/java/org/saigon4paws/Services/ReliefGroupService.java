@@ -2,6 +2,7 @@ package org.saigon4paws.Services;
 
 import org.saigon4paws.DTO.ReliefGroupDTO;
 import org.saigon4paws.Models.ReliefGroup;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface ReliefGroupService {
     boolean isPhoneNumberExisted(String phoneNumber);
 
     boolean isBankAccountNumberExisted(String bankAccountNumber);
+
+    String uploadReliefGroupPhoto(MultipartFile avatar) throws Exception;
 }
