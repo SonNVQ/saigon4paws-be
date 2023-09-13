@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <link rel="stylesheet" th:href="@{/styles/guest/pet/styles.css}">
+  <title>Thông tin nhận nuôi</title>
+</head>
+<body>
+<div layout:fragment="content">
+  <div id="adt-annouce">
+    <img th:src="@{/images/general/success.png}" alt="" class="ann-img">
+    <img th:src="@{/images/general/checked.png}" alt="" class="ann-check">
+
+    <h3 class="main-ann">Bạn đã đăng ký nhận nuôi thành công!</h3>
+    <p class="sub-ann">Để quá trình nhận nuôi diễn ra nhanh hơn, bạn có thể liên hệ ngay với trạm cứu trợ nhé!</p>
+
+    <a href="#" class="ann-contact">Liên hệ ngay</a>
+  </div>
+</div>
+</body>
+</html>

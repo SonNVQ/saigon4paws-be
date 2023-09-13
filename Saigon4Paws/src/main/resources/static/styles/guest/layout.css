@@ -308,3 +308,15 @@ body {
     margin-bottom: 30px;
     text-align: center;
 }
+
+.message-error {
+    color: red;
+    font-size: 14px;
+    margin-left: 1vh;
+}
+
+.message-success {
+    color: green;
+    font-size: 14px;
+    margin-left: 1vh;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/pet/styles.css}">
+    <title>Pet info</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div id="pet-info">
+        <img th:src="${pet.photoUrl}" alt="" id="pet-img">
+
+        <div id="content-description">
+            <h1 id="pet-name" th:text="${pet.name}"></h1>
+            <p class="pet-type" th:text="${pet.type.name + ' - ' + pet.type.species}">Chihuahua</p>
+
+            <div id="info-group">
+                <div class="info-block">
+                    <div class="line-1"></div>
+                    <div>
+                        <h2 class="el-1" th:text="${pet.gender}"></h2>
+                        <p class="sub-el-1">Giới tính</p>
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <div class="line-1"></div>
+                    <div>
+                        <h2 class="el-1" th:text="${pet.age} + ' tuổi'"></h2>
+                        <p class="sub-el-1">Tuổi</p>
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <div class="line-1"></div>
+                    <div>
+                        <h2 class="el-1" th:text="${pet.reliefGroup.name}"></h2>
+                        <p class="sub-el-1">Nhóm cứu trợ</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="medical-status">
+                <span th:text="${pet.vaccinationStatus}"></span>
+                <i class="ti-face-smile"></i>
+            </div>
+
+            <h2 class="health-status">Tình trạng sức khoẻ</h2>
+            <p class="status" th:text="${pet.healthStatus}"></p>
+
+            <div id="btn-group">
+                <a href="/pet" class="back-btn">Quay lại</a>
+                <a th:href="'/pet/adopt?pet-id=' + ${pet.id}" class="next-btn">Đăng ký nhận nuôi</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
