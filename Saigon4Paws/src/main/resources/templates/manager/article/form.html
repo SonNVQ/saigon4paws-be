@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html layout:decorate="~{manager/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/article/form.css}">
+    <title>Article</title>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/super-build/ckeditor.js"></script>
+</head>
+<body>
+<!-- FORM -->
+<div class="form" layout:fragment="content">
+
+    <ul class="breadcrumb">
+        <li><a href="/manager/">Quản lý thông tin</a></li>
+        <li><a href="/manager/article/">Bài viết</a></li>
+        <li>Thêm thông tin</li>
+    </ul>
+
+
+    <div class="box">
+
+        <div class="container">
+            <div class="title">THÊM BÀI VIẾT</div>
+            <div class="content">
+                <!-- Begin: Form điền thông tin cơ bản -->
+                <form action="#" enctype="multipart/form-data" method="post" th:object="${articleDTO}">
+                    <div class="pets-basic-info">
+                        <div class="first-line">
+                            <div class="box-1">
+                                <div class="sub-title-1">THÔNG TIN CƠ BẢN</div>
+                                <div class="input-box">
+                                    <div class="tit">Ngày đăng:</div>
+                                    <input placeholder="Ngày đăng" required th:field="*{postedAt}" type="date">
+                                </div>
+
+                                <div class="input-box">
+                                    <div class="tit">Người đăng:</div>
+                                    <input placeholder="Người đăng" required th:field="*{author}" type="text">
+                                </div>
+                            </div>
+
+                            <div class="upload">
+                                <img alt="" height=100 th:src="${articleDTO.avatarUrl != null ? articleDTO.avatarUrl : '/images/general/img-placeholder.png'}" width=100>
+                                <div class="round">
+                                    <input type="file" name="avatar" accept="image/jpeg,image/jpg,image/png">
+                                    <i class="ti-upload" style="color: #fff;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Begin: Form điền thông tin cụ thể-->
+                    <div class="sub-title-2">THÔNG TIN CỤ THỂ</div>
+                    <div class="pets-details-info">
+                        <div class="input-box">
+                            <div class="details">Danh mục:</div>
+                            <div class="select">
+                                <select mục th:field="*{articleCategoryId}">
+                                    <option disabled selected value="">Chọn danh mục</option>
+                                    <option th:each="articleCategory: ${articleCategories}"
+                                            th:text="${articleCategory.name}"
+                                            th:value="${articleCategory.id}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Nhóm cứu trợ:</div>
+                            <div class="select">
+                                <select mục th:field="*{reliefGroupId}">
+                                    <option disabled selected value="">Chọn nhóm cứu trợ</option>
+                                    <option th:each="reliefGroup: ${reliefGroups}"
+                                            th:text="${reliefGroup.name}"
+                                            th:value="${reliefGroup.id}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Tiêu đề:</div>
+                            <input placeholder="Tiêu đề" required th:field="*{title}" type="text">
+                        </div>
+                        <div class="input-box news">
+                            <div class="details">Nội dung:</div>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="editor" name="editor" rows="50" th:field="*{content}"></textarea>
+                        </div>
+                    </div>
+                    <div class="edit-btn" style="margin-top: 20px;">
+                        <input class="cancel-btn" onclick="location.href='/manager/article'" type="button" value="Hủy">
+                        <input class="save-btn" type="submit" value="Lưu">
+                    </div>
+                </form>
+                <p class="message-error" th:if="${error}" th:text="${error}"></p>
+                <p class="message-success" th:if="${success}" th:text="${success}"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const image = document.querySelector(".upload img"),
+            input = document.querySelector(".upload input");
+
+        input.addEventListener("change", () => {
+            image.src = URL.createObjectURL(input.files[0]);
+        });
+    </script>
+    <script>
+        // This sample still does not showcase all CKEditor&nbsp;5 features (!)
+        // Visit https://ckeditor.com/docs/ckeditor5/latest/features/index.html to browse all the features.
+        CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
+            // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
+            toolbar: {
+                items: [
+                    'exportPDF', 'exportWord', '|',
+                    'findAndReplace', 'selectAll', '|',
+                    'heading', '|',
+                    'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                    'bulletedList', 'numberedList', 'todoList', '|',
+                    'outdent', 'indent', '|',
+                    'undo', 'redo',
+                    '-',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+                    'alignment', '|',
+                    'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                    'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+                    'sourceEditing'
+                ],
+                shouldNotGroupWhenFull: true
+            },
+            // Changing the language of the interface requires loading the language file using the <script> tag.
+            // language: 'es',
+            list: {
+                properties: {
+                    styles: true,
+                    startIndex: true,
+                    reversed: true
+                }
+            },
+            // https://ckeditor.com/docs/ckeditor5/latest/features/headings.html#configuration
+            heading: {
+                options: [
+                    {model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph'},
+                    {model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1'},
+                    {model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2'},
+                    {model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3'},
+                    {model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4'},
+                    {model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5'},
+                    {model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6'}
+                ]
+            },
+            // https://ckeditor.com/docs/ckeditor5/latest/features/editor-placeholder.html#using-the-editor-configuration
+            placeholder: 'Viết nội dung ở đây...',
+            // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-family-feature
+            fontFamily: {
+                options: [
+                    'default',
+                    'Arial, Helvetica, sans-serif',
+                    'Courier New, Courier, monospace',
+                    'Georgia, serif',
+                    'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                    'Tahoma, Geneva, sans-serif',
+                    'Times New Roman, Times, serif',
+                    'Trebuchet MS, Helvetica, sans-serif',
+                    'Verdana, Geneva, sans-serif'
+                ],
+                supportAllValues: true
+            },
+            // https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-size-feature
+            fontSize: {
+                options: [10, 12, 14, 'default', 18, 20, 22],
+                supportAllValues: true
+            },
+            // Be careful with the setting below. It instructs CKEditor to accept ALL HTML markup.
+            // https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html#enabling-all-html-features
+            htmlSupport: {
+                allow: [
+                    {
+                        name: /.*/,
+                        attributes: true,
+                        classes: true,
+                        styles: true
+                    }
+                ]
+            },
+            // Be careful with enabling previews
+            // https://ckeditor.com/docs/ckeditor5/latest/features/html-embed.html#content-previews
+            htmlEmbed: {
+                showPreviews: true
+            },
+            // https://ckeditor.com/docs/ckeditor5/latest/features/link.html#custom-link-attributes-decorators
+            link: {
+                decorators: {
+                    addTargetToExternalLinks: true,
+                    defaultProtocol: 'https://',
+                    toggleDownloadable: {
+                        mode: 'manual',
+                        label: 'Downloadable',
+                        attributes: {
+                            download: 'file'
+                        }
+                    }
+                }
+            },
+            // The "super-build" contains more premium features that require additional configuration, disable them below.
+            // Do not turn them on unless you read the documentation and know how to configure them and setup the editor.
+            removePlugins: [
+                // These two are commercial, but you can try them out without registering to a trial.
+                // 'ExportPdf',
+                // 'ExportWord',
+                'CKBox',
+                'CKFinder',
+                'EasyImage',
+                // This sample uses the Base64UploadAdapter to handle image uploads as it requires no configuration.
+                // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html
+                // Storing images as Base64 is usually a very bad idea.
+                // Replace it on production website with other solutions:
+                // https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html
+                // 'Base64UploadAdapter',
+                'RealTimeCollaborativeComments',
+                'RealTimeCollaborativeTrackChanges',
+                'RealTimeCollaborativeRevisionHistory',
+                'PresenceList',
+                'Comments',
+                'TrackChanges',
+                'TrackChangesData',
+                'RevisionHistory',
+                'Pagination',
+                'WProofreader',
+                // Careful, with the Mathtype plugin CKEditor will not load when loading this sample
+                // from a local file system (file://) - load this site via HTTP server if you enable MathType.
+                'MathType',
+                // The following features are part of the Productivity Pack and require additional license.
+                'SlashCommand',
+                'Template',
+                'DocumentOutline',
+                'FormatPainter',
+                'TableOfContents',
+                'PasteFromOfficeEnhanced'
+            ]
+        });
+    </script>
+</div>
+</body>
+</html>

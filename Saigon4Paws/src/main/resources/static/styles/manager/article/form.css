@@ -1,0 +1,512 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: sans-serif;
+    font-size: 62.5%;
+    height: 100%;
+}
+
+body {
+    height: 100vh;
+}
+
+#wrap {
+    min-height: 100%;
+}
+
+/* BEGIN: HEADER */
+
+#header {
+    --heightUp: 3vh; /* Biến độ dài Menu trên */
+    height: var(--heightUp);
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+#upper-nav, #down-nav, #fowr {
+    display: block;
+    margin: 0px 100px;
+}
+
+#nav-contact {
+    float: right;
+    display: flex;
+}
+
+#nav-contact > li, #nav-location {
+    display: inline-block;
+}
+
+#nav-location, #nav-contact > li > a {
+    color: #687581;
+    line-height: var(--heightUp);
+    padding: 0px 24px;
+    text-decoration: none;
+}
+
+.location, .nav-comment, #nav-location:hover, #nav-contact > li > a:hover  {
+    color: #FF6701;
+}
+
+#nav {
+    --heightDown: 7vh; /*Biến độ dài Menu dưới */
+    height: var(--heightDown);
+    background-color: #FEA82F;
+}
+
+#down-nav {
+    height: var(--heightDown);
+    display: flex;
+    align-items: center;
+}
+
+img.logo-main {
+    width: 270px;
+    line-height: var(--heightDown);
+}
+
+/* END: HEADER */
+
+/* MENU SIDE BAR */
+
+.body {
+    background-color: gray;
+    margin-left: 260px;
+}
+.menu {
+    background-color: white;
+    width: 15%;
+    max-width: 25rem;
+    font-family: Arial;
+}
+
+.management {
+    margin-left: 40px;
+    display: flex;
+    margin-bottom: 10pxs;
+}
+
+.management img {
+    height: 20px;
+}
+
+.main-menu {
+    margin-left: 9px;
+}
+.main-menu img {
+    height: 7px;
+    margin-right: 6px;
+    margin-top: 5px;
+}
+
+.elements {
+    margin-left: 60px;
+    display: flex;
+    margin-top: 5px;
+    color: rgb(125, 123, 123);
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.elements:hover {
+    color: orange;
+    cursor: pointer;
+}
+
+.menu-profile {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-bottom: 35px;
+}
+
+.profile-photo {
+    cursor: pointer;
+    width: 100%;
+    border-radius: 25px;
+}
+
+.photo {
+    width: 50px;
+}
+
+.profile-overview {
+    width: 200px;
+    margin-left: 15px;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+.admin {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.admin-email {
+    font-size: 14px;
+    color: rgb(125, 123, 123);
+}
+
+.copyright {
+    margin-top: 370px;
+    display: flex;
+    justify-content: center;
+    color: rgb(125, 123, 123);
+    font-size: 14px;
+}
+
+/* MENU SIDEBAR & FORM */
+
+.wrapper {
+    display: flex;
+    background: #eaeaea;
+    /* gap: 19%; */
+    height: 100%;
+}
+
+.form {
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    width: 85%;
+}
+
+/* BREAD CRUMB */
+ul.breadcrumb {
+    padding: 1rem 1.6rem;
+    list-style: none;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+    display: inline;
+    font-size: 1.6rem;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: #FF6701;
+    content: "/\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+    color: #FF6701;
+    text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+
+/* Khung chứa form */
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 90%;
+    /* margin: 20rem 15rem 30rem; */
+    background-color: #fff;
+    border-radius: .5rem;
+}
+
+/* Tiêu đề 'Thêm vật nuôi' */
+
+.container .title {
+    padding: .8rem;
+    text-align: center;
+    font-size: 2.4rem;
+    background-color: #FEA82F;
+    color: #fff;
+}
+
+/* Phần nội dung trong form: Thông tin cơ bản và Thông tin cụ thể */
+
+.content {
+    padding: 2.5rem 3rem 2rem 3rem;
+    background-color: #fff;
+    /* max-width: 70rem;
+    width: 100%; */
+}
+
+.container .content .sub-title-1,
+.container .content .sub-title-2 {
+    font-weight: 500;
+    font-size: 2rem;
+    margin-bottom: 2.2rem;
+    margin-top: 1.6rem;
+}
+
+.container .content .sub-title-2 {
+    padding-left: 4rem;
+}
+
+/* Phần chứa tiêu đề phụ Thông tin cơ bản, ô điền Loại vật nuôi và Khung Hình ảnh */
+
+.container form .first-line {
+    display: flex;
+    padding: 0 4rem;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+/* Phần chứa tiêu đề phụ Thông tin cơ bản, ô điền Loại vật nuôi */
+
+.first-line .box-1 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+.first-line .box-1 input {
+    width: 100%;
+    /* margin-bottom: 1.2rem; */
+    height: 4.2rem;
+    font-size: 1rem;
+    color: #000;
+    border-radius: 2.5rem;
+    outline: none;
+    border: none;
+    padding-left: 2.8rem;
+    background-color: #EDF2F7;
+    transition: all 0.3s ease;
+}
+
+.input-box {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1.2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.input-box .tit {
+    width: 80%;
+    font-size: 1.2rem;
+}
+
+/* Khung hình ảnh */
+
+.upload{
+    width: 100px;
+    position: relative;
+    margin-right: 7.6rem;
+    margin-bottom: 2.2rem;
+}
+
+.upload .round{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #00B4FF;
+    width: 32px;
+    height: 32px;
+    line-height: 33px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.upload .round input[type = "file"]{
+    position: absolute;
+    transform: scale(2);
+    opacity: 0;
+}
+
+input[type=file]::-webkit-file-upload-button{
+    cursor: pointer;
+}
+
+/* Các ô điền thông tin cơ bản tiếp theo */
+
+.container form .rows,
+.container form .pets-details-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 4rem;
+}
+
+.rows input {
+    width: 26.6rem;
+    margin-bottom: 1.2rem;
+}
+
+/* CSS các ô điền thông tin*/
+
+.container form .rows input,
+form .pets-details-info input {
+    height: 4.2rem;
+    width: 50%;
+    font-size: 1rem;
+    color: #000;
+    border-radius: 2.5rem;
+    outline: none;
+    border: none;
+    padding-left: 2.8rem;
+    background-color: #EDF2F7;
+    transition: all 0.3s ease;
+}
+
+form .pets-details-info .input-box:last-child  input {
+    height: 12rem;
+}
+
+/* Hiển thị border khi ấn */
+
+.content input:focus,
+.content .rows input:focus,
+.content .rows input:valid
+.content input:valid {
+    border: .1rem solid;
+    border-color: #FF6701;
+    background-color: #EDF2F7;
+}
+
+/* Chiều dài của các ô điền thông tin cụ thể */
+
+form .pets-details-info input,
+.pets-details-info .select {
+    width: 65%;
+}
+
+.pets-details-info .input-box {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+}
+
+.pets-details-info .select {
+    margin-bottom: 0;
+}
+
+/* Nội dung ô điền thông tin cụ thể */
+
+.pets-details-info .details {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+/* Button */
+
+.edit-btn {
+    text-align: right;
+    margin: 0 2.8rem;
+    height: auto;
+    padding-bottom: 2rem;
+}
+
+.edit-btn input {
+    height: 100%;
+    padding: 1.2rem 3.8rem;
+    margin-left: 3.2rem;
+    outline: none;
+    border: none;
+    border-radius: .5rem;
+    color: #fff;
+    font-weight: 500;
+    background-color: #FF6701;
+    cursor: pointer;
+}
+
+.edit-btn input:first-child {
+    background-color: #CBC8C8;
+}
+
+.edit-btn input:hover {
+    transition: all 0.3s ease;
+    background-color: #FEA82F;
+}
+
+/* CSS các drop-down list */
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-progress-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0 !important;
+    background: #EDF2F7;
+    background-image: none;
+
+    flex: 1;
+    padding: 0 2.8em;
+    color: #666;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    width: 50%;
+    height: 4.2rem;
+    line-height: 4.2;
+    background: #EDF2F7;
+    overflow: hidden;
+    border-radius: 2.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1rem;
+    background: #EDF2F7;
+    color: #000;
+    opacity: 0.5;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+
+.select:hover::after {
+    color: #FEA82F;
+}
+
+/* CSS icon calendar */
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    font-size: 1.6rem;
+    padding-right: 1rem;
+}
+
+.editor-container {
+    font-size: 16px;
+    width: 100%;
+}
+
+.ck-editor__editable[role="textbox"] {
+    /* editing area */
+    min-height: 500px;
+}
+.ck-content .image {
+    /* block images */
+    max-width: 80%;
+    margin: 20px auto;
+}

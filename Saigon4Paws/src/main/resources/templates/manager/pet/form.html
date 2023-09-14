@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="upload">
-                                <img th:src="${petDTO.photoUrl}" width=100
+                                <img th:src="${petDTO.photoUrl != null ? petDTO.photoUrl : '/images/general/dog-placeholder.png'}" width=100
                                      height=100 alt="">
                                 <div class="round">
                                     <input type="file" name="avatar" accept="image/jpeg,image/jpg,image/png">
