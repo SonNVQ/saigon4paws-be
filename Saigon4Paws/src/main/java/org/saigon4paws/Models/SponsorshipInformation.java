@@ -3,6 +3,8 @@ package org.saigon4paws.Models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 
@@ -12,6 +14,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "sponsorship_information")
 public class SponsorshipInformation {
     @Id
@@ -25,9 +28,12 @@ public class SponsorshipInformation {
 
     private Integer amount;
 
-    private Date date;
-
     private String message;
+
+    @CreatedDate
+    private Date sponsorDate;
+
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "relief_group_id", referencedColumnName = "id")

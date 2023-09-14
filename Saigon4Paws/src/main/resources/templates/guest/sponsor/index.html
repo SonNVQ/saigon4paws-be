@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/pet/styles.css}">
+    <link rel="stylesheet" th:href="@{/styles/guest/sponsor/styles.css}">
+    <title>Content page</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Thanh chọn trạm cứu trợ -->
+    <div id="centre-selection">
+        <ul id="centre">
+            <li class="bold"><a href="">Chọn trạm cứu trợ</a></li>
+            <li><a href="">> Điền thông tin</a></li>
+            <li><a href="">> Chọn phương thức thanh toán</a></li>
+            <li><a  href="">> Xác nhận thanh toán </a></li>
+        </ul>
+    </div>
+    <!-- Nội dung chọn trạm cứu trợ -->
+    <div id="sponsors">
+        <div class="img-dog">
+            <img th:src="@{/images/general/cat-dog.png}" alt="">
+        </div>
+
+        <div class="sponsors-content">
+            <div class="sponsors-h1">
+                <h1>Hãy cùng Saigon4paws chung tay <br> giúp đỡ các bé 4 chân</h1>
+            </div>
+
+            <div class="sponsors-h2">
+                <h2>Ủng hộ ngay</h2>
+            </div>
+
+            <div class="sp-button" >
+                <div class="sgt-button" th:each="reliefGroup: ${reliefGroups}"
+                     th:onclick="'document.location.href=' + '\'/sponsor/relief-group?id=' + ${reliefGroup.id} + '\''">
+                    <a th:href="'/sponsor/relief-group?id=' + ${reliefGroup.id}" th:text="${reliefGroup.name}"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

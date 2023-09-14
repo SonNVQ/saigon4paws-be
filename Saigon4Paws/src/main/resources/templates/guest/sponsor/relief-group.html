@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/pet/styles.css}">
+    <link rel="stylesheet" th:href="@{/styles/guest/sponsor/relief-group.css}">
+    <title>Content page</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Nội dung -->
+    <div id="sp-information">
+        <!-- Thanh diền thông tin -->
+        <div id="infor-nav">
+            <ul id="infor">
+                <li><a href="">Chọn trạm cứu trợ</a></li>
+                <li class="bold"><a href="">> Điền thông tin</a></li>
+                <li><a href="">> Chọn phương thức thanh toán</a></li>
+                <li><a href="">> Xác nhận thanh toán </a></li>
+            </ul>
+        </div>
+
+        <!-- Nội dung điền thông tin -->
+        <div id="sp-infor">
+            <div class="sp-info-content">
+                <div class="sgroup-content">
+                    <div class="sar-group-img">
+                        <img alt="" class="avatar" th:src="${reliefGroupDTO.avatarUrl}">
+                    </div>
+
+                    <div class="sar-heading">
+                        <h1 th:text="'Nhóm cứu trợ động vật ' + ${reliefGroupDTO.name}"></h1>
+                    </div>
+
+                    <div class="sar-content">
+                        <p>Sự đóng góp của bạn, dù lớn hay nhỏ
+                            <br>đều góp phần đem lại một cuộc sống
+                            <br>tốt đẹp hơn cho các bé ở Trạm.
+                            <br>Chân thành cảm ơn tấm lòng
+                            <br>của quý ân nhân!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="sp-info-form">
+                    <div class="sg4p-logo">
+                        <img alt="" th:src="@{/images/general/loco-icon.png}">
+                    </div>
+
+                    <div class="sp-form-heading">
+                        <h1>Điền thông tin tài trợ</h1>
+                    </div>
+                    <form action="#" method="post" th:object="${sponsorshipInformationDTO}">
+                        <div class="sp-info-button">
+                            <div class="sp-name">
+                                <input class="name" placeholder="Họ tên" th:field="*{sponsorName}" type="text">
+                                <p th:errors="*{sponsorName}" th:if="${#fields.hasErrors('sponsorName')}"></p>
+                            </div>
+                            <div class="sp-amount">
+                                <input class="amount" placeholder="Số tiền tài trợ" th:field="*{amount}" type="number">
+                                <p th:errors="*{amount}" th:if="${#fields.hasErrors('amount')}"></p>
+                            </div>
+                            <div class="sp-comment">
+                                <input class="comment" placeholder="Lời nhắn nhủ" th:field="*{message}" type="text">
+                                <p th:errors="*{message}" th:if="${#fields.hasErrors('message')}"></p>
+                            </div>
+                        </div>
+                        <div class="sp-confirm-button">
+                            <button id="confirm-button">Xác nhận & thanh toán</button>
+                        </div>
+                    </form>
+                    <p class="message-error" th:if="${error}" th:text="${error}"></p>
+                    <p class="message-success" th:if="${success}" th:text="${success}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
