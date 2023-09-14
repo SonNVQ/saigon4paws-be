@@ -80,7 +80,7 @@ public class PetTypeController {
             return "forward:/manager/pet-type/";
         }
         model.addAttribute("success", "Pet type deleted successfully!");
-        return "forward:/manager/pet-type/";
+        return "go-back";
     }
 
 }

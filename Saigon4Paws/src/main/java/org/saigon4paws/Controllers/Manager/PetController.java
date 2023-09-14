@@ -133,7 +133,7 @@ public class PetController {
             return "forward:/manager/pet";
         }
         model.addAttribute("success", "Pet deleted successfully!");
-        return "forward:/manager/pet";
+        return "go-back";
     }
 
 }
