@@ -42,7 +42,10 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
                 .email(reliefGroupDTO.getEmail())
                 .phoneNumber(reliefGroupDTO.getPhoneNumber())
                 .fanpageLink(reliefGroupDTO.getFanpageLink())
+                .bankName(reliefGroupDTO.getBankName())
+                .bankBin(reliefGroupDTO.getBankBin())
                 .bankAccountNumber(reliefGroupDTO.getBankAccountNumber())
+                .bankAccountName(reliefGroupDTO.getBankAccountName())
                 .avatarUrl(reliefGroupDTO.getAvatarUrl())
                 .build();
         return reliefGroupRepository.save(reliefGroup);
@@ -68,7 +71,10 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
                 .email(reliefGroup.getEmail())
                 .phoneNumber(reliefGroup.getPhoneNumber())
                 .fanpageLink(reliefGroup.getFanpageLink())
+                .bankName(reliefGroup.getBankName())
+                .bankBin(reliefGroup.getBankBin())
                 .bankAccountNumber(reliefGroup.getBankAccountNumber())
+                .bankAccountName(reliefGroup.getBankAccountName())
                 .avatarUrl(reliefGroup.getAvatarUrl())
                 .build();
     }
@@ -85,7 +91,10 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
         reliefGroup.setEmail(reliefGroupDTO.getEmail());
         reliefGroup.setPhoneNumber(reliefGroupDTO.getPhoneNumber());
         reliefGroup.setFanpageLink(reliefGroupDTO.getFanpageLink());
+        reliefGroup.setBankName(reliefGroupDTO.getBankName());
+        reliefGroup.setBankBin(reliefGroupDTO.getBankBin());
         reliefGroup.setBankAccountNumber(reliefGroupDTO.getBankAccountNumber());
+        reliefGroup.setBankAccountName(reliefGroupDTO.getBankAccountName());
         if (reliefGroupDTO.getAvatarUrl() != null) {
             reliefGroup.setAvatarUrl(reliefGroupDTO.getAvatarUrl());
         }
@@ -98,7 +107,10 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
                 .email(reliefGroup.getEmail())
                 .phoneNumber(reliefGroup.getPhoneNumber())
                 .fanpageLink(reliefGroup.getFanpageLink())
+                .bankName(reliefGroup.getBankName())
+                .bankBin(reliefGroup.getBankBin())
                 .bankAccountNumber(reliefGroup.getBankAccountNumber())
+                .bankAccountName(reliefGroup.getBankAccountName())
                 .avatarUrl(reliefGroup.getAvatarUrl())
                 .build();
     }

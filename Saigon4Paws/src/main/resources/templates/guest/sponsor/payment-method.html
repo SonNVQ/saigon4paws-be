@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/pet/styles.css}">
+    <link rel="stylesheet" th:href="@{/styles/guest/sponsor/payment-method.css}">
+    <title>Content page</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Nội dung -->
+    <div id="payment-method">
+        <!-- Thanh hình thức chuyển khoản -->
+        <div id="method-status">
+            <ul id="method">
+                <li><a href="">Chọn trạm cứu trợ</a></li>
+                <li><a href="">> Điền thông tin</a></li>
+                <li class="bold"><a href="">> Chọn phương thức thanh toán</a></li>
+                <li><a href="">> Xác nhận thanh toán </a></li>
+            </ul>
+        </div>
+        <!-- Form chọn hình thức thanh toán -->
+        <div class="form-method">
+            <div class="method-container">
+                <header class="method-header">
+                    Chọn phương thức thanh toán
+                </header>
+
+                <form action="#" method="post">
+                    <input name="sponsorshipInformationId" th:value="${sponsorshipInformationDTO.id}" type="hidden">
+                    <div class="method-body">
+                        <div class="internet-bank">
+                            <input class="momo" placeholder="MoMo" type="text">
+                            <img alt="momo" th:src="@{/images/general/momo.png}">
+                        </div>
+
+                        <div class="transfer">
+                            <input class="debit" placeholder="Chuyển khoản" type="text">
+                            <img alt="debit" th:src="@{/images/general/debit.png}">
+                        </div>
+
+                        <div class="cont-butt">
+                            <input id="cont-button" type="submit" value="Tiếp tục">
+                        </div>
+                    </div>
+                </form>
+                <p class="message-error" th:if="${error}" th:text="${error}"></p>
+                <p class="message-success" th:if="${success}" th:text="${success}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

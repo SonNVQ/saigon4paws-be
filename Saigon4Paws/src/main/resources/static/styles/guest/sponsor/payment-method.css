@@ -1,0 +1,174 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+#payment-method{
+    display: flex;
+    flex-direction: column;
+}
+/* Thanh hình thức chuyển khoản */
+#method-status {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(237,242,247);
+    height: 90px;
+}
+
+
+#method {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+#method li {
+    margin: 0 5px;
+}
+
+
+#method li.bold a {
+    font-weight: bolder;
+    color:black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+
+#method li a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bolder;
+    color: rgba(81,111,156,0.6)
+}
+
+
+/* Form chọn hình thức thanh toán */
+.form-method{
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 544px;
+    background-color: rgb(252, 236, 221);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.method-container{
+    width: 1000px;
+    min-height: 200px;
+}
+
+
+.method-container .method-header{
+    background-color: white;
+    color: rgb(254,168,47);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 50px 10px 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+
+.method-container .method-body{
+    background-color: white;
+    padding: 0px 50px 10px 50px ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+
+.internet-bank{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 0.5px solid rgb(237,242,247);
+    padding: 20px;
+    background-color: rgb(237,242,247);
+    font-size: 18px;
+    border-radius: 40px;
+}
+.internet-bank .momo {
+    border: none;
+    padding: 0;
+    background: none;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 18px;
+    flex: 1;
+    cursor: pointer;
+    caret-color: transparent;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+
+.transfer{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 0.5px solid rgb(237,242,247);
+    padding: 20px;
+    background-color: rgb(237,242,247);
+    font-size: 18px;
+    border-radius: 40px;
+    margin-top: 20px;
+}
+.transfer .debit {
+    border: none;
+    padding: 0;
+    background: none;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 18px;
+    flex: 1;
+    cursor: pointer;
+
+    caret-color: transparent; /* Ẩn con trỏ */
+    border: none; /* Ẩn viền */
+    outline: none; /* Loại bỏ đường viền khi focus */
+    background: none;
+}
+
+
+
+
+#cont-button {
+    position: flex;
+    padding: 15px 30px;
+    font-size: 16px;
+    background-color: rgb(255,103,1);
+    color: #fff;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    margin: 30px auto;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+
+.internet-bank .momo:focus,
+.transfer .debit:focus {
+    background-color: rgb(252, 236, 221); /* Màu nền khi chọn */
+    padding: 20px;
+    border-radius: 40px;
+}

@@ -1,8 +1,10 @@
 package org.saigon4paws.Controllers.Manager;
 
 import jakarta.validation.Valid;
+import org.saigon4paws.DTO.Bank;
 import org.saigon4paws.DTO.ReliefGroupDTO;
 import org.saigon4paws.Models.ReliefGroup;
+import org.saigon4paws.Services.BankService;
 import org.saigon4paws.Services.ReliefGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class ReliefGroupController {
     @Autowired
     private ReliefGroupService reliefGroupService;
 
+    @Autowired
+    private BankService bankService;
+
     @GetMapping({"", "/"})
     public String index(Model model) {
         List<ReliefGroup> reliefGroups = reliefGroupService.getAllReliefGroups();
@@ -30,6 +35,8 @@ public class ReliefGroupController {
     public String reliefGroupAdd(Model model) {
         ReliefGroupDTO reliefGroupDTO = new ReliefGroupDTO();
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
+        List<Bank> banks = bankService.getAllBanks();
+        model.addAttribute("banks", banks);
         return "manager/relief-group/form";
     }
 
@@ -61,6 +68,8 @@ public class ReliefGroupController {
             model.addAttribute("error", "Relief group not found!");
             return "manager/relief-group/form";
         }
+        List<Bank> banks = bankService.getAllBanks();
+        model.addAttribute("banks", banks);
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
         return "manager/relief-group/form";
     }
@@ -84,6 +93,8 @@ public class ReliefGroupController {
             model.addAttribute("error", e.getMessage());
             return "manager/relief-group/form";
         }
+        List<Bank> banks = bankService.getAllBanks();
+        model.addAttribute("banks", banks);
         model.addAttribute("reliefGroupDTO", updatedReliefGroupDTO);
         model.addAttribute("success", "Relief group updated successfully!");
         return "manager/relief-group/form";

@@ -1,0 +1,175 @@
+
+#sp-information{
+    display: flex;
+    flex-direction: column;
+}
+/* Thanh Điền thông tin tài trợ */
+#infor-nav {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(237,242,247);
+    height: 90px;
+}
+
+#infor {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+#infor li {
+    margin: 0 5px;
+}
+
+#infor li.bold a {
+    font-weight: bolder;
+    color:black;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+#infor li a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bolder;
+    color: rgba(81,111,156,0.6)
+}
+
+/* Nội dung điền thông tin tài trợ */
+#sp-infor{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(252, 236, 221);
+    width: 100%;
+    height:max-content;
+
+}
+
+#sp-infor .sp-info-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height:max-content;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+/* Nội dung bên trái */
+.sp-info-content .sgroup-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 40px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgb(255,185,70);
+    justify-content: center;
+}
+
+.sgroup-content .sar-group-img{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.sgroup-content .sar-heading{
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-stretch: 12px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+}
+
+.sgroup-content .sar-content{
+    text-align: center;
+    margin-bottom: 25px;
+    color: rgb(237, 242, 247);
+    font-stretch: 15px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-size: 16px;
+}
+
+/* Nội dung form bên phải */
+
+.sp-info-content .sp-info-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 50px 50px 0;
+    justify-content: center;
+}
+
+
+
+.sp-info-content .sp-form-heading{
+    color: rgb(254,168,47);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    font-stretch: 12px;
+    padding: 20px;
+
+}
+
+.sp-info-content .sp-info-button{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sp-info-content .sp-name input,
+.sp-info-content .sp-amount input,
+.sp-info-content .sp-comment input {
+    width: 500px;
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: rgba(106, 101, 101, 0.676);
+    background-color: rgb(237,242,247);
+    border-radius: 40px;
+    border: 0.5px solid rgb(237,242,247);
+}
+
+.sp-info-content .sp-name input,
+.sp-info-content .sp-amount input{
+    height: 50px;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.sp-info-content .sp-comment input{
+    height:100px;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.sp-confirm-button #confirm-button{
+    text-transform: uppercase;
+    background-color: rgb(255,103,1);
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-size: 16px;
+    color: white;
+    font-weight: bolder;
+}
+
+.sp-info-button input:focus {
+    outline: none;
+    border: 1px solid rgb(189, 181, 181);
+}
+
+.avatar {
+    max-width: 250px;
+}
