@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{manager/layout.html}">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/pet/form.css}">
+    <title>Pet type</title>
+</head>
+<body>
+<!-- FORM -->
+<div class="form" layout:fragment="content">
+
+    <ul class="breadcrumb">
+        <li><a th:href="@{/manager}">Quản lý</a></li>
+        <li><a th:href="@{/manager/article-category}">Danh mục bài viết</a></li>
+        <li>Thêm thông tin</li>
+    </ul>
+
+
+    <div class="box">
+
+        <div class="container">
+            <div class="title">THÊM DANH MỤC BÀI VIẾT</div>
+            <div class="content">
+                <form th:action="@{#}" method="post" th:object="${articleCategoryDTO}">
+                    <div class="pets-details-info">
+                        <div class="input-box">
+                            <div class="details">Tên danh mục</div>
+                            <input type="text" th:field="*{name}" placeholder="Tên danh mục" required>
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                        </div>
+                    </div>
+                    <div class="edit-btn">
+                        <input type="button" value="Hủy" onclick="location.href='/manager/article-category'" class="cancel-btn">
+                        <input type="submit" value="Lưu" class="save-btn">
+                    </div>
+                </form>
+                <p class="message-error" th:if="${error}" th:text="${error}"></p>
+                <p class="message-success" th:if="${success}" th:text="${success}"></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
