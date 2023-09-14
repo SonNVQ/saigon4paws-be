@@ -108,6 +108,6 @@ public class ReliefGroupController {
             model.addAttribute("error", e.getMessage());
             return "forward:/manager/relief-group/";
         }
-        return "redirect:/manager/relief-group/";
+        return "go-back";
     }
 }

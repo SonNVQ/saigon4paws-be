@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{manager/layout.html}">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/table.css}">
+    <link rel="stylesheet" th:href="@{/styles/manager/popup.css}">
+    <title>Pet</title>
+</head>
+<body>
+<div class="table" layout:fragment="content">
+    <div class="table_header">
+        <div class="line">
+            <p>
+                <i class=" ti-angle-right"></i>
+                <a style="text-decoration: none; color: #FF6701;" th:href="@{/manager}">Quản lý</a>
+                <i class=" ti-angle-right"></i>
+                <a style="text-decoration: none; color: #FF6701;" th:href="@{/manager/sponsor}">Nhà tài trợ</a>
+            </p>
+        </div>
+        <div>
+            <button class="add_new" onclick="document.location.href='/manager/sponsor/add'">+Thêm mới</button>
+        </div>
+    </div>
+
+    <div class="table_content">
+        <table class="table table-background table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên</th>
+                <th>Số tiền</th>
+                <th>Lời nhắn</th>
+                <th>Thời gian</th>
+                <th>Trạng thái</th>
+                <th colspan="2">Tác vụ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sponsorshipInformation, iteratorStat : ${sponsorshipInformationList}">
+                <td th:text="${iteratorStat.index + 1}"></td>
+                <td th:text="${sponsorshipInformation.sponsorName}"></td>
+                <td th:text="${sponsorshipInformation.amount}"></td>
+                <td th:text="${sponsorshipInformation.message}"></td>
+                <td th:text="${sponsorshipInformation.sponsorDate}"></td>
+                <td th:text="${sponsorshipInformation.status}"></td>
+                <td>
+                    <button><i class="ti-pencil-alt"></i></button>
+                    <a class="delete" href="#"
+                       th:onclick="'togglePopup2(); document.querySelector(\'#agree-2\').value = \'' + ${sponsorshipInformation.id} + '\'; return false;'"
+                    >Đã tra soát</a>
+                </td>
+                <td>
+                    <button><i class="ti-trash"></i></button>
+                    <a class="delete" href="#"
+                       th:onclick="'togglePopup(); document.querySelector(\'#agree\').value = \'' + ${sponsorshipInformation.id} + '\'; return false;'"
+                    >Xoá</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:replace="/fragments/pagination :: pagination('/manager/sponsor?page=', ${page})"></div>
+    </div>
+    <div class="pop-up" id="popup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="confirm"><strong>Xác nhận xóa?</strong></div>
+            <div class="note"><strong>Lưu ý:</strong> Bạn sẽ không thể hoàn tác thao tác này.</div>
+            <div>
+                <button type="button" class="cancel" onclick="togglePopup()"><strong>Hủy</strong></button>
+                <form th:action="@{/manager/sponsor/delete}" method="post" class="delete-form">
+                    <input type="hidden" id="agree" name="id" value="">
+                    <input type="submit" class="agree" onclick="togglePopup()" value="Đồng ý">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="pop-up" id="popup-2">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="confirm"><strong>Xác nhận trạng thái đã tra soát?</strong></div>
+            <div class="note"><strong>Lưu ý:</strong> Bạn sẽ không thể hoàn tác thao tác này.</div>
+            <div>
+                <button type="button" class="cancel" onclick="togglePopup2()"><strong>Hủy</strong></button>
+                <form th:action="@{/manager/sponsor/checked}" method="post" class="delete-form">
+                    <input type="hidden" id="agree-2" name="id" value="">
+                    <input type="submit" class="agree" onclick="togglePopup2()" value="Đồng ý">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function togglePopup() {
+            document.getElementById("popup").classList.toggle("active");
+        }
+        function togglePopup2() {
+            document.getElementById("popup-2").classList.toggle("active");
+        }
+    </script>
+</div>
+</body>
+</html>
