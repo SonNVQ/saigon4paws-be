@@ -19,7 +19,7 @@ public class Article {
 
     private String title;
 
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "longtext")
     private String content;
 
     private Date postedAt;

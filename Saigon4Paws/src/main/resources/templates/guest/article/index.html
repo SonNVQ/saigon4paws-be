@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/article/styles.css}">
+    <title>Content page</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <div class="slider">
+        <img th:src="@{/images/general/article-slider.png}">
+        <div class="title-intro">
+            <div class="title">Bài viết</div>
+            <div class="intro">Những bài viết thú vị về các bé</div>
+        </div>
+    </div>
+
+<!--    <div class="search-section">-->
+<!--        <div class="filter">-->
+<!--            <div class="filter-name">Bài viết</div>-->
+<!--            <div class="dropdown">-->
+<!--                <select name="bai-viet">-->
+<!--                    <option selected value="">Tất cả</option>-->
+<!--                    <option value="vat-nuoi">Vật nuôi</option>-->
+<!--                    <option value="tin-tuc">Tin tức</option>-->
+<!--                    <option value="dich-vu">Dịch vụ</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="filter">-->
+<!--            <div class="filter-name">Ngày đăng</div>-->
+<!--            <div class="calendar">-->
+<!--                <input class="datepicker" id="datepicker" name="birthdate" placeholder="Select your birthdate"-->
+<!--                       type="date">-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="filter">-->
+<!--            <div class="filter-name">Người viết</div>-->
+<!--            <div class="dropdown">-->
+<!--                <select name="nguoi-viet">-->
+<!--                    <option selected value="">Tất cả</option>-->
+<!--                    <option value="Saigon4paws">Saigon4paws</option>-->
+<!--                    <option value="SGT">SGT</option>-->
+<!--                    <option value="SAR">SAR</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <button class="search">Tìm kiếm</button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <div class="article-content">
+        <div class="content-1" th:each="article : ${articles}">
+            <img th:src="${article.avatarUrl}">
+            <div class="content-overview">
+                <span th:text="${article.title}"></span>
+            </div>
+            <button class="detail-1" th:onclick="'document.location.href=\'/article/content?id=' + ${article.id} + '\';'">Chi tiết</button>
+            <div class="date">
+                <div class="day" th:text="${#dates.day(article.postedAt)}"></div>
+                <div class="dash">-</div>
+                <div class="day" th:text="${#dates.month(article.postedAt)}"></div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="/fragments/pagination :: pagination('/article?page=', ${page})">
+    </div>
+</body>
+</html>
