@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/article/content.css}">
+    <title>Content page</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="slider">
+        <img th:src="@{/images/general/article-slider.png}">
+        <div class="title-intro">
+            <div class="title">Bài viết</div>
+            <div class="intro">Những bài viết thú vị về các bé</div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="title-content">
+            <span th:text="${article.title}"></span>
+        </div>
+
+        <div class="date-author">
+            <div class="date">
+                <span th:text="${#dates.format(article.postedAt, 'dd-MM-yyyy')}"></span>
+            </div>
+            <div class="author">
+                <span th:text="${'(' + article.reliefGroup.name + ') '}"></span>
+                <span th:text="${article.author}"></span>
+            </div>
+        </div>
+
+        <div class="line">
+            <img th:src="@{/images/general/long-line.png}">
+        </div>
+
+        <!--        <div class="summary">(Saigon4paws)Camera ghi lại khoảnh khắc chú mèo nhìn vào ống kính.</div>-->
+
+        <!--        <div class="meo">-->
+        <!--            <img src="/article-pic/camerameow.png">-->
+        <!--        </div>-->
+
+        <div class="content-main" th:utext="${article.content}">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
