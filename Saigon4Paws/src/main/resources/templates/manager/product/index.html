@@ -35,7 +35,7 @@
             </thead>
             <tbody>
             <tr th:each="product, iteratorStat: ${products}">
-                <td th:text="${iteratorStat.count + 1}"></td>
+                <td th:text="${iteratorStat.index + 1}"></td>
                 <td th:text="${product.name}"></td>
                 <td th:text="${product.description}"></td>
                 <td th:text="${product.price}"></td>
