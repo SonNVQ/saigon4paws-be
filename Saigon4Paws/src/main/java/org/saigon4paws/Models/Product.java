@@ -21,6 +21,8 @@ public class Product {
 
     private Integer price;
 
+    private String avatarUrl;
+
     @ManyToOne
     @JoinColumn(name = "product_type_id", referencedColumnName = "id")
     private ProductType productType;

@@ -76,14 +76,17 @@
                         <div class="input-box">
                             <div class="details">Tình trạng nhận nuôi:</div>
                             <input type="text" th:field="*{adoptionStatus}" placeholder="Tình trạng nhận nuôi" required>
+                            <p th:if="${#fields.hasErrors('adoptionStatus')}" th:errors="*{adoptionStatus}"></p>
                         </div>
                         <div class="input-box">
                             <div class="details">Tình trạng tiêm phòng:</div>
                             <input type="text" th:field="*{vaccinationStatus}" placeholder="Tình trạng tiêm phòng" required>
+                            <p th:if="${#fields.hasErrors('vaccinationStatus')}" th:errors="*{vaccinationStatus}"></p>
                         </div>
                         <div class="input-box">
                             <div class="details">Tình trạng sức khỏe:</div>
                             <input type="text" th:field="*{healthStatus}" placeholder="Tình trạng sức khỏe" required>
+                            <p th:if="${#fields.hasErrors('healthStatus')}" th:errors="*{healthStatus}"></p>
                         </div>
                     </div>
                     <div class="edit-btn">
