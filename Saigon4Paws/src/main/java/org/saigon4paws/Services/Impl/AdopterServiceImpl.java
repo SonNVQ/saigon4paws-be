@@ -79,6 +79,7 @@ public class AdopterServiceImpl implements AdopterService {
                 .phoneNumber(adopter.getPhoneNumber())
                 .petId(adopter.getPet().getId())
                 .createdAt(adopter.getCreatedAt())
+                .status(adopter.getStatus())
                 .build();
     }
 
@@ -109,6 +110,7 @@ public class AdopterServiceImpl implements AdopterService {
         adopter.setNumberOfPeopleLivingTogether(petDTO.getNumberOfPeopleLivingTogether());
         adopter.setPhoneNumber(petDTO.getPhoneNumber());
         adopter.setPet(pet);
+        adopter.setStatus(petDTO.getStatus());
         Adopter savedAdopter = adopterRepository.save(adopter);
         return getAdopterDTO(savedAdopter);
     }

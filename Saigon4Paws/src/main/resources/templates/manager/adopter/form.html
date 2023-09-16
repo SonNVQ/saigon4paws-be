@@ -84,18 +84,20 @@
                                     <option disabled selected value="">Trạng thái</option>
                                     <option value="Tạo mới">Tạo mới</option>
                                     <option value="Đã nhận nuôi">Đã nhận nuôi</option>
+                                    <option value="Đã từ chối">Đã từ chối</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="edit-btn">
-                        <input class="cancel-btn" onclick="location.href='/manager/relief-group'" type="button"
+                        <input class="cancel-btn" onclick="location.href='/manager/adopter'" type="button"
                                value="Hủy">
                         <input class="save-btn" type="submit" value="Lưu">
                     </div>
                 </form>
                 <p class="message-error" th:if="${error}" th:text="${error}"></p>
                 <p class="message-success" th:if="${success}" th:text="${success}"></p>
+                <p style="margin-top: 10px;">*Note: Vui lòng cập nhật trạng thái vật nuôi ở trang vật nuôi tương ứng sau khi cập nhật trạng thái đã nhận nuôi.</p>
             </div>
         </div>
     </div>
