@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/styles/guest/layout.css}">
+    <link rel="stylesheet" th:href="@{/fonts/themify-icons/themify-icons.css}">
+</head>
+<body>
+<!-- Header -->
+<div id="header">
+    <!-- Begin: Header phụ -->
+    <div class="sub-header">
+        <!-- Địa chỉ -->
+        <div class="location">
+            <i class="icon ti-location-pin"></i>
+            <div class="text-location">TP.HCM - Việt Nam</div>
+        </div>
+        <!-- Các nút điều hướng nhanh -->
+        <ul class="nav">
+            <li><a href="/manager">Quản lý</a></li>
+            <li class="icon-nav">
+                <i class="icon ti-comment"></i>
+                <a href="#">
+                    Liên hệ
+                </a>
+            </li>
+            <li><a href="#">Eng</a></li>
+        </ul>
+    </div>
+    <!-- Begin: Header chính -->
+    <div class="main-header nav-open">
+        <!-- Logo Saigon4paws -->
+        <img alt="Logo Saigon4paws" class="logo-img" th:src="@{/images/general/logo-brand.png}">
+
+        <input id="check" type="checkbox">
+        <label class="check-btn" for="check">
+            <i class="icon-mobile-nav ti-menu" name="menu-outline"></i>
+        </label>
+
+        <!-- Các nút chức năng -->
+        <nav class="main-nav">
+            <ul class="main-nav-list">
+                <li><a class="main-nav-link" href="#">trang chủ</a></li>
+                <li><a class="main-nav-link" href="/sponsor">tài trợ</a></li>
+                <li><a class="main-nav-link" href="/pet">vật nuôi</a></li>
+                <li><a class="main-nav-link" href="#">tình nguyện</a></li>
+                <li><a class="main-nav-link" href="/product">sản phẩm</a></li>
+                <li><a class="main-nav-link" href="/article">bài viết</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<div layout:fragment="content">
+
+</div>
+
+
+<!-- Footer -->
+<div id="footer">
+    <div class="org-name">@2023 saigon4paws</div>
+    <ul class="icon-apps">
+        <li><a href="#"><i class="ti-facebook"></i></a></li>
+        <li><a href="#"><i class="ti-instagram"></i></a></li>
+        <li><a href="#"><i class="ti-email"></i></a></li>
+    </ul>
+</div>
+</body>
+</html>

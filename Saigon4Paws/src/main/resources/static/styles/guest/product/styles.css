@@ -1,0 +1,300 @@
+body {
+    background-color: #fcecdd;
+}
+
+/* Sub header */
+
+.sub-header {
+    height: 4.2rem;
+    background-color: #fff;
+    padding: 0 14rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.6rem;
+}
+
+.sub-header .location {
+    display: inline-block;
+    color: #697582;
+}
+
+.sub-header .icon {
+    color: #FF6701 !important;
+    display: inline-block;
+    font-size: 1.6rem;
+}
+
+.sub-header .text-location {
+    display: inline-block;
+    padding: 0 0.4rem;
+}
+
+.sub-header li,
+#footer li {
+    display: inline-block;
+}
+
+.sub-header li a {
+    color: #697582;
+}
+
+.sub-header li a:first-child {
+    padding: 0 2.8rem;
+}
+
+.sub-header .icon-nav a {
+    padding-left: 0.4rem;
+}
+
+/* Main header */
+
+.main-header {
+    background-color: #FEA82F;
+    height: 8.6rem;
+    padding: 0 14rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.main-header .logo-img {
+    margin-top: -1rem;
+}
+
+.main-nav-list {
+    display: flex;
+    gap: 3.6rem;
+    list-style: none;
+}
+
+.main-nav-link:link,
+.main-nav-link:visited {
+    display: inline-block;
+    text-decoration: none;
+    color: #FEF8F8;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
+    font-size: 1.6rem;
+    transition: all 0.3s;
+}
+
+/* Nút menu mobile */
+
+.check-btn {
+    margin-right: 0;
+
+    font-size: 3rem;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+/* Slider */
+
+#slider {
+    width: 100%;
+    padding-top: 25%;
+    background: url(https://vuipet.com/uploads/images/kinh-nghiem-cham-cho/cho-con-an-gi/thuc-an-hat-cho-cho-2.jpg)
+    top center / cover no-repeat;
+    position: relative;
+    height: 30%;
+}
+
+#slider .about-content {
+    color: #fff;
+    width: 56rem;
+    position: absolute;
+    top: 40%;
+    margin-left: 10%;
+    line-height: 1.8;
+}
+
+#slider .about-heading {
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    font-size: 3.6rem;
+    font-weight: 700;
+}
+
+#slider .about-des {
+    margin-bottom: 1.2rem;
+    font-size: 1.6rem;
+}
+
+#slider .about-btn {
+    color: #fff;
+    opacity: 0.5;
+    font-size: 2rem;
+}
+
+.sub-header li a:hover,
+.main-nav-link:hover,
+#footer .icon-apps a:hover,
+#slider .about-content a:hover {
+    color: #d61c62;
+}
+
+/* Homepage Content*/
+
+#homepage-content{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 80px;
+    margin-bottom: 0;
+}
+
+/* Select Menu */
+
+.select-menu{
+    display: flex;
+    justify-content: center;
+}
+.gender-fil {
+    width: 25vh;
+    padding: 15px;
+}
+
+.fil-title {
+    color: #697582;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.selected {
+    background-color: #fff;
+    border-radius: 15px;
+    margin-bottom: 4px;
+    color: #697582;
+    font-size: 18px;
+    border: 1px solid #FF6701;
+}
+
+.selected .list-icon {
+    float: right;
+    margin-top: 1px;
+}
+
+
+.select-box .gen-opt-container.active {
+    max-height: 85px;
+    opacity: 1;
+    overflow-y: scroll;
+}
+
+.select-box .gen-opt-container::-webkit-scrollbar {
+    width: 4px;
+    background: #D9D9D9;
+    border-radius: 0 8px 8px 0;
+}
+
+.select-box .gen-opt-container::-webkit-scrollbar-thumb {
+    overflow: hidden;
+}
+
+.select-box .gen-opt-container {
+    background-color: #D9D9D9;
+    color: #000000;
+    max-height: 0;
+    width: 100%;
+    transition: all 0.4s;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 15px;
+}
+
+.select-box .gen-opt,
+.selected {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.select-box .gen-opt:hover {
+    background: #FFC288;
+}
+
+.select-box label {
+    cursor: pointer;
+}
+
+.select-box .gen-opt .gen-radio {
+    display: none;
+}
+
+button:hover {
+    color:#ff6701;
+    background-color: #fdf7f7;
+    cursor: pointer;
+}
+
+button{
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.bt-find{
+    padding: 45px;
+}
+.find{
+    text-transform: uppercase;
+    padding: 5px 10px;
+    color: #fff;
+    background-color: #FF6701;
+    font-size: 17px;
+}
+
+
+/* Product Information */
+.product-main{
+    background-color: #fcecdd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    flex-wrap: wrap;
+    padding-top: 0;
+}
+.product{
+    margin: 40px;
+    background: #ffffff;
+    border-radius: 30px;
+    width: 250px;
+}
+.product-img img{
+    width: 250px;
+    height: 250px;
+    padding: 10px 30px;
+}
+.product-contain{
+    padding-left: 15px;
+    padding-bottom: 10px;
+}
+.product-title .title{
+    text-decoration: none;
+    color: black;
+    font-size: 17px;
+    font-weight: 700;
+
+}
+.product-title .title:hover{
+    color: #697582
+}
+.product .price{
+    font-size: 15px;
+    font-weight: 500;
+}
+.product .tram{
+    font-size: 15px;
+    color: #FEA82F;
+    font-weight: 500;
+}

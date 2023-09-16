@@ -1,0 +1,92 @@
+/* Thanh chọn trạm cứu trợ */
+#centre-selection {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(237,242,247);
+    height: 80px;
+}
+
+#centre {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+#centre li {
+    margin: 0 5px;
+}
+
+#centre li.bold a {
+    font-weight: bolder;
+    color:black;
+    text-decoration: none;
+    font-size: larger;
+}
+
+#centre li a {
+    text-decoration: none;
+    font-size: larger;
+    font-weight: bolder;
+    color: rgba(81,111,156,0.6)
+}
+
+/* Nội dung chọn trạm cứu trợ */
+#sponsors{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgb(252, 236, 221);
+    height:auto;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+#sponsors .img-dog{
+    padding-right: 50px;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.sponsors-content .sponsors-h1{
+    text-align: center;
+    font-size: 10px;
+    padding: 20px;
+
+}
+
+.sponsors-content .sponsors-h2{
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 40px;
+    text-transform: uppercase;
+    color: rgb(254, 168, 47)
+}
+
+.sponsors-content .sp-button{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-decoration: none;
+    padding: 10px;
+}
+.sp-button .sgt-button, .sp-button .sar-button{
+    padding: 10px 30px;
+    text-transform: uppercase;
+    background-color: rgb(255,103,1);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.sgt-button a, .sar-button a{
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+}
+
+.sp-button .sgt-button:hover, .sp-button .sar-button:hover{
+    background-color:rgb(255, 77, 1) ;
+    box-shadow: 5px 5px 10px rgba(244, 130, 9, 0.439);
+}

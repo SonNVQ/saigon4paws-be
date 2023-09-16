@@ -34,8 +34,17 @@ public class ReliefGroupDTO {
 
     private String fanpageLink;
 
+    @NotEmpty(message = "Bank name must not be empty!")
+    private String bankName;
+
+    @NotEmpty(message = "Bank bin must not be empty!")
+    private String bankBin;
+
     @NotEmpty(message = "Bank account number must not be empty!")
     private String bankAccountNumber;
+
+    @NotEmpty(message = "Bank account name must not be empty!")
+    private String bankAccountName;
 
     private String avatarUrl;
 }

@@ -3,6 +3,8 @@ package org.saigon4paws.Models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,8 +19,14 @@ public class Article {
 
     private String title;
 
-    @Column(columnDefinition = "text")
+    @Column(columnDefinition = "longtext")
     private String content;
+
+    private Date postedAt;
+
+    private String author;
+
+    private String avatarUrl;
 
     @ManyToOne
     @JoinColumn(name = "relief_group_id", referencedColumnName = "id")

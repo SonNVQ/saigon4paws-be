@@ -3,9 +3,12 @@ package org.saigon4paws.Services.Impl;
 import org.saigon4paws.DTO.ReliefGroupDTO;
 import org.saigon4paws.Models.ReliefGroup;
 import org.saigon4paws.Repositories.ReliefGroupRepository;
+import org.saigon4paws.Services.FileService;
 import org.saigon4paws.Services.ReliefGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,6 +16,12 @@ import java.util.List;
 public class ReliefGroupServiceImpl implements ReliefGroupService {
     @Autowired
     private ReliefGroupRepository reliefGroupRepository;
+
+    @Autowired
+    private FileService fileService;
+
+    @Value("${upload.relief-group.dir}")
+    private String reliefGroupPhotoDir;
 
     @Override
     public List<ReliefGroup> getAllReliefGroups() {
@@ -33,16 +42,25 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
                 .email(reliefGroupDTO.getEmail())
                 .phoneNumber(reliefGroupDTO.getPhoneNumber())
                 .fanpageLink(reliefGroupDTO.getFanpageLink())
+                .bankName(reliefGroupDTO.getBankName())
+                .bankBin(reliefGroupDTO.getBankBin())
                 .bankAccountNumber(reliefGroupDTO.getBankAccountNumber())
+                .bankAccountName(reliefGroupDTO.getBankAccountName())
+                .avatarUrl(reliefGroupDTO.getAvatarUrl())
                 .build();
         return reliefGroupRepository.save(reliefGroup);
     }
 
     @Override
-    public ReliefGroupDTO getReliefGroupById(Integer id) {
+    public ReliefGroup getReliefGroupById(Integer id) {
         if (id == null)
             return null;
-        ReliefGroup reliefGroup = reliefGroupRepository.findById(id).orElse(null);
+        return reliefGroupRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public ReliefGroupDTO getReliefGroupDTOById(Integer id) {
+        ReliefGroup reliefGroup = getReliefGroupById(id);
         if (reliefGroup == null)
             return null;
         return ReliefGroupDTO.builder()
@@ -53,23 +71,33 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
                 .email(reliefGroup.getEmail())
                 .phoneNumber(reliefGroup.getPhoneNumber())
                 .fanpageLink(reliefGroup.getFanpageLink())
+                .bankName(reliefGroup.getBankName())
+                .bankBin(reliefGroup.getBankBin())
                 .bankAccountNumber(reliefGroup.getBankAccountNumber())
+                .bankAccountName(reliefGroup.getBankAccountName())
+                .avatarUrl(reliefGroup.getAvatarUrl())
                 .build();
     }
 
     @Override
-    public ReliefGroupDTO updateReliefGroupById(Integer id, ReliefGroupDTO reliefGroupDTO) throws Exception {
-        ReliefGroup reliefGroup = reliefGroupRepository.findById(id).orElse(null);
+    public ReliefGroupDTO updateReliefGroupDTOById(Integer id, ReliefGroupDTO reliefGroupDTO) throws Exception {
+        ReliefGroup reliefGroup = getReliefGroupById(id);
         if (reliefGroup == null)
             throw new Exception("Relief group not found!");
-        validateUpdatingReliefGroup(getReliefGroupById(id), reliefGroupDTO);
+        validateUpdatingReliefGroup(getReliefGroupDTOById(id), reliefGroupDTO);
         reliefGroup.setName(reliefGroupDTO.getName());
         reliefGroup.setWorkingArea(reliefGroupDTO.getWorkingArea());
         reliefGroup.setDescription(reliefGroupDTO.getDescription());
         reliefGroup.setEmail(reliefGroupDTO.getEmail());
         reliefGroup.setPhoneNumber(reliefGroupDTO.getPhoneNumber());
         reliefGroup.setFanpageLink(reliefGroupDTO.getFanpageLink());
+        reliefGroup.setBankName(reliefGroupDTO.getBankName());
+        reliefGroup.setBankBin(reliefGroupDTO.getBankBin());
         reliefGroup.setBankAccountNumber(reliefGroupDTO.getBankAccountNumber());
+        reliefGroup.setBankAccountName(reliefGroupDTO.getBankAccountName());
+        if (reliefGroupDTO.getAvatarUrl() != null) {
+            reliefGroup.setAvatarUrl(reliefGroupDTO.getAvatarUrl());
+        }
         reliefGroupRepository.save(reliefGroup);
         return ReliefGroupDTO.builder()
                 .id(reliefGroup.getId())
@@ -79,13 +107,17 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
                 .email(reliefGroup.getEmail())
                 .phoneNumber(reliefGroup.getPhoneNumber())
                 .fanpageLink(reliefGroup.getFanpageLink())
+                .bankName(reliefGroup.getBankName())
+                .bankBin(reliefGroup.getBankBin())
                 .bankAccountNumber(reliefGroup.getBankAccountNumber())
+                .bankAccountName(reliefGroup.getBankAccountName())
+                .avatarUrl(reliefGroup.getAvatarUrl())
                 .build();
     }
 
     @Override
     public void deleteReliefGroupById(Integer id) throws Exception {
-        ReliefGroup existingReliefGroup = reliefGroupRepository.findById(id).orElse(null);
+        ReliefGroup existingReliefGroup = getReliefGroupById(id);
         if (existingReliefGroup == null) {
             throw new Exception("Relief group not found!");
         }
@@ -137,5 +169,10 @@ public class ReliefGroupServiceImpl implements ReliefGroupService {
         if (!oldReliefGroup.getBankAccountNumber().equals(newReliefGroup.getBankAccountNumber()) && isBankAccountNumberExisted(newReliefGroup.getBankAccountNumber())) {
             throw new Exception("Bank account number already exists!");
         }
+    }
+
+    @Override
+    public String uploadReliefGroupPhoto(MultipartFile avatar) throws Exception {
+        return fileService.saveImageFromMultipartFile(reliefGroupPhotoDir, avatar);
     }
 }

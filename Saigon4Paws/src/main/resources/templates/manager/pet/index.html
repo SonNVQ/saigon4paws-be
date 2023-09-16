@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{manager/layout.html}">
+<html layout:decorate="~{manager/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <link rel="stylesheet" th:href="@{/styles/manager/table.css}">
+    <link rel="stylesheet" th:href="@{/styles/manager/popup.css}">
     <title>Pet</title>
 </head>
 <body>
@@ -10,10 +11,10 @@
     <div class="table_header">
         <div class="line">
             <p>
-            <i class=" ti-angle-right"></i>
-            <a style="text-decoration: none; color: #FF6701;" href="#">Quản lý vật nuôi</a>
-            <i class=" ti-angle-right"></i>
-            <a style="text-decoration: none; color: #FF6701;" href="/manager/pet/">Vật nuôi</a>
+                <i class=" ti-angle-right"></i>
+                <a href="#" style="text-decoration: none; color: #FF6701;">Quản lý vật nuôi</a>
+                <i class=" ti-angle-right"></i>
+                <a href="/manager/pet/" style="text-decoration: none; color: #FF6701;">Vật nuôi</a>
             </p>
         </div>
         <div>
@@ -33,65 +34,45 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>SP001</td>
-                <td>Minino Plus</td>
-                <td>Thức ăn hạt cho mèo trưởng thành</td>
-                <td>STG</td>
+            <tr th:each="pet, iteratorStat: ${pets}">
+                <td th:text="${pet.id}"></td>
+                <td th:text="${pet.name}"></td>
+                <td th:text="${pet.reliefGroup.name}"></td>
+                <td th:text="${pet.adoptionStatus}"></td>
                 <td>
                     <button><i class="ti-pencil-alt"></i></button>
-                    <a class="fix" href="">Sửa</a>
+                    <a class="fix" th:href="@{'/manager/pet/edit?id=' + ${pet.id}}">Sửa</a>
                 </td>
                 <td>
                     <button><i class="ti-trash"></i></button>
-                    <a class="delete" href="">Xoá</a>
-                </td>
-            </tr>
-            <tr>
-                <td>SP002</td>
-                <td>Đồ chơi nhai gặm</td>
-                <td>Đồ chơi cho chó mèo</td>
-                <td>STG</td>
-                <td>
-                    <button><i class="ti-pencil-alt"></i></button>
-                    <a class="fix" href="">Sửa</a>
-                </td>
-                <td>
-                    <button><i class="ti-trash"></i></button>
-                    <a class="delete" href="">Xoá</a>
-                </td>
-            </tr>
-            <tr>
-                <td>SP003</td>
-                <td>Thức hạt Fibis</td>
-                <td>Thức ăn hạt dành cho chó trưởng thành</td>
-                <td>SAR</td>
-                <td>
-                    <button><i class="ti-pencil-alt"></i></button>
-                    <a class="fix" href="">Sửa</a>
-                </td>
-                <td>
-                    <button><i class="ti-trash"></i></button>
-                    <a class="delete" href="">Xoá</a>
-                </td>
-            </tr>
-            <tr>
-                <td>SP004</td>
-                <td>Cần câu mèo</td>
-                <td>Đồ chơi cho mèo: Cần câu</td>
-                <td>SAR</td>
-                <td>
-                    <button><i class="ti-pencil-alt"></i></button>
-                    <a class="fix" href="">Sửa</a>
-                </td>
-                <td>
-                    <button><i class="ti-trash"></i></button>
-                    <a class="delete" href="">Xoá</a>
+                    <a class="delete" href="#"
+                       th:onclick="'togglePopup(); document.querySelector(\'#agree\').value = \'' + ${pet.id} + '\'; return false;'"
+                    >Xoá</a>
                 </td>
             </tr>
             </tbody>
         </table>
+        <div th:replace="/fragments/pagination :: pagination('/manager/pet?page=', ${page})"></div>
     </div>
+    <div class="pop-up" id="popup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="confirm"><strong>Xác nhận xóa?</strong></div>
+            <div class="note"><strong>Lưu ý:</strong> Bạn sẽ không thể hoàn tác thao tác này.</div>
+            <div>
+                <button type="button" class="cancel" onclick="togglePopup()"><strong>Hủy</strong></button>
+                <form th:action="@{/manager/pet/delete}" method="post" class="delete-form">
+                    <input type="hidden" id="agree" name="id" value="">
+                    <input type="submit" class="agree" onclick="togglePopup()" value="Đồng ý">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function togglePopup() {
+            document.getElementById("popup").classList.toggle("active");
+        }
+    </script>
 </div>
 </body>
 </html>

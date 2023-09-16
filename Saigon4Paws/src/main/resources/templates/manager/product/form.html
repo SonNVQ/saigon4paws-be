@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html layout:decorate="~{manager/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/product/form.css}">
+    <title>Product</title>
+</head>
+<body>
+<!-- FORM -->
+<div class="form" layout:fragment="content">
+
+    <ul class="breadcrumb">
+        <li><a href="#">Quản lý thông tin</a></li>
+        <li><a href="#">Sản phẩm</a></li>
+        <li>Thêm thông tin</li>
+    </ul>
+
+
+    <div class="box">
+
+        <div class="container">
+            <div class="title">THÊM SẢN PHẨM</div>
+            <div class="content">
+                <!-- Begin: Form điền thông tin cơ bản -->
+                <form action="#" enctype="multipart/form-data" method="post" th:object="${productDTO}">
+                    <div class="pets-basic-info">
+                        <div class="first-line">
+                            <div class="box-1">
+                                <div class="sub-title-1">THÔNG TIN CƠ BẢN</div>
+                                <div class="select">
+                                    <select th:field="*{productTypeId}">
+                                        <option disabled selected value="">Loại sản phẩm</option>
+                                        <option th:each="productType: ${productTypes}"
+                                                th:text="${productType.name}"
+                                                th:value="${productType.id}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="select">
+                                    <select th:field="*{reliefGroupId}">
+                                        <option disabled selected value="">Nhóm cứu trợ</option>
+                                        <option th:each="reliefGroup: ${reliefGroups}"
+                                                th:text="${reliefGroup.name}"
+                                                th:value="${reliefGroup.id}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="upload">
+                                <img alt="" height=100
+                                     th:src="${productDTO.avatarUrl != null ? productDTO.avatarUrl : '/images/general/img-placeholder.png'}"
+                                     width=100>
+                                <div class="round">
+                                    <input accept="image/jpeg,image/jpg,image/png" name="avatar" type="file">
+                                    <i class="ti-upload" style="color: #fff;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Begin: Form điền thông tin cụ thể-->
+                    <div class="sub-title-2">THÔNG TIN CỤ THỂ</div>
+                    <div class="pets-details-info">
+                        <div class="input-box">
+                            <div class="details">Tên sản phẩm:</div>
+                            <input placeholder="Tên sản phẩm" required th:field="*{name}" type="text">
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Mô tả sản phẩm:</div>
+                            <input placeholder="Mô tả sản phẩm" required th:field="*{description}" type="text">
+                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Giá tiền:</div>
+                            <input placeholder="Giá tiền" required th:field="*{price}" type="number">
+                            <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+                        </div>
+                    </div>
+
+                    <div class="edit-btn">
+                        <input class="cancel-btn" onclick="location.href='/manager/product'" type="button" value="Hủy">
+                        <input class="save-btn" type="submit" value="Lưu">
+                    </div>
+                </form>
+                <p class="message-error" th:if="${error}" th:text="${error}"></p>
+                <p class="message-success" th:if="${success}" th:text="${success}"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const image = document.querySelector(".upload img"),
+            input = document.querySelector(".upload input");
+
+        input.addEventListener("change", () => {
+            image.src = URL.createObjectURL(input.files[0]);
+        });
+    </script>
+</div>
+</body>
+</html>

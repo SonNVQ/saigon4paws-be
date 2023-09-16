@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html layout:decorate="~{manager/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/table.css}">
+    <link rel="stylesheet" th:href="@{/styles/manager/popup.css}">
+    <title>Adopter</title>
+</head>
+<body>
+<div class="table" layout:fragment="content">
+    <div class="table_header">
+        <div class="line">
+            <p>
+                <i class=" ti-angle-right"></i>
+                <a href="#" style="text-decoration: none; color: #FF6701;">Quản lý vật nuôi</a>
+                <i class=" ti-angle-right"></i>
+                <a href="/manager/adopter/" style="text-decoration: none; color: #FF6701;">Vật nuôi</a>
+            </p>
+        </div>
+        <div>
+            <button class="add_new" onclick="window.location.href='/manager/adopter/add'">+Thêm mới</button>
+        </div>
+    </div>
+
+    <div class="table_content">
+        <table class="table table-background table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên người nhận nuôi</th>
+                <th>Số điện thoại</th>
+                <th>Vật nuôi</th>
+                <th>Thời gian tạo</th>
+                <th>Trạng thái</th>
+                <th colspan="2">Tác vụ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="adopter, iteratorStat: ${adopters}">
+                <td th:text="${iteratorStat.count + 1}"></td>
+                <td th:text="${adopter.fullName}"></td>
+                <td th:text="${adopter.phoneNumber}"></td>
+                <td>
+                    <a th:href="${'/pet/detail?id=' + adopter.pet.id}" th:text="${adopter.pet.id}"></a>
+<!--                    <a th:if="${adopter.pets != null}" th:href="@{'/pet/detail?id=' + ${adopter.pets.get(0).id}}"  th:text="${adopter.pets.get(0).id}"></a>-->
+                </td>
+                <td th:text="${adopter.createdAt}"></td>
+                <td th:text="${adopter.status}"></td>
+                <td>
+                    <button><i class="ti-pencil-alt"></i></button>
+                    <a class="fix" th:href="@{'/manager/adopter/edit?id=' + ${adopter.id}}">Sửa</a>
+                </td>
+                <td>
+                    <button><i class="ti-trash"></i></button>
+                    <a class="delete" href="#"
+                       th:onclick="'togglePopup(); document.querySelector(\'#agree\').value = \'' + ${adopter.id} + '\'; return false;'"
+                    >Xoá</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:replace="/fragments/pagination :: pagination('/manager/adopter?page=', ${page})"></div>
+    </div>
+    <div class="pop-up" id="popup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="confirm"><strong>Xác nhận xóa?</strong></div>
+            <div class="note"><strong>Lưu ý:</strong> Bạn sẽ không thể hoàn tác thao tác này.</div>
+            <div>
+                <button type="button" class="cancel" onclick="togglePopup()"><strong>Hủy</strong></button>
+                <form th:action="@{/manager/adopter/delete}" method="post" class="delete-form">
+                    <input type="hidden" id="agree" name="id" value="">
+                    <input type="submit" class="agree" onclick="togglePopup()" value="Đồng ý">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function togglePopup() {
+            document.getElementById("popup").classList.toggle("active");
+        }
+    </script>
+</div>
+</body>
+</html>

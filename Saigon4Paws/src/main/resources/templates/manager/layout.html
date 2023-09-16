@@ -58,10 +58,9 @@
             </div>
 
             <div class="management">
-                <img th:src="@{/images/general/menu-pic/icon 2.png}">
+                <img th:src="@{'/images/general/menu-pic/icon 2.png'}">
                 <div class="info-management">Quản lý thông tin</div>
             </div>
-
             <div class="main-menu">
                 <div class="elements">
                     <img th:src="@{/images/general/menu-pic/light-orange.png}">
@@ -79,7 +78,16 @@
 
                 <div class="elements">
                     <img th:src="@{/images/general/menu-pic/dark orange.png}">
-                    <div>Bài viết</div>
+                    <div>
+                        <a href="/manager/article-category">Danh mục bài viết</a>
+                    </div>
+                </div>
+
+                <div class="elements">
+                    <img th:src="@{/images/general/menu-pic/dark orange.png}">
+                    <div>
+                        <a href="/manager/article">Bài viết</a>
+                    </div>
                 </div>
 
                 <div class="elements">
@@ -91,12 +99,30 @@
 
                 <div class="elements">
                     <img th:src="@{/images/general/menu-pic/dark orange.png}">
-                    <div>Nhà tài trợ</div>
+                    <div>
+                        <a href="/manager/sponsor">Nhà tài trợ</a>
+                    </div>
+                </div>
+
+                <div class="elements">
+                    <img th:src="@{/images/general/menu-pic/dark orange.png}">
+                    <div>
+                        <a href="/manager/adopter">Người nhận nuôi</a>
+                    </div>
                 </div>
 
                 <div class="elements">
                     <img th:src="@{/images/general/menu-pic/light-orange.png}">
-                    <div>Sản phẩm</div>
+                    <div>
+                        <a href="/manager/product-type">Danh mục sản phẩm</a>
+                    </div>
+                </div>
+
+                <div class="elements">
+                    <img th:src="@{/images/general/menu-pic/light-orange.png}">
+                    <div>
+                        <a href="/manager/product">Sản phẩm</a>
+                    </div>
                 </div>
 
             </div>

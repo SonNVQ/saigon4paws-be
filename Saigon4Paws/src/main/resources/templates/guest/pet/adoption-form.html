@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/pet/styles.css}">
+    <title>Thông tin nhận nuôi</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div id="adt-form">
+        <div id="adt-heading">
+            <img alt="" class="adt-logo" th:src="@{/images/general/loco-icon.png}">
+            <h1 class="adt-headline">Điền thông tin nhận nuôi</h1>
+        </div>
+
+        <form action="#" method="post" th:object="${adopterDTO}">
+            <input name="petId" th:value="${petId}" type="hidden">
+            <div id="basis-info">
+                <div class="input-info-1">
+                    <input class="input-box" placeholder="Họ tên" required th:field="*{fullName}" type="text">
+                    <input class="input-box" placeholder="Số người đang sinh sống cùng"
+                           required th:field="*{numberOfPeopleLivingTogether}" type="number">
+                    <input class="input-box" placeholder="Mức thu nhập hàng tháng" required th:field="*{monthlyIncome}"
+                           type="number">
+                </div>
+
+                <div class="input-info-2">
+                    <input class="input-box" placeholder="Năm sinh" required th:field="*{dob}" type="date">
+                    <input class="input-box" placeholder="Nghề nghiệp" required th:field="*{job}" type="text">
+                    <input class="input-box" placeholder="Số điện thoại" required th:field="*{phoneNumber}" type="text">
+                </div>
+            </div>
+
+            <input class="input input-box" placeholder="Hình thức nơi lưu trú" required th:field="*{formOfStay}"
+                   type="text">
+            <input class="input input-box" placeholder="Địa chỉ lưu trú hiện tại" required th:field="*{address}" type="text">
+
+            <div id="adt-btn">
+                <a class="go-back-btn" href="/pet">Quay lại</a>
+                <input class="submit-form-btn" type="submit" value="Xác nhận đăng ký">
+            </div>
+
+        </form>
+        <p class="message-error" th:if="${error}" th:text="${error}"></p>
+        <p class="message-success" th:if="${success}" th:text="${success}"></p>
+    </div>
+
+</div>
+</body>
+</html>

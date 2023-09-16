@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html layout:decorate="~{manager/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/pet/form.css}">
+    <title>Adopter</title>
+</head>
+<body>
+<!-- FORM -->
+<div class="form" layout:fragment="content">
+
+    <ul class="breadcrumb">
+        <li><a th:href="@{/manager/}">Quản lý thông tin</a></li>
+        <li><a th:href="@{/manager/pet/}">Người nhận nuôi</a></li>
+        <li th:text="${isEditPage} ? 'Sửa thông tin': 'Thêm thông tin'"></li>
+    </ul>
+
+
+    <div class="box">
+
+        <div class="container">
+            <div class="title">NGƯỜI NHẬN NUÔI</div>
+            <div class="content">
+                <!-- Begin: Form điền thông tin cơ bản -->
+                <form method="post" th:action="@{#}" th:if="${adopterDTO}" th:object="${adopterDTO}">
+                    <div class="sub-title-2">THÔNG TIN CỤ THỂ</div>
+                    <div class="pets-details-info">
+                        <div class="input-box">
+                            <div class="details">Họ tên:</div>
+                            <input placeholder="Họ tên" required th:field="*{fullName}" type="text">
+                            <p th:errors="*{fullName}" th:if="${#fields.hasErrors('fullName')}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Ngày sinh:</div>
+                            <input placeholder="Ngày sinh" required th:field="*{dob}" type="date">
+                            <p th:errors="*{dob}" th:if="${#fields.hasErrors('dob')}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Số người đang sinh sống cùng:</div>
+                            <input placeholder="Số người đang sinh sống cùng" required
+                                   th:field="*{numberOfPeopleLivingTogether}" type="number">
+                            <p th:errors="*{numberOfPeopleLivingTogether}"
+                               th:if="${#fields.hasErrors('numberOfPeopleLivingTogether')}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Nghề nghiệp:</div>
+                            <input placeholder="Nghề nghiệp" required th:field="*{job}" type="text">
+                            <p th:errors="*{job}" th:if="${#fields.hasErrors('job')}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Mức thu nhập hàng tháng:</div>
+                            <input placeholder="Mức thu nhập hàng tháng" required th:field="*{monthlyIncome}"
+                                   type="number">
+                            <p th:errors="*{monthlyIncome}" th:if="${#fields.hasErrors('monthlyIncome')}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Số điện thoại:</div>
+                            <input placeholder="Số điện thoại" required th:field="*{phoneNumber}" type="text">
+                            <p th:errors="*{phoneNumber}" th:if="${#fields.hasErrors('phoneNumber')}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Hình thức lưu trú:</div>
+                            <input placeholder="Hình thức lưu trú" required th:field="*{formOfStay}" type="text">
+                            <p th:errors="*{formOfStay}" th:if="${#fields.hasErrors('formOfStay')}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Địa chỉ lưu trú hiện tại:</div>
+                            <input placeholder="Địa chỉ lưu trú hiện tại" required th:field="*{address}" type="text">
+                            <p th:errors="*{address}" th:if="${#fields.hasErrors('address')}"></p>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Vật nuôi:</div>
+                            <div class="select">
+                                <select th:field="*{petId}">
+                                    <option disabled selected value="">Chọn vật nuôi</option>
+                                    <option th:each="petId: ${petIds}" th:value="${petId}" th:text="${petId}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <div class="details">Trạng thái:</div>
+                            <div class="select">
+                                <select th:field="*{status}">
+                                    <option disabled selected value="">Trạng thái</option>
+                                    <option value="Tạo mới">Tạo mới</option>
+                                    <option value="Đã nhận nuôi">Đã nhận nuôi</option>
+                                    <option value="Đã từ chối">Đã từ chối</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edit-btn">
+                        <input class="cancel-btn" onclick="location.href='/manager/adopter'" type="button"
+                               value="Hủy">
+                        <input class="save-btn" type="submit" value="Lưu">
+                    </div>
+                </form>
+                <p class="message-error" th:if="${error}" th:text="${error}"></p>
+                <p class="message-success" th:if="${success}" th:text="${success}"></p>
+                <p style="margin-top: 10px;">*Note: Vui lòng cập nhật trạng thái vật nuôi ở trang vật nuôi tương ứng sau khi cập nhật trạng thái đã nhận nuôi.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const image = document.querySelector(".upload img"),
+            input = document.querySelector(".upload input");
+
+        input.addEventListener("change", () => {
+            image.src = URL.createObjectURL(input.files[0]);
+        });
+    </script>
+</div>
+</body>
+</html>

@@ -1,14 +1,17 @@
 package org.saigon4paws.Controllers.Manager;
 
 import jakarta.validation.Valid;
+import org.saigon4paws.DTO.Bank;
 import org.saigon4paws.DTO.ReliefGroupDTO;
 import org.saigon4paws.Models.ReliefGroup;
+import org.saigon4paws.Services.BankService;
 import org.saigon4paws.Services.ReliefGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,6 +20,9 @@ import java.util.List;
 public class ReliefGroupController {
     @Autowired
     private ReliefGroupService reliefGroupService;
+
+    @Autowired
+    private BankService bankService;
 
     @GetMapping({"", "/"})
     public String index(Model model) {
@@ -29,11 +35,14 @@ public class ReliefGroupController {
     public String reliefGroupAdd(Model model) {
         ReliefGroupDTO reliefGroupDTO = new ReliefGroupDTO();
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
+        List<Bank> banks = bankService.getAllBanks();
+        model.addAttribute("banks", banks);
         return "manager/relief-group/form";
     }
 
     @PostMapping("/add")
     public String reliefGroupAddSubmit(@ModelAttribute("reliefGroupDTO") @Valid ReliefGroupDTO reliefGroupDTO,
+                                       @RequestParam(value = "avatar", required = false) MultipartFile avatar,
                                        BindingResult result,
                                        Model model) {
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
@@ -41,6 +50,8 @@ public class ReliefGroupController {
             return "manager/relief-group/form";
         }
         try {
+            String savedAvatarUrl = reliefGroupService.uploadReliefGroupPhoto(avatar);
+            reliefGroupDTO.setAvatarUrl(savedAvatarUrl);
             reliefGroupService.createReliefGroup(reliefGroupDTO);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
@@ -52,11 +63,13 @@ public class ReliefGroupController {
 
     @GetMapping("/edit")
     public String reliefGroupEdit(@RequestParam("id") Integer id, Model model) {
-        ReliefGroupDTO reliefGroupDTO = reliefGroupService.getReliefGroupById(id);
+        ReliefGroupDTO reliefGroupDTO = reliefGroupService.getReliefGroupDTOById(id);
         if (reliefGroupDTO == null) {
             model.addAttribute("error", "Relief group not found!");
             return "manager/relief-group/form";
         }
+        List<Bank> banks = bankService.getAllBanks();
+        model.addAttribute("banks", banks);
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
         return "manager/relief-group/form";
     }
@@ -64,6 +77,7 @@ public class ReliefGroupController {
     @PostMapping("/edit")
     public String reliefGroupEditSubmit(
             @ModelAttribute("reliefGroupDTO") @Valid ReliefGroupDTO reliefGroupDTO,
+            @RequestParam(value = "avatar", required = false) MultipartFile avatar,
             BindingResult result,
             Model model) {
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
@@ -72,11 +86,15 @@ public class ReliefGroupController {
         }
         ReliefGroupDTO updatedReliefGroupDTO;
         try {
-            updatedReliefGroupDTO = reliefGroupService.updateReliefGroupById(reliefGroupDTO.getId(), reliefGroupDTO);
+            String savedAvatarUrl = reliefGroupService.uploadReliefGroupPhoto(avatar);
+            reliefGroupDTO.setAvatarUrl(savedAvatarUrl);
+            updatedReliefGroupDTO = reliefGroupService.updateReliefGroupDTOById(reliefGroupDTO.getId(), reliefGroupDTO);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "manager/relief-group/form";
         }
+        List<Bank> banks = bankService.getAllBanks();
+        model.addAttribute("banks", banks);
         model.addAttribute("reliefGroupDTO", updatedReliefGroupDTO);
         model.addAttribute("success", "Relief group updated successfully!");
         return "manager/relief-group/form";
@@ -90,6 +108,6 @@ public class ReliefGroupController {
             model.addAttribute("error", e.getMessage());
             return "forward:/manager/relief-group/";
         }
-        return "redirect:/manager/relief-group/";
+        return "go-back";
     }
 }

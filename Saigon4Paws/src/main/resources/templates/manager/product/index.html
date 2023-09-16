@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html layout:decorate="~{manager/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/manager/table.css}">
+    <link rel="stylesheet" th:href="@{/styles/manager/popup.css}">
+    <title>Product</title>
+</head>
+<body>
+<div class="table" layout:fragment="content">
+    <div class="table_header">
+        <div class="line">
+            <p>
+                <i class=" ti-angle-right"></i>
+                <a href="#" style="text-decoration: none; color: #FF6701;">Quản lý sản phẩm</a>
+                <i class=" ti-angle-right"></i>
+                <a href="/manager/product/" style="text-decoration: none; color: #FF6701;">Sản phẩm</a>
+            </p>
+        </div>
+        <div>
+            <button class="add_new" onclick="window.location.href='/manager/product/add'">+Thêm mới</button>
+        </div>
+    </div>
+
+    <div class="table_content">
+        <table class="table table-background table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Tên sản phẩm</th>
+                <th>Mô tả</th>
+                <th>Giá</th>
+                <th colspan="2">Tác vụ</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product, iteratorStat: ${products}">
+                <td th:text="${iteratorStat.index + 1}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
+                <td>
+                    <button><i class="ti-pencil-alt"></i></button>
+                    <a class="fix" th:href="@{'/manager/product/edit?id=' + ${product.id}}">Sửa</a>
+                </td>
+                <td>
+                    <button><i class="ti-trash"></i></button>
+                    <a class="delete" href="#"
+                       th:onclick="'togglePopup(); document.querySelector(\'#agree\').value = \'' + ${product.id} + '\'; return false;'"
+                    >Xoá</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:replace="/fragments/pagination :: pagination('/manager/product?page=', ${page})"></div>
+    </div>
+    <div class="pop-up" id="popup">
+        <div class="overlay"></div>
+        <div class="content">
+            <div class="confirm"><strong>Xác nhận xóa?</strong></div>
+            <div class="note"><strong>Lưu ý:</strong> Bạn sẽ không thể hoàn tác thao tác này.</div>
+            <div>
+                <button type="button" class="cancel" onclick="togglePopup()"><strong>Hủy</strong></button>
+                <form th:action="@{/manager/product/delete}" method="post" class="delete-form">
+                    <input type="hidden" id="agree" name="id" value="">
+                    <input type="submit" class="agree" onclick="togglePopup()" value="Đồng ý">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function togglePopup() {
+            document.getElementById("popup").classList.toggle("active");
+        }
+    </script>
+</div>
+</body>
+</html>

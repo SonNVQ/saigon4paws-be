@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/product/styles.css}">
+    <title>Product</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Begin: Content -->
+    <div id="homepage-content">
+        <!-- Bảng chọn -->
+
+        <div class="select-menu">
+            <div class="gender-fil">
+                <h2 class="fil-title">Trạm cứu trợ</h2>
+
+                <div class="select-box">
+                    <div class="selected">
+                        Tất cả
+                        <i class="list-icon ti-angle-down"></i>
+                    </div>
+
+                    <div class="gen-opt-container">
+                        <div class="gen-opt">
+                            <input class="gen-radio" id="all" name="category" type="radio">
+                            <label for="all">Tất cả</label>
+                        </div>
+
+                        <div class="gen-opt">
+                            <input class="gen-radio" id="male" name="category" type="radio">
+                            <label for="male">SGT</label>
+                        </div>
+
+                        <div class="gen-opt">
+                            <input class="gen-radio" id="fmale" name="category" type="radio">
+                            <label for="fmale">SAR</label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="gender-fil">
+                <h2 class="fil-title">Loại sản phẩm</h2>
+
+                <div class="select-box">
+                    <div class="selected">
+                        Tất cả
+                        <i class="list-icon ti-angle-down"></i>
+                    </div>
+
+                    <div class="gen-opt-container">
+                        <div class="gen-opt">
+                            <input class="gen-radio" id="all" name="category" type="radio">
+                            <label for="all">Tất cả</label>
+                        </div>
+
+                        <div class="gen-opt">
+                            <input class="gen-radio" id="male" name="category" type="radio">
+                            <label for="male">Thức ăn</label>
+                        </div>
+
+                        <div class="gen-opt">
+                            <input class="gen-radio" id="fmale" name="category" type="radio">
+                            <label for="fmale">Đồ chơi</label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="bt-find">
+                <button class="find">Tìm kiếm</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="product-main">
+        <div class="product" th:each="product: ${products}">
+            <div th:onclick="'document.location.href=\'/product/detail?id=' + ${product.id} + '\';'">
+                <div class="product-img">
+                    <img alt="" th:src="${product.avatarUrl}">
+                </div>
+                <div class="product-contain">
+                    <div class="product-title">
+                        <a class="title" th:href="@{'/product/detail?id=' + ${product.id}}"
+                           th:text="${product.name}"></a>
+                    </div>
+                    <div class="price">
+                        <p th:text="${product.price} + 'đ'"></p>
+                    </div>
+                    <div class="tram">
+                        <p th:text="${product.reliefGroup.name}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="/fragments/pagination :: pagination('/product?page=', ${page})"></div>
+
+    <script>
+        // FUNC: FILTER (SITE 1: PET LIST)
+        const selectedAll = document.querySelectorAll(".selected");
+
+        selectedAll.forEach((selected) => {
+            const optionsContainer = selected.nextElementSibling;
+
+            const optionsList = optionsContainer.querySelectorAll(".gen-opt");
+
+            selected.addEventListener("click", () => {
+                if (optionsContainer.classList.contains("active")) {
+                    optionsContainer.classList.remove("active");
+                } else {
+                    let currentActive = document.querySelector(".gen-opt-container.active");
+
+                    if (currentActive) {
+                        currentActive.classList.remove("active");
+                    }
+                    optionsContainer.classList.add("active");
+                }
+            });
+
+            optionsList.forEach(o => {
+                o.addEventListener("click", () => {
+                    selected.innerHTML = o.querySelector("label").innerHTML;
+                    optionsContainer.classList.remove("active");
+                });
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

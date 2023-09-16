@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/pet/styles.css}">
+    <link rel="stylesheet" th:href="@{/styles/guest/sponsor/payment-method.css}">
+    <link rel="stylesheet" th:href="@{/styles/guest/sponsor/success.css}">
+    <title>Content page</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Nội dung -->
+    <div id="payment-status">
+        <!-- Thanh xác nhận thanh toán -->
+        <div id="success-status">
+            <ul id="success">
+                <li><a href="">Chọn trạm cứu trợ</a></li>
+                <li><a href="">> Điền thông tin</a></li>
+                <li><a href="">> Chọn phương thức thanh toán</a></li>
+                <li class="bold"><a  href="">> Xác nhận thanh toán </a></li>
+            </ul>
+        </div>
+        <div class="pm-status-content">
+            <!-- Hình chó mèo check -->
+            <div class="pm-catdog">
+                <img th:src="${qrLink}" alt="qr">
+            </div>
+
+            <div class="pm-check">
+                <img th:src="@{/images/general/checked.png}" alt="checked">
+            </div>
+
+            <!-- Nội dung xác nhận thanh toán -->
+            <div class="pmst-heading">
+                <h1>Xin vui lòng chuyển tiền qua mã qr trên!</h1>
+            </div>
+
+            <div class="pmst-para">
+                <h2>Một lần nữa trạm xin chân thành cảm ơn sự quan tâm, <br> giúp đỡ của bạn</h2>
+            </div>
+
+            <!-- Nút quay về sau thanh toán -->
+            <div class="bk">
+                <div class="pmst-button">
+                    <a href="#">Về trang chủ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -35,8 +35,17 @@ public class ReliefGroup {
     @Column(unique = true)
     private String fanpageLink;
 
+    @Column
+    private String bankName;
+
+    @Column
+    private String bankBin;
+
     @Column(unique = true)
     private String bankAccountNumber;
+
+    @Column
+    private String bankAccountName;
 
     private String avatarUrl;
 }
