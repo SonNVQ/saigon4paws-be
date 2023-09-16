@@ -18,6 +18,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Service
 public class PetServiceImpl implements PetService {
     @Autowired
@@ -126,5 +128,10 @@ public class PetServiceImpl implements PetService {
     @Override
     public String uploadPetPhoto(MultipartFile avatar) throws Exception {
         return fileService.saveImageFromMultipartFile(petPhotoDir, avatar);
+    }
+
+    @Override
+    public List<Long> getAllNonAdoptedPetId() {
+        return petRepository.getPetIdsByAdopterIsNull();
     }
 }
