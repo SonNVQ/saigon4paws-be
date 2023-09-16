@@ -58,10 +58,9 @@
             </div>
 
             <div class="management">
-                <img th:src="@{/images/general/menu-pic/icon 2.png}">
+                <img th:src="@{'/images/general/menu-pic/icon 2.png'}">
                 <div class="info-management">Quản lý thông tin</div>
             </div>
-
             <div class="main-menu">
                 <div class="elements">
                     <img th:src="@{/images/general/menu-pic/light-orange.png}">
@@ -114,7 +113,9 @@
 
                 <div class="elements">
                     <img th:src="@{/images/general/menu-pic/light-orange.png}">
-                    <div>Sản phẩm</div>
+                    <div>
+                        <a href="/manager/product">Sản phẩm</a>
+                    </div>
                 </div>
 
             </div>
