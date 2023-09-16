@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/homepage/styles.css}">
+    <title>Content page</title>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+    <!-- Begin: Slider -->
+    <div id="slider">
+        <div class="about-content">
+            <h2 class="about-heading">về chúng tôi</h2>
+            <div class="about-des">Được thành lập bởi nhóm 5 bạn trẻ đến từ Đại học UEH, Saigon4paws là trang web với
+                mục đích giúp đỡ các trạm cứu trợ chó mèo ở TP.HCM trong các công việc liên quan....
+            </div>
+            <a class="about-btn" href="#">Đọc thêm</a>
+        </div>
+    </div>
+
+    <!-- Begin: Content -->
+    <div id="homepage-content">
+        <h1 class="content-title">CÁC TRẠM CỨU HỘ</h1>
+        <div class="content-group">
+            <div class="content-box"  th:each="reliefGroup: ${reliefGroups}">
+                <img alt="Logo" class="content-logo" th:src="${reliefGroup.avatarUrl}">
+                <h2 class="group-name" th:text="${reliefGroup.name}"></h2>
+                <p class="group-text" th:text="${reliefGroup.description}"></p>
+                <a class="content-button" href="#">TÌM HIỂU THÊM</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -3,7 +3,9 @@ package org.saigon4paws.DTO;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
+import org.saigon4paws.Utils.Constants;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -34,6 +36,8 @@ public class AdopterDTO {
 
     private Integer numberOfPeopleLivingTogether;
 
+    @NotEmpty(message = "Phone number must not be empty!")
+    @Pattern(regexp = Constants.REGEX_PHONE_NUMBER, message = "Phone number format is invalid!")
     private String phoneNumber;
 
     private Long petId;

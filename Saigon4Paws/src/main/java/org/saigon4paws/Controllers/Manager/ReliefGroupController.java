@@ -46,6 +46,8 @@ public class ReliefGroupController {
                                        BindingResult result,
                                        Model model) {
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
+        List<Bank> banks = bankService.getAllBanks();
+        model.addAttribute("banks", banks);
         if (result.hasErrors()) {
             return "manager/relief-group/form";
         }
@@ -64,12 +66,12 @@ public class ReliefGroupController {
     @GetMapping("/edit")
     public String reliefGroupEdit(@RequestParam("id") Integer id, Model model) {
         ReliefGroupDTO reliefGroupDTO = reliefGroupService.getReliefGroupDTOById(id);
+        List<Bank> banks = bankService.getAllBanks();
+        model.addAttribute("banks", banks);
         if (reliefGroupDTO == null) {
             model.addAttribute("error", "Relief group not found!");
             return "manager/relief-group/form";
         }
-        List<Bank> banks = bankService.getAllBanks();
-        model.addAttribute("banks", banks);
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
         return "manager/relief-group/form";
     }
@@ -81,6 +83,8 @@ public class ReliefGroupController {
             BindingResult result,
             Model model) {
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
+        List<Bank> banks = bankService.getAllBanks();
+        model.addAttribute("banks", banks);
         if (result.hasErrors()) {
             return "manager/relief-group/form";
         }
@@ -93,8 +97,6 @@ public class ReliefGroupController {
             model.addAttribute("error", e.getMessage());
             return "manager/relief-group/form";
         }
-        List<Bank> banks = bankService.getAllBanks();
-        model.addAttribute("banks", banks);
         model.addAttribute("reliefGroupDTO", updatedReliefGroupDTO);
         model.addAttribute("success", "Relief group updated successfully!");
         return "manager/relief-group/form";
