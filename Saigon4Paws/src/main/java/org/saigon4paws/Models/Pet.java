@@ -48,7 +48,7 @@ public class Pet {
     @JoinColumn(name = "type", referencedColumnName = "id")
     private PetType type;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "adopter_id", referencedColumnName = "id")
     private Adopter adopter;
 

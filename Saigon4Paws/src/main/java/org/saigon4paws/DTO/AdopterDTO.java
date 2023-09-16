@@ -37,4 +37,8 @@ public class AdopterDTO {
     private String phoneNumber;
 
     private Long petId;
+
+    private String status;
+
+    private Date createdAt;
 }

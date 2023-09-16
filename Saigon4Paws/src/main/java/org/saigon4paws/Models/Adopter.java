@@ -3,6 +3,8 @@ package org.saigon4paws.Models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "adopters")
 public class Adopter {
     @Id
@@ -36,6 +39,12 @@ public class Adopter {
 
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "adopter", cascade = CascadeType.ALL, orphanRemoval = false)
-    private List<Pet> pets;
+    private String status;
+
+    @CreatedDate
+    private Date createdAt;
+
+    @OneToOne
+    @JoinColumn(name = "pet_id", referencedColumnName = "id")
+    private Pet pet;
 }
