@@ -6,26 +6,121 @@
 </head>
 <body>
 <div th:fragment="pagination(url, page)">
-    <div th:if="${page.getTotalPages() > 1}">
-        <div th:with="currentPage = ${page.getNumber() + 1}, totalItems = ${page.getTotalElements()}, totalPages = ${page.getTotalPages()}">
-            <div th:text="'Total page: ' + ${page.getTotalPages()}"></div>
-            <div th:with="startTemp = ${(currentPage - 2 < 1) ? 1 : (currentPage - 2)},
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination-items-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*background-color: #fcecdd;*/
+        }
+
+        .pagination-items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagination-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*width: 30px;*/
+            height: 30px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background-color: #FF6701;
+            color: #fff;
+            text-decoration: none;
+            padding: 5px;
+        }
+
+        .pagination-item:hover {
+            background-color: #FF6701;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .pagination-item:active {
+            background-color: #FF6701;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .pagination-item:focus {
+            background-color: #FF6701;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .pagination-item:visited {
+            background-color: #FF6701;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .pagination .pagination-items-list {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            /*background-color: #FEA82F;*/
+        }
+
+        .pagination .pagination-items-list .pagination-items{
+            padding: 0.75rem 0;
+        }
+
+        .pagination-items .pagination-item {
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            background-color: #fbb34e;
+            border: 1px solid #fec26d;
+        }
+
+        .pagination .pagination-items .pagination-item:hover {
+            background-color: #FF6701;
+            color: white;
+            border-color: #FF6701;
+        }
+
+        .pagination-item-current {
+            background-color: #FF6701;
+            color: white;
+            border-color: #FF6701;
+        }
+    </style>
+    <div class="pagination" th:if="${page.getTotalPages() > 1}">
+        <div class="pagination-items-list"
+             th:with="currentPage = ${page.getNumber() + 1}, totalItems = ${page.getTotalElements()}, totalPages = ${page.getTotalPages()}">
+            <!--            <div th:text="'Total page: ' + ${page.getTotalPages()}"></div>-->
+            <div>
+                <a class="pagination-item" style="background-color: #fbb34e;" th:href="@{${url} + '1'}" th:if="${currentPage > 1}">First</a>
+<!--                <span class="pagination-item" th:unless="${currentPage > 1}">First</span>-->
+            </div>
+            <div class="pagination-items" th:with="startTemp = ${(currentPage - 2 < 1) ? 1 : (currentPage - 2)},
                             endTemp = ${(currentPage + 2 > totalPages) ? totalPages : (currentPage + 2)},
                             end = ${currentPage < 3 ? (totalPages < 5 ? totalPages : 5) : endTemp},
                             start = ${(end - currentPage < 2) ? ((totalPages - 4) > 0 ? (totalPages - 4) : 1) : startTemp}
                 ">
                 <span th:each="i: ${#numbers.sequence(start, end)}">
-                        <a th:href="@{${url} + ${i}}" th:if="${currentPage != i}">[[${i}]]</a>
-                        <span th:unless="${currentPage != i}">[[${i}]]</span>
+                        <a class="pagination-item" th:href="@{${url} + ${i}}" th:if="${currentPage != i}">[[${i}]]</a>
+                        <span class="pagination-item" style="background-color: #FF6701;" th:unless="${currentPage != i}">[[${i}]]</span>
                     </span>
             </div>
             <div>
-                <a th:href="@{${url} + '1'}" th:if="${currentPage > 1}">First</a>
-                <span th:unless="${currentPage > 1}">First</span>
-            </div>
-            <div>
-                <a th:href="@{${url} + ${totalPages}}" th:if="${currentPage < totalPages}">Last</a>
-                <span th:unless="${currentPage < totalPages}">Last</span>
+                <a class="pagination-item" style="background-color: #fbb34e;" th:href="@{${url} + ${totalPages}}"
+                   th:if="${currentPage < totalPages}">Last</a>
+<!--                <span class="pagination-item" th:unless="${currentPage < totalPages}">Last</span>-->
             </div>
         </div>
     </div>
