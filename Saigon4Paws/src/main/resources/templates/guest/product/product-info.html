@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/product/product-info.css}">
+    <title>Product detail</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Begin: Slider -->
+    <div id="slider">
+        <div class="about-content">
+            <h2 class="about-heading">Sản phẩm</h2>
+            <div class="about-des">Bán các sản phẩm gây quỹ</div>
+        </div>
+    </div>
+
+    <!-- Begin: Content -->
+    <div id="homepage-content">
+        <div class="content-top">
+            <div class="left">
+                <div class="product-img">
+                    <img alt="" th:src="${product.avatarUrl}">
+                </div>
+                <div class="supplier">
+                    <p class="front">Nhà cung cấp: </p>
+                    <p class="behind" th:text="${product.reliefGroup.name}"></p>
+                </div>
+            </div>
+            <div class="right">
+                <div class="product-content">
+                    <div class="product-title">
+                        <p th:text="${product.name}"></p>
+                    </div>
+                    <div class="product-type">
+                        <p class="front">Loại: </p>
+                        <p class="behind" th:text="${product.productType.name}"></p>
+                    </div>
+<!--                    <div class="product-brand">-->
+<!--                        <p class="front">Mô tả: </p>-->
+<!--                        <p class="behind" th:text="${product.description}"></p>-->
+<!--                    </div>-->
+                    <div class="product-price">
+                        <p class="front">Giá: </p>
+                        <p class="behind" th:text="${product.price + 'đ'}"></p>
+                    </div>
+                </div>
+                <div>
+                    <button class="buy">LIÊN HỆ: <span th:text="${product.reliefGroup.phoneNumber}"></span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-bottom">
+            <div class="ct-bt-header">
+                <p>Thông tin chi tiết</p>
+            </div>
+            <div class="ct-bt-information">
+                <p th:text="${product.description}"></p>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
