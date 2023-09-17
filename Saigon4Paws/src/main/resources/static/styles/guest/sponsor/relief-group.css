@@ -1,3 +1,8 @@
+html {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 62.5%;
+    height: 100%;
+}
 
 #sp-information{
     display: flex;
@@ -168,6 +173,11 @@
 .sp-info-button input:focus {
     outline: none;
     border: 1px solid rgb(189, 181, 181);
+}
+
+.sp-confirm-button #confirm-button:hover{
+    color:#ff6701;
+	background-color: #fdf7f7;
 }
 
 .avatar {
