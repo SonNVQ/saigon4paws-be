@@ -1,0 +1,63 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.volunteer-homepage{
+    display: flex;
+    background-color: rgb(252, 236, 221);
+    justify-content: center;
+    align-items: center;
+    padding: 0px 30px;
+    flex-wrap: wrap;
+}
+
+.volunteer-homepage > div{
+    margin: 40px;
+    background-color: white;
+    border-radius: 30px;
+}
+
+.sgt-cleaner-img img,
+.sar-carrier-img img{
+    width: 450px;
+    height: auto;
+    padding: 45px;
+}
+
+.sgt-cleaner .sgt-cleaner-head,
+.sar-carrier .sar-carrier-head{
+    margin-left: 45px;
+    font-size: 12px;
+    font-stretch: expanded;
+    padding-bottom: 10px;
+}
+
+.sgt-cleaner .sgt-name,
+.sar-carrier .sar-name{
+    margin-left: 45px;
+    font-size: 12px;
+    color: rgb(255,103,1);
+}
+
+.sgt-cleaner-button button,
+.sar-carrier-button button{
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgb(255,103,1);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bolder;
+    margin-left: 285px;
+}
+.sgt-cleaner-button,
+.sar-carrier-button{
+    padding-bottom: 45px;
+}

@@ -1,0 +1,51 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.volunteer-status {
+    background-color: rgb(252, 236, 221);
+    padding: 0px 20px 30px 30px;
+}
+
+.vol-status-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.vol-status-img img {
+    width: auto;
+    height: 390px;
+}
+
+.vol-status-heading {
+    font-size: 13px;
+    padding: 20px;
+    line-height: 1;
+}
+
+.vol-status-para {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 20px;
+    line-height: 1.5;
+    color: rgb(105, 117, 130);
+}
+
+.vol-contact-button button {
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: rgb(255, 103, 1);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    cursor: pointer;
+    font-weight: bolder;
+}
