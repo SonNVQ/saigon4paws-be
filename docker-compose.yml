@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  s4p:
+    build:
+      context: ./Saigon4Paws
+      dockerfile: Dockerfile
+    restart: always
+  webserver:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8888:8888"

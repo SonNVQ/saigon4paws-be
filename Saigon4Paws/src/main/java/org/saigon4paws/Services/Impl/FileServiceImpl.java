@@ -19,7 +19,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public String saveFile(String savingPath, String fileName, byte[] fileContent) throws Exception {
         //Saving folder path
-        String savingFolderPath = System.getProperty("user.dir") + File.separator
+        String savingFolderPath = System.getProperty("user.home") + File.separator
                 + savingRootFolderPath + File.separator
                 + savingPath;
 
