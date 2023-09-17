@@ -31,7 +31,7 @@ public class GuestSponsorController {
     public String sponsorIndex(Model model) {
         List<ReliefGroup> reliefGroups = reliefGroupService.getAllReliefGroups();
         model.addAttribute("reliefGroups", reliefGroups);
-        return "/guest/sponsor/index";
+        return "guest/sponsor/index";
     }
 
     @GetMapping("/relief-group")
@@ -43,7 +43,7 @@ public class GuestSponsorController {
         SponsorshipInformationDTO sponsorshipInformationDTO = new SponsorshipInformationDTO();
         model.addAttribute("sponsorshipInformationDTO", sponsorshipInformationDTO);
 
-        return "/guest/sponsor/relief-group";
+        return "guest/sponsor/relief-group";
     }
 
     @PostMapping("/relief-group")
@@ -56,7 +56,7 @@ public class GuestSponsorController {
         model.addAttribute("reliefGroupDTO", reliefGroupDTO);
         model.addAttribute("sponsorshipInformationDTO", sponsorshipInformationDTO);
         if (result.hasErrors()) {
-            return "/guest/sponsor/relief-group";
+            return "guest/sponsor/relief-group";
         }
         sponsorshipInformationDTO.setStatus("Chưa xử lý");
         sponsorshipInformationDTO.setReliefGroupId(id);
@@ -66,7 +66,7 @@ public class GuestSponsorController {
             model.addAttribute("sponsorshipInformationDTO", savedSponsorshipInformationDTO);
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
-            return "/guest/sponsor/relief-group";
+            return "guest/sponsor/relief-group";
         }
         return "redirect:/sponsor/payment-method?id=" + savedSponsorshipInformationDTO.getId().toString();
     }
@@ -75,7 +75,7 @@ public class GuestSponsorController {
     public String sponsorMethod(@RequestParam("id") Long id, Model model) {
         SponsorshipInformationDTO sponsorshipInformationDTO = sponsorshipInformationService.getSponsorshipInformationDTOById(id);
         model.addAttribute("sponsorshipInformationDTO", sponsorshipInformationDTO);
-        return "/guest/sponsor/payment-method";
+        return "guest/sponsor/payment-method";
     }
 
     @PostMapping("/payment-method")
@@ -90,6 +90,6 @@ public class GuestSponsorController {
                 "Sponsorship id - " + sponsorshipInformationDTO.getId().toString()
         );
         model.addAttribute("qrLink", qrLink);
-        return "/guest/sponsor/success";
+        return "guest/sponsor/success";
     }
 }

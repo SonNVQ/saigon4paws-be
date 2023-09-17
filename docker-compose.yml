@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  s4p:
+  saigon4paws:
     build:
       context: ./Saigon4Paws
       dockerfile: Dockerfile
@@ -13,4 +13,5 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "8888:8888"
+    depends_on:
+      - saigon4paws
