@@ -4,6 +4,8 @@ services:
     build:
       context: ./Saigon4Paws
       dockerfile: Dockerfile
+    volumes:
+      - /home/s4p-uploads:/home/s4p-uploads
     restart: always
   webserver:
     build:
