@@ -101,15 +101,15 @@ img.logo-main {
     margin-left: 9px;
 }
 
-.main-menu a {
-    text-decoration: none;
-}
-
 .main-menu img {
     height: 7px;
     margin-right: 6px;
     margin-top: 5px;
 }
+
+.main-menu a {
+     text-decoration: none;
+ }
 
 .log-out {
     padding: 12px 24px;
