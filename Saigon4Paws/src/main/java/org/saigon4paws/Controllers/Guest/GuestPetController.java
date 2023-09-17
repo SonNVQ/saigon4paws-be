@@ -69,6 +69,7 @@ public class GuestPetController {
         if (pet == null) {
             return "redirect:/pet";
         }
+        adopterDTO.setStatus("Tạo mới");
         AdopterDTO savedAdopterDTO = adopterService.saveAdopter(adopterDTO);
         if (savedAdopterDTO == null) {
             model.addAttribute("adopterDTO", adopterDTO);

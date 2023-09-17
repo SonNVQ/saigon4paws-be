@@ -49,7 +49,7 @@ public class SponsorController {
             model.addAttribute("error", e.getMessage());
             return "forward:/manager/sponsor";
         }
-        model.addAttribute("success", "Pet deleted successfully!");
+        model.addAttribute("success", "Sponsorship information deleted successfully!");
         return "forward:/manager/sponsor";
     }
 

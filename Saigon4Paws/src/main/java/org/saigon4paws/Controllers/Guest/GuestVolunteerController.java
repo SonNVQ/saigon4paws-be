@@ -54,6 +54,8 @@ public class GuestVolunteerController {
         List<ReliefGroup> reliefGroups = reliefGroupService.getAllReliefGroups();
         model.addAttribute("reliefGroups", reliefGroups);
 
+        volunteerDTO.setStatus("Tạo mới");
+
         if (result.hasErrors()) {
             model.addAttribute("volunteerDTO", volunteerDTO);
             model.addAttribute("error", "Your volunteer form has not been submitted successfully!");

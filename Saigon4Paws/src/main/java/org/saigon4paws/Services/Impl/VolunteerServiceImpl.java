@@ -32,6 +32,7 @@ public class VolunteerServiceImpl implements VolunteerService {
                 .freeTime(volunteerDTO.getFreeTime())
                 .address(volunteerDTO.getAddress())
                 .reason(volunteerDTO.getReason())
+                .status(volunteerDTO.getStatus())
                 .reliefGroup(reliefGroup)
                 .build();
         Volunteer savedVolunteer = volunteerRepository.save(volunteer);
@@ -64,6 +65,7 @@ public class VolunteerServiceImpl implements VolunteerService {
                 .freeTime(volunteer.getFreeTime())
                 .address(volunteer.getAddress())
                 .reason(volunteer.getReason())
+                .status(volunteer.getStatus())
                 .createdAt(volunteer.getCreatedAt())
                 .reliefGroupId(volunteer.getReliefGroup().getId())
                 .build();
@@ -89,6 +91,7 @@ public class VolunteerServiceImpl implements VolunteerService {
         volunteer.setFreeTime(petDTO.getFreeTime());
         volunteer.setAddress(petDTO.getAddress());
         volunteer.setReason(petDTO.getReason());
+        volunteer.setStatus(petDTO.getStatus());
         volunteer.setReliefGroup(reliefGroup);
         Volunteer savedVolunteer = volunteerRepository.save(volunteer);
         return getVolunteerDTO(savedVolunteer);
