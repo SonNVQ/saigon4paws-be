@@ -120,6 +120,11 @@ img.logo-main {
     font-size: 1.8rem;
 }
 
+.log-out:hover {
+    background-color: #edf2f7;
+    color: #ff6701;
+}
+
 .elements {
     margin-left: 60px;
     display: flex;
