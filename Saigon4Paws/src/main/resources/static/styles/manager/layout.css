@@ -117,6 +117,7 @@ img.logo-main {
 .log-out a {
     width:70%;
     font-size: 1.8rem;
+    text-align:center;
     margin-top: 30px;
     margin-left: -1vh;
     padding: 12px 24px;
