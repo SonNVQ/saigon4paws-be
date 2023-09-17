@@ -109,6 +109,30 @@ img.logo-main {
     margin-top: 0.75vh;
 }
 
+.main-menu a {
+     text-decoration: none;
+     color: #687581;
+ }
+
+.log-out a {
+    width:70%;
+    font-size: 1.8rem;
+    text-align:center;
+    margin-top: 30px;
+    margin-left: -1vh;
+    padding: 12px 24px;
+    background-color: #ff6701;
+    color: #fff;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.log-out a:hover {
+    background-color: #edf2f7;
+    color: #ff6701;
+}
+
 .elements {
     margin-left: 8vh;
     display: flex;
