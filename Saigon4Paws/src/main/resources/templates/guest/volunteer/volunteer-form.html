@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/volunteer/form.css}">
+    <title>Thông tin nhận nuôi</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Nội dung -->
+    <div class="volunteer-form">
+        <div class="vol-form-content">
+            <div class="vol-form-heading">
+                <img alt="" src="assets/css/img/sg4p-logo.png">
+                <h1>Điền thông tin tình nguyện viên</h1>
+            </div>
+
+            <form action="#" method="post" th:object="${volunteerDTO}">
+                <div class="vol-form-input">
+                    <div class="input-2-column">
+                        <div class="input-column-1">
+                            <div class="vol-name">
+                                <input th:field="*{fullName}" class="name" placeholder="Họ tên" type="text">
+                            </div>
+
+                            <div class="vol-centre">
+                                <select th:field="*{reliefGroupId}" class="centre-select" required>
+                                    <option value="" selected disabled>Trạm cứu hộ muốn đăng ký</option>
+                                    <option th:each="reliefGroup: ${reliefGroups}"
+                                            th:value="${reliefGroup.id}"
+                                            th:text="${reliefGroup.name}"></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-column-2">
+                            <div class="vol-birth-year">
+                                <input th:field="*{dob}" class="custom-date-input" id="birth-date" type="date">
+                            </div>
+                            <div class="vol-phone-number">
+                                <input th:field="*{phoneNumber}" class="name" placeholder="Số điện thoại" type="tel">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="input-3-rows">
+                        <div class="vol-freetime">
+                            <input th:field="*{freeTime}" class="name" placeholder="Thời gian rảnh" type="text">
+                        </div>
+
+                        <div class="vol-address">
+                            <input th:field="*{address}" class="name" placeholder="Địa chỉ lưu trú hiện tại" type="text">
+                        </div>
+
+                        <div class="vol-reasons">
+                            <input th:field="*{reason}" class="name"
+                                   placeholder="Lý do vì sao muốn trở thành TNV cho trạm cứu hộ" type="text">
+                        </div>
+                    </div>
+
+                    <div class="vol-form-button">
+                        <div class="vol-back-button">
+                            <button type="button" id="back-button" onclick="document.location.href='/volunteer';">Quay lại</button>
+                        </div>
+
+                        <div class="vol-confirm-button">
+                            <button type="submit" id="confirm-button">Xác nhận đăng ký</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <p class="message-error" th:if="${error}" th:text="${error}"></p>
+            <p class="message-success" th:if="${success}" th:text="${success}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

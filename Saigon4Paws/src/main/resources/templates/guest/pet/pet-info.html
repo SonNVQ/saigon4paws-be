@@ -15,6 +15,7 @@
             <p class="pet-type" th:text="${pet.type.name + ' - ' + pet.type.species}">Chihuahua</p>
 
             <div id="info-group">
+
                 <div class="info-block">
                     <div class="line-1"></div>
                     <div>
@@ -47,6 +48,9 @@
 
             <h2 class="health-status">Tình trạng sức khoẻ</h2>
             <p class="status" th:text="${pet.healthStatus}"></p>
+
+            <h2 class="health-status">Tình trạng nhận nuôi</h2>
+            <p class="status" th:text="${pet.adoptionStatus}"></p>
 
             <div id="btn-group">
                 <a href="/pet" class="back-btn">Quay lại</a>

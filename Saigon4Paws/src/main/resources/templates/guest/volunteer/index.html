@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/volunteer/styles.css}">
+    <title>Thông tin nhận nuôi</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Nội dung -->
+    <div class="volunteer-homepage">
+        <div class="sgt-cleaner">
+            <div class="sgt-cleaner-img">
+                <img alt="" th:src="@{/images/general/vol-cleaner.png}">
+            </div>
+            <div class="sgt-cleaner-head">
+                <h1>TNV Dọn Dẹp Nhà Chung</h1>
+            </div>
+            <div class="sgt-name">
+                <h2>Trạm SGT</h2>
+            </div>
+            <div class="sgt-cleaner-button">
+                <button id="sgt-cleaner-detail" onclick="document.location.href='/volunteer/cleaner';">Chi tiết</button>
+            </div>
+        </div>
+        <div class="sar-carrier">
+            <div class="sar-carrier-img">
+                <img alt="" th:src="@{/images/general/vol-carrier.png}">
+            </div>
+            <div class="sar-carrier-head">
+                <h1>TNV Vận Chuyển</h1>
+            </div>
+            <div class="sar-name">
+                <h2>Trạm SAR</h2>
+            </div>
+            <div class="sar-carrier-button">
+                <button id="sar-carrier-detail" onclick="document.location.href='/volunteer/carrier';">Chi tiết</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

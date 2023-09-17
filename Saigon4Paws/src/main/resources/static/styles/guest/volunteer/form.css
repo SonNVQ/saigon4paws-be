@@ -1,0 +1,154 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+body {
+    background-color: rgb(252, 236, 221);
+}
+
+.volunteer-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(252, 236, 221);
+    width: 100%;
+    height:max-content;
+}
+
+.vol-form-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height:max-content;
+    margin:40px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.vol-form-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.vol-form-heading img{
+    padding-top: 15px;
+}
+.vol-form-heading h1{
+    text-align: center;
+    padding: 15px;
+    font-size: 26px;
+    color: rgb(254,168,47);
+    letter-spacing: 1.5px;
+}
+
+.vol-form-input{
+    display: flex;
+    align-items:flex-start;
+    justify-content: left;
+    flex-direction: column;
+}
+
+/* 2 dòng đầu */
+.input-2-column {
+    display: grid;
+    grid-template-columns: 4fr 1.5fr;
+    gap: 20px;
+    padding: 0 40px;
+}
+
+.input-column-1 .vol-name input,
+.input-column-1 .vol-centre select {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: gray;
+    background-color: rgb(237, 242, 247);
+    border-radius: 40px;
+    border: 0.5px solid rgb(237, 242, 247);
+    padding: 15px;
+}
+
+.input-column-2 .vol-birth-year input,
+.input-column-2 .vol-phone-number input {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: gray;
+    background-color: rgb(237, 242, 247);
+    border-radius: 40px;
+    border: 0.5px solid rgb(237, 242, 247);
+    padding: 15px;
+    transition: all 0.3s ease;
+    max-width: 100%;
+}
+
+/* 3 dòng cuối */
+
+.input-3-rows{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%
+}
+
+.input-3-rows .vol-freetime input,
+.input-3-rows .vol-address input,
+.input-3-rows .vol-reasons input{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: gray;
+    background-color: rgb(237, 242, 247);
+    border-radius: 40px;
+    border: 0.5px solid rgb(237, 242, 247);
+    padding: 15px;
+}
+
+.input-3-rows .vol-freetime ,
+.input-3-rows .vol-address ,
+.input-3-rows .vol-reasons {
+    width: 100%;
+}
+
+/* button */
+.vol-form-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 30px;
+}
+
+.vol-back-button #back-button,
+.vol-confirm-button #confirm-button{
+    text-transform: uppercase;
+    background-color: rgb(255, 103, 1);
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    padding: 10px 30px;
+    font-size: 16px;
+    color: white;
+    font-weight: bolder;
+}
+
+.vol-back-button #back-button:hover,
+.vol-confirm-button #confirm-button:hover{
+    background-color:rgb(255, 77, 1);
+    box-shadow: 5px 5px 10px rgba(250, 129, 48, 0.752)
+}

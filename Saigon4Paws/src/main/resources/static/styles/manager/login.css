@@ -1,0 +1,203 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+/* BEGIN: HEADER */
+
+#header {
+    --heightUp: 3vh; /* Biến độ dài Menu trên */
+    height: var(--heightUp);
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+#upper-nav, #down-nav, #fowr {
+    display: block;
+    margin: 0px 100px;
+}
+
+#nav-contact {
+    float: right;
+    display: flex;
+}
+
+#nav-contact > li, #nav-location {
+    display: inline-block;
+}
+
+#nav-location, #nav-contact > li > a {
+    color: #687581;
+    line-height: var(--heightUp);
+    padding: 0px 24px;
+    text-decoration: none;
+}
+
+.location, .nav-comment, #nav-location:hover, #nav-contact > li > a:hover  {
+    color: #FF6701;
+}
+
+#nav {
+    --heightDown: 7vh; /*Biến độ dài Menu dưới */
+    height: var(--heightDown);
+    background-color: #FEA82F;
+}
+
+#down-nav {
+    height: var(--heightDown);
+    display: flex;
+    align-items: center;
+}
+
+img.logo-main {
+    width: 270px;
+    line-height: var(--heightDown);
+}
+
+/* END: HEADER */
+
+/* BEGIN: FORM LOGIN */
+#login {
+    background-color: #fcecdd;
+    min-height: 84vh; /* Chiều dài khung giữa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#log {
+    max-width: 400px;
+    background: #fff;
+    flex-grow: 1;
+    padding: 30px 40px;
+    box-shadow: 0px 0px 20px #FEA82F;
+    text-align: center;
+}
+
+#login-logo {
+    width: 50px;
+    height: 50px;
+}
+
+#login-heading {
+    color:#FEA82F;
+    font-size: 31;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+#login-slogan {
+    color: #4a5568;
+    font-size: 10;
+    font-weight: 400;
+    margin-bottom: 25px;
+}
+
+#log-row {
+    border-bottom: 1px solid #FEA82F;
+    margin-bottom: 15px;
+    display: flex;
+    background: #edf2f7;
+}
+
+.login-inf {
+    flex-grow: 1;
+    padding: 15px;
+    height: auto;
+    background: #edf2f7;
+    border: 0;
+    outline: 0;
+    color: #4a5568;
+}
+
+.login-inf::placeholder {
+    color: #4a5568;
+}
+
+.log-icon {
+    color: #4a5568;
+    font-weight: 400;
+    padding-top: 14px;
+    padding-left: 10px;
+}
+
+.eye {
+    color: #4a5568;
+    padding-top: 14px;
+    padding-right: 8px;
+    cursor: pointer;
+}
+
+.btn {
+    background-color: #FEA82F;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18;
+    font-weight: 800;
+    border: none;
+    padding: 15px 125.5px;
+    margin-top: 30px;
+}
+
+.btn:hover {
+    color: #FEA82F;
+    background-color: #edf2f7;
+    cursor: pointer;
+}
+
+/* END: FORM LOGIN */
+
+/* BEGIN: FOOTER */
+#footer {
+    --heightFoot: 6vh; /*Chiều dài Footer*/
+    height: var(--heightFoot);
+    background-color: #FEA82F;
+}
+
+#fowr {
+    line-height: var(--heightFoot);
+    display: block;
+}
+
+p.credit {
+    display: inline-block;
+    color: #fcecdd;
+    padding: 0 7px;
+}
+
+.footer-icon {
+    float: right;
+    display: flex;
+}
+
+.footer-icon a {
+    font-size: 24px;
+    font-weight: 400;
+    color: #fcecdd;
+    text-decoration: none;
+    padding: 0 10px;
+}
+
+.footer-icon a:hover {
+    opacity: 75%;
+}
+
+/* END: FOOTER */
+
+/* RESPONSIVE */
+@media (max-width: 740px) {
+    #upper-nav, #down-nav, #fowr {
+        margin: 0;
+    }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/volunteer/detail.css}">
+    <title>Thông tin nhận nuôi</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Nội dung -->
+    <div id="vol-post-sgt-cleaner">
+        <div class="post-sgt-cleaner">
+            <div class="sgt-cleaner-img">
+                <img alt="" th:src="@{/images/general/sgt-cleaner.png}">
+            </div>
+            <div class="post-sgt-cleaner-content">
+                <div class="post-sgt-cleaner-head">
+                    <h1>TNV Dọn Dẹp Nhà Chung</h1>
+                </div>
+
+                <div class="post-sgt-cleaner-body">
+                    <p>Các bé chó mèo sau khi được cứu hộ và đã ổn định được
+                        <br>chuyển về nhà chung trong quá trình chờ tìm chủ/foster.
+                        <br>Các bé cần người giúp cho ăn uống đúng chế độ, dọn dẹp
+                        <br>và chăm sóc y tế nếu cần.
+                    </p>
+                </div>
+
+                <div class="post-sgt-cleaner-task">
+                    <li>Tuổi 20+.</li>
+                    <li>Có kinh nghiệm nuôi chó/mèo.</li>
+                    <li>Chăm chỉ, sạch sẽ và có trách nhiệm.</li>
+                    <li>Đảm bảo được thời gian đến nhà chung.</li>
+                    <li>Đảm bảo giữ bí mật địa chỉ nhà chung để tránh
+                        <br>những thành phần xấu và chủ nuôi vô trách nhiệm
+                        <br>vứt bỏ các bé.
+                    </li>
+                    <li>Không ngại bẩn khi dọn vệ sinh, không ngại mùi.</li>
+                </div>
+
+                <div class="post-sgt-cleaner-button">
+                    <div class="back-button">
+                        <a href="/volunteer">Quay lại</a>
+                    </div>
+                    <div class="signup-button">
+                        <a href="/volunteer/form">Đăng ký tình nguyện viên</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

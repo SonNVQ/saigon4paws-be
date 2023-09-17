@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html layout:decorate="~{guest/layout.html}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/styles/guest/volunteer/success-page.css}">
+    <title>Thông tin nhận nuôi</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <!-- Nội dung -->
+    <div class="volunteer-status">
+        <div class="vol-status-content">
+            <div class="vol-status-img">
+                <img alt="" th:src="@{/images/general/vol-catdog.png}">
+            </div>
+
+            <div class="vol-check">
+                <img alt="" th:src="@{/images/general/checked.png}">
+            </div>
+
+            <div class="vol-status-heading">
+                <h1>Bạn đã đăng ký làm <br> tình nguyện viên thành công!</h1>
+            </div>
+
+            <div class="vol-status-para">
+                <p>Trạm đã nhận được đơn của bạn và sẽ liên hệ với bạn trong thời gian ngắn nhất!
+                    <br>Ngoài ra, bạn cũng có thể chủ động liên hệ ngay với trạm để quá trình
+                    <br>đăng ký diễn ra nhanh hơn. Xin chân thành cảm ơn!
+                </p>
+            </div>
+
+            <div class="vol-contact-button">
+                <button id="contact-butt"> Liên hệ ngay</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

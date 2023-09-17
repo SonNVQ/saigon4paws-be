@@ -1,0 +1,131 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+#vol-post-sgt-cleaner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(252, 236, 221);
+}
+
+.post-sgt-cleaner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height:max-content;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    margin: 40px;
+}
+/* ảnh */
+.post-sgt-cleaner .sgt-cleaner-img{
+    display: flex;
+    align-items: center;
+    margin: 40px;
+    justify-content: center;
+}
+
+.post-sgt-cleaner .sgt-cleaner-img img{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: auto;
+    height: 420px;
+}
+/* content */
+.post-sgt-cleaner-content{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin: 40px 40px 15px 0px;
+}
+
+.post-sgt-cleaner-head{
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-stretch: 12px;
+}
+
+.post-sgt-cleaner-body{
+    font-size: 18px;
+    font-weight: bolder;
+    padding-bottom: 10px;
+}
+/* list công việc */
+.post-sgt-cleaner-task {
+    list-style: none;
+    padding: 20px;
+    background-color: rgb(217,217,217);
+    border-radius:30px;
+}
+
+.post-sgt-cleaner-task li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.post-sgt-cleaner-task li::before {
+    content: "";
+    background-image: url("img/paw-outline.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* button */
+.post-sgt-cleaner-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    padding: 15px 55px;
+}
+
+.post-sgt-cleaner-button .back-button{
+    padding: 10px 25px;
+    text-transform: uppercase;
+    background-color: rgba(1,133,255,0.5);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.post-sgt-cleaner-button .back-button:hover{
+    background-color:rgba(1, 132, 255, 0.707);
+    box-shadow: 5px 5px 10px rgba(1, 132, 255, 0.515);
+}
+
+.back-button a,
+.signup-button a{
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    font-size: 14px;
+}
+.post-sgt-cleaner-button .signup-button{
+    padding: 10px 25px;
+    text-transform: uppercase;
+    background-color: rgba(247, 104, 91, 0.859);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.post-sgt-cleaner-button .signup-button:hover{
+    background-color:rgb(247, 99, 86);
+    box-shadow: 5px 5px 10px rgba(247, 99, 86, 0.727);
+}
