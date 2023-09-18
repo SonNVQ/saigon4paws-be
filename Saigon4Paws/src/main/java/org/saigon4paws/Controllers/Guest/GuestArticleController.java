@@ -32,7 +32,7 @@ public class GuestArticleController {
         if (pageNo == null || pageNo < 1)
             pageNo = 1;
         if (pageSize == null || pageSize < 1)
-            pageSize = Constants.DEFAULT_PAGE_SIZE;
+            pageSize = Constants.DEFAULT_ARTICLE_PAGE_SIZE;
         Page<Article> articlePage = articleService.findAll(pageNo - 1, pageSize);
         model.addAttribute("page", articlePage);
         model.addAttribute("articles", articlePage.getContent());

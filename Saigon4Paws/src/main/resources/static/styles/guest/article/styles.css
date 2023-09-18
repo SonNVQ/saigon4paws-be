@@ -137,12 +137,12 @@
     flex-direction: row;
     justify-content: center;
     margin-bottom: 5vh;
+    gap: 50px;
 }
 
 .content-1 {
     border-radius: 3vh;
     background-color: white;
-    margin-right: 10vh;
     position: relative;
     display: flex;
     flex-direction: column;

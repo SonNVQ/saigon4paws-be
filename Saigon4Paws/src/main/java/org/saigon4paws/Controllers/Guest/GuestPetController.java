@@ -32,7 +32,7 @@ public class GuestPetController {
         if (pageNo == null || pageNo < 1)
             pageNo = 1;
         if (pageSize == null || pageSize < 1)
-            pageSize = Constants.DEFAULT_PAGE_SIZE;
+            pageSize = Constants.DEFAULT_PET_PAGE_SIZE;
         Page<Pet> petPage = petService.findAll(pageNo - 1, pageSize);
         model.addAttribute("page", petPage);
         model.addAttribute("currentPage", pageNo);
