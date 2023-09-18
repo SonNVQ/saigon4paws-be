@@ -28,7 +28,7 @@ public class GuestProductController {
         if (pageNo == null || pageNo < 1)
             pageNo = 1;
         if (pageSize == null || pageSize < 1)
-            pageSize = Constants.DEFAULT_PAGE_SIZE;
+            pageSize = Constants.DEFAULT_PRODUCT_PAGE_SIZE;
         Page<Product> productPage = productService.findAll(pageNo - 1, pageSize);
         model.addAttribute("page", productPage);
         model.addAttribute("products", productPage.getContent());
