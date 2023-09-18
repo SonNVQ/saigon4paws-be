@@ -3,8 +3,6 @@
     margin: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
 }
 
 .volunteer-status {
@@ -32,20 +30,26 @@
 
 .vol-status-para {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 600;
     padding-bottom: 20px;
     line-height: 1.5;
     color: rgb(105, 117, 130);
 }
 
 .vol-contact-button button {
-    padding: 10px 30px;
+    padding: 15px;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     background-color: rgb(255, 103, 1);
     color: #fff;
     text-transform: uppercase;
     font-size: 15px;
     cursor: pointer;
     font-weight: bolder;
+}
+
+.vol-contact-button button:hover{
+    color:#ff6701;
+	background-color: #fdf7f7;
+
 }

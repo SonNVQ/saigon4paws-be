@@ -100,10 +100,29 @@ img.logo-main {
 .main-menu {
     margin-left: 9px;
 }
+
 .main-menu img {
     height: 7px;
     margin-right: 6px;
     margin-top: 5px;
+}
+
+.main-menu a {
+     text-decoration: none;
+ }
+
+.log-out {
+    padding: 12px 24px;
+    background-color: #ff6701;
+    color: #fff;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.log-out:hover {
+    background-color: #edf2f7;
+    color: #ff6701;
 }
 
 .elements {
