@@ -3,7 +3,7 @@ package org.saigon4paws.Utils;
 public class Constants {
     public static final int DEFAULT_PAGE_SIZE = 6;
 
-    public static final int DEFAULT_PET_PAGE_SIZE = 12;
+    public static final int DEFAULT_PET_PAGE_SIZE = 10;
 
     public static final int DEFAULT_ARTICLE_PAGE_SIZE = 6;
 
