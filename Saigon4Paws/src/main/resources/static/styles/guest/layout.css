@@ -320,3 +320,7 @@ body {
     font-size: 14px;
     margin-left: 1vh;
 }
+
+.header-link {
+    text-decoration: none;
+}
