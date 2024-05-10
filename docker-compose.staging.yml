@@ -1,0 +1,52 @@
+version: "3.8"
+services:
+  saigon4paws:
+    image: ${LOCAL_REGISTRY_HOST}/${DOCKER_IMAGE_NAME}:${TAG}
+    volumes:
+      - s4p_data:/home/s4p-uploads
+    deploy:
+      mode: replicated
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints:
+          - node.role == worker
+      labels:
+        # Enable traefik routing
+        - "traefik.enable=true"
+        # Redirect http to https
+        - "traefik.http.middlewares.s4p_staging-redirect-to-https.redirectscheme.scheme=https"
+        - "traefik.http.middlewares.s4p_staging-redirect-to-https.redirectscheme.permanent=true"
+        - "traefik.http.routers.s4p_staging-http.rule=Host(`staging.s4p.io.vn`)"
+        - "traefik.http.routers.s4p_staging-http.entrypoints=web"
+        - "traefik.http.routers.s4p_staging-http.middlewares=s4p_staging-redirect-to-https"
+        # Routers and services
+        - "traefik.http.routers.s4p_staging-https.rule=Host(`staging.s4p.io.vn`)"
+        - "traefik.http.routers.s4p_staging-https.entrypoints=websecure"
+        - "traefik.http.routers.s4p_staging-https.service=s4p_staging"
+        - "traefik.http.routers.s4p_staging-https.tls=true"
+        - "traefik.http.routers.s4p_staging-https.tls.certresolver=myresolver"
+        - "traefik.http.services.s4p_staging.loadbalancer.server.port=8899"
+        - "traefik.http.services.s4p_staging.loadbalancer.sticky.cookie=true"
+        # Set traefik network to fix gateway timeout
+        - "traefik.docker.network=traefik_public"  
+    networks:
+      - s4p_network
+      - traefik_public  
+
+networks:
+  s4p_network:
+    external:
+      name: s4p_network
+  traefik_public:
+    external:
+      name: traefik_public
+
+volumes:
+  s4p_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/s4p_data
+      o: bind
