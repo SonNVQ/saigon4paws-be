@@ -48,7 +48,7 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: [SSH_CREDENTIALS]) {
-                        sh "scp docker-compose.staging.yml ${REMOTE_USER}@${REMOTE_HOST}:~/docker-compose-s4p.staging.yml"
+                        sh "scp -oStrictHostKeyChecking=no docker-compose.staging.yml ${REMOTE_USER}@${REMOTE_HOST}:~/docker-compose-s4p.staging.yml"
                     }
                 }
             }
@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: [SSH_CREDENTIALS]) {
-                        sh "ssh ${REMOTE_USER}@${REMOTE_HOST} 'LOCAL_REGISTRY_HOST=${LOCAL_REGISTRY_HOST} DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME} TAG=${TAG} docker stack deploy --compose-file docker-compose-s4p.staging.yml ${STACK_NAME}'"
+                        sh "ssh -oStrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} 'LOCAL_REGISTRY_HOST=${LOCAL_REGISTRY_HOST} DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME} TAG=${TAG} docker stack deploy --compose-file docker-compose-s4p.staging.yml ${STACK_NAME}'"
                     }
                 }
             }
@@ -68,7 +68,7 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: [SSH_CREDENTIALS]) {
-                        sh "ssh ${REMOTE_USER}@${REMOTE_HOST} 'rm ~/docker-compose-s4p.staging.yml'"
+                        sh "ssh -oStrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} 'rm ~/docker-compose-s4p.staging.yml'"
                     }
                 }
             }
