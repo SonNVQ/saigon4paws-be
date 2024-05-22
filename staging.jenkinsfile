@@ -44,44 +44,44 @@ pipeline {
             }
         }
         
-        // stage('Copy docker-compose.yml to Remote Server') {
-        //     steps {
-        //         script {
-        //             sshagent(credentials: [SSH_CREDENTIALS]) {
-        //                 sh "scp docker-compose.staging.yml ${REMOTE_USER}@${REMOTE_HOST}:~/docker-compose.staging.yml"
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Copy docker-compose.yml to Remote Server') {
+            steps {
+                script {
+                    sshagent(credentials: [SSH_CREDENTIALS]) {
+                        sh "scp docker-compose.staging.yml ${REMOTE_USER}@${REMOTE_HOST}:~/docker-compose-s4p.staging.yml"
+                    }
+                }
+            }
+        }
         
-        // stage('Deploy Stack') {
-        //     steps {
-        //         script {
-        //             sshagent(credentials: [SSH_CREDENTIALS]) {
-        //                 sh "ssh ${REMOTE_USER}@${REMOTE_HOST} 'LOCAL_REGISTRY_HOST=${LOCAL_REGISTRY_HOST} DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME} TAG=${TAG} docker stack deploy --compose-file docker-compose.yml ${STACK_NAME}'"
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Deploy Stack') {
+            steps {
+                script {
+                    sshagent(credentials: [SSH_CREDENTIALS]) {
+                        sh "ssh ${REMOTE_USER}@${REMOTE_HOST} 'LOCAL_REGISTRY_HOST=${LOCAL_REGISTRY_HOST} DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME} TAG=${TAG} docker stack deploy --compose-file docker-compose-s4p.staging.yml ${STACK_NAME}'"
+                    }
+                }
+            }
+        }
 
-        // stage('Delete docker-compose.yml from Remote Server') {
-        //     steps {
-        //         script {
-        //             sshagent(credentials: [SSH_CREDENTIALS]) {
-        //                 sh "ssh ${REMOTE_USER}@${REMOTE_HOST} 'rm ~/docker-compose.staging.yml'"
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Delete docker-compose.yml from Remote Server') {
+            steps {
+                script {
+                    sshagent(credentials: [SSH_CREDENTIALS]) {
+                        sh "ssh ${REMOTE_USER}@${REMOTE_HOST} 'rm ~/docker-compose-s4p.staging.yml'"
+                    }
+                }
+            }
+        }
     }
     
-    // post {
-    //     success {
-    //         echo "Docker image ${DOCKER_IMAGE_NAME}:${TAG} successfully built and pushed to local registry (${LOCAL_REGISTRY_HOST})"
-    //         echo "Stack ${STACK_NAME} deployed successfully on ${REMOTE_HOST}"
-    //     }
-    //     failure {
-    //         echo "Failed to build Docker image, push to local registry, or deploy stack"
-    //     }
-    // }
+    post {
+        success {
+            echo "Docker image ${DOCKER_IMAGE_NAME}:${TAG} successfully built and pushed to local registry (${LOCAL_REGISTRY_HOST})"
+            echo "Stack ${STACK_NAME} deployed successfully on ${REMOTE_HOST}"
+        }
+        failure {
+            echo "Failed to build Docker image, push to local registry, or deploy stack"
+        }
+    }
 }
