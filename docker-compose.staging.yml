@@ -38,7 +38,7 @@ services:
 networks:
   s4p_network:
     external:
-      name: s4p_network_stating
+      name: s4p_network_staging
   traefik_public:
     external:
       name: traefik_public
