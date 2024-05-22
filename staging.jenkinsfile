@@ -10,7 +10,7 @@ pipeline {
         STACK_NAME = 'saigon4paws-staging'
         REMOTE_HOST = credentials('swarm_master_ip')
         REMOTE_USER = credentials('swarm_master_user')
-        SSH_CREDENTIALS = credentials('Lab02-Public-Subnet')
+        SSH_CREDENTIALS = 'Lab02-Public-Subnet'
         LOCAL_REGISTRY_HOST = 'reg.ns.io.vn'
         PORT = 8899
     }
