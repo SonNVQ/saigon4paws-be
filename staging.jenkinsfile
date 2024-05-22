@@ -1,0 +1,87 @@
+pipeline {
+    agent {
+        label "agent1"
+    }
+    
+    environment {
+        DOCKER_IMAGE_NAME = 'saigon4paws-staging'
+        DOCKERFILE_PATH = 'Dockerfile'
+        TAG = "${env.BUILD_NUMBER}"
+        STACK_NAME = 'saigon4paws-staging'
+        REMOTE_HOST = credentials('swarm_master_ip')
+        REMOTE_USER = credentials('swarm_master_user')
+        SSH_CREDENTIALS = credentials('Lab02-Public-Subnet')
+        LOCAL_REGISTRY_HOST = 'reg.ns.io.vn'
+        PORT = 8899
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'staging',
+                    // credentialsId: 'SonNVQ-Github',
+                    url: 'https://github.com/SonNVQ/saigon4paws-be'
+            }
+        }
+        
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    echo "docker build -t ${LOCAL_REGISTRY_HOST}/${DOCKER_IMAGE_NAME}:${TAG} --build-arg PORT=${PORT} -f ${DOCKERFILE_PATH} ."
+                    sh "cd $WORKSPACE/Saigon4Paws && docker build -t ${LOCAL_REGISTRY_HOST}/${DOCKER_IMAGE_NAME}:${TAG} --build-arg PORT=${PORT} -f ${DOCKERFILE_PATH} ."
+                }
+            }
+        }
+        
+        stage('Push Docker Image to Local Registry') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'docker_admin_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                        sh "docker login -u $USERNAME -p $PASSWORD reg.ns.io.vn"
+                    }
+                    sh "docker push ${LOCAL_REGISTRY_HOST}/${DOCKER_IMAGE_NAME}:${TAG}"
+                }
+            }
+        }
+        
+        // stage('Copy docker-compose.yml to Remote Server') {
+        //     steps {
+        //         script {
+        //             sshagent(credentials: [SSH_CREDENTIALS]) {
+        //                 sh "scp docker-compose.staging.yml ${REMOTE_USER}@${REMOTE_HOST}:~/docker-compose.staging.yml"
+        //             }
+        //         }
+        //     }
+        // }
+        
+        // stage('Deploy Stack') {
+        //     steps {
+        //         script {
+        //             sshagent(credentials: [SSH_CREDENTIALS]) {
+        //                 sh "ssh ${REMOTE_USER}@${REMOTE_HOST} 'LOCAL_REGISTRY_HOST=${LOCAL_REGISTRY_HOST} DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME} TAG=${TAG} docker stack deploy --compose-file docker-compose.yml ${STACK_NAME}'"
+        //             }
+        //         }
+        //     }
+        // }
+
+        // stage('Delete docker-compose.yml from Remote Server') {
+        //     steps {
+        //         script {
+        //             sshagent(credentials: [SSH_CREDENTIALS]) {
+        //                 sh "ssh ${REMOTE_USER}@${REMOTE_HOST} 'rm ~/docker-compose.staging.yml'"
+        //             }
+        //         }
+        //     }
+        // }
+    }
+    
+    // post {
+    //     success {
+    //         echo "Docker image ${DOCKER_IMAGE_NAME}:${TAG} successfully built and pushed to local registry (${LOCAL_REGISTRY_HOST})"
+    //         echo "Stack ${STACK_NAME} deployed successfully on ${REMOTE_HOST}"
+    //     }
+    //     failure {
+    //         echo "Failed to build Docker image, push to local registry, or deploy stack"
+    //     }
+    // }
+}

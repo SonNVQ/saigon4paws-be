@@ -38,7 +38,7 @@ services:
 networks:
   s4p_network:
     external:
-      name: s4p_network
+      name: s4p_network_stating
   traefik_public:
     external:
       name: traefik_public
@@ -48,5 +48,5 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /data/s4p_data
+      device: /data/s4p_data_staging
       o: bind
