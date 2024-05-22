@@ -13,7 +13,7 @@ services:
         constraints:
           - node.role == worker
       labels:
-        # Enable traefik routing
+        # Enable traefik routing 
         - "traefik.enable=true"
         # Redirect http to https
         - "traefik.http.middlewares.s4p_staging-redirect-to-https.redirectscheme.scheme=https"
