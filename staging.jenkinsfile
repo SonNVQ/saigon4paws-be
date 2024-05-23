@@ -31,7 +31,7 @@ pipeline {
                 }
                 withSonarQubeEnv('sonarqube') {
                     sh "cd $WORKSPACE/Saigon4Paws && mvn clean verify sonar:sonar \
-                        -DskipTests
+                        -DskipTests \
                         -Dsonar.projectKey=saigon4paws-staging \
                         -Dsonar.projectName='saigon4paws-staging' \
                         -Dsonar.host.url=https://sonarqube.ns.io.vn \
