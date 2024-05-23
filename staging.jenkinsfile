@@ -102,5 +102,5 @@ pipeline {
         failure {
             echo "Failed to build Docker image, push to local registry, or deploy stack"
         }
-    } 
+    }
 }
