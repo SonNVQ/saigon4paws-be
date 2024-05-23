@@ -23,7 +23,25 @@ pipeline {
                     url: 'https://github.com/SonNVQ/saigon4paws-be'
             }
         }
-        
+
+        stage('SonarQube analysis') {
+            steps {
+                script {
+                    scannerHome = tool 'sonarqube'
+                }
+                withSonarQubeEnv() {
+                    sh "cd $WORKSPACE/Saigon4Paws && mvn clean verify sonar:sonar \
+                        -Dsonar.projectKey=saigon4paws-staging \
+                        -Dsonar.projectName='saigon4paws-staging' \
+                        -Dsonar.host.url=https://sonarqube.ns.io.vn \
+                        -Dsonar.token=sqp_1c646e64260f4c9dc616cc71cc0903be0dec5aed"
+                }
+                timeout(time: 60, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
