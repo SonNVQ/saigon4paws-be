@@ -88,6 +88,9 @@ pipeline {
             steps {
                 script {
                     sshagent(credentials: [SSH_CREDENTIALS]) {
+                        withCredentials([usernamePassword(credentialsId: 'docker_admin_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                            sh "docker login -u $USERNAME -p $PASSWORD reg.ns.io.vn"
+                        }
                         sh "ssh -oStrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} 'rm ~/docker-compose-s4p.staging.yml'"
                     }
                 }
