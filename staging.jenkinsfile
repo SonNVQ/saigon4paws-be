@@ -47,7 +47,7 @@ pipeline {
             steps {
                 script {
                     echo "docker build -t ${LOCAL_REGISTRY_HOST}/${DOCKER_IMAGE_NAME}:${TAG} --build-arg PORT=${PORT} -f ${DOCKERFILE_PATH} ."
-                    sh "cd $WORKSPACE/Saigon4Paws && PORT=${PORT} docker build -t ${LOCAL_REGISTRY_HOST}/${DOCKER_IMAGE_NAME}:${TAG} --build-arg PORT=${PORT} -f ${DOCKERFILE_PATH} ."
+                    sh "cd $WORKSPACE/Saigon4Paws && docker build -t ${LOCAL_REGISTRY_HOST}/${DOCKER_IMAGE_NAME}:${TAG} --build-arg PORT=${PORT} -f ${DOCKERFILE_PATH} ."
                 }
             }
         }
