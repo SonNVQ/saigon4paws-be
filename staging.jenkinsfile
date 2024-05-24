@@ -79,7 +79,7 @@ pipeline {
                 script {
                     sshagent(credentials: [SSH_CREDENTIALS]) {
                         withCredentials([usernamePassword(credentialsId: 'docker_admin_user', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                            sh "docker login -u $USERNAME -p $PASSWORD reg.ns.io.vn"
+                            sh "ssh -oStrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} docker login -u $USERNAME -p $PASSWORD reg.ns.io.vn"
                         }
                         sh "ssh -oStrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} 'LOCAL_REGISTRY_HOST=${LOCAL_REGISTRY_HOST} DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME} TAG=${TAG} docker stack deploy --with-registry-auth --compose-file docker-compose-s4p.staging.yml ${STACK_NAME}'"
                     }
